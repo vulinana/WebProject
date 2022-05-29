@@ -122,7 +122,7 @@ public class KupacDAO {
 			objectMapper.getFactory().configure(JsonGenerator.Feature.ESCAPE_NON_ASCII, true);
 			String stringUsers = objectMapper.writeValueAsString(kupci);
 			System.out.println(stringUsers);
-			System.out.print("\\data\\kupci.txt");
+			System.out.print(kupciPath + "\\data\\kupci.txt");
 			fileWriter.write(stringUsers);
 			fileWriter.flush();
 		} catch (IOException e) {

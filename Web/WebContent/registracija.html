@@ -3,25 +3,28 @@
 	<head>
 		<title>Registracija korisnika</title>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" type="text/css" href="styles.css">
+		<link rel="stylesheet" type="text/css" href="style/styles.css">
 		<script src="jquery-3.3.1.min.js"></script>
 		<script src="registracija.js"></script>
 	</head>
 	<body>	
-		<form id="forma">
-			<table>
-				<tr><td>Ime</td><td><input type="text" name="ime"></td></tr>
-				<tr><td>Prezime</td><td><input type="text" name="prezime"></td></tr>
-				<tr><td>Pol</td><td><select name="pol">
-				  <option value="MUSKO">Musko</option>
-				  <option value="ZENSKO">Zensko</option>
-				</select></td></tr>
-				<tr><td>Datum rodjenja</td><td><input type="date" name="datumRodjenja"></td></tr>
-				<tr><td>Korisnicko ime:</td><td><input type="text" name="korisnickoIme"></td></tr>
-				<tr><td>Lozinka</td><td><input type="text" name="lozinka"></td></tr>
-				<tr><td><input type="submit" value="Pošalji"></td></tr>
-			</table>
-		</form>
+	    <div align="center" class="centered">
+	    	<h1>Registracija:</h1>
+			<form id="forma">
+				<table>
+					<tr><td><label class="label">Ime:</label></td><td><input type="text" name="ime" class="textBox" required></td></tr>
+					<tr><td><label class="label">Prezime:</label></td><td><input type="text" name="prezime" class="textBox" required></td></tr>
+					<tr><td><label class="label">Pol:</label></td><td><select name="pol" class="comboBox">
+					  <option value="MUSKO">Musko</option>
+					  <option value="ZENSKO">Zensko</option>
+					</select></td></tr>
+					<tr><td><label class="label">Datum rođenja:</label></td><td><input type="date" name="datumRodjenja" class="datePicker" required></td></tr>
+					<tr><td><label class="label">Korisničko ime:</label></td><td><input type="text" name="korisnickoIme" class="textBox" required></td></tr>
+					<tr><td><label class="label">Lozinka:</label></td><td><input type="text" name="lozinka" class="textBox" required></td></tr>
+					<tr><td align="center" colspan="2"><input type="submit" value="Registruj se" class="buttonRegistrujSe"></td></tr>
+				</table>
+			</form>
+		</div>
 		<p id="error" hidden="true"></p>
 		<p id="success" hidden="true"></p>
 	</body>
