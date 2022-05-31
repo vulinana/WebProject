@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 
 import beans.Administrator;
 import beans.Korisnik;
+import beans.Korisnik.Uloga;
 import beans.Kupac;
 import beans.Menadzer;
 import beans.Trener;
@@ -107,6 +108,34 @@ public class KorisnikDAO {
 			}
 		}
 		return false;
+	}
+	
+	public void izmeniKorisnika(String korisnickoIme, Korisnik korisnik) {
+		if(korisnik.getUloga() == Uloga.KUPAC) {
+			kupci.get(korisnickoIme).setIme(korisnik.getIme());
+			kupci.get(korisnickoIme).setPrezime(korisnik.getPrezime());
+			kupci.get(korisnickoIme).setPol(korisnik.getPol());
+			kupci.get(korisnickoIme).setDatumRodjenja(korisnik.getDatumRodjenja());
+			saveKupci();
+		} else if(korisnik.getUloga() == Uloga.ADMINISTRATOR) {
+			administratori.get(korisnickoIme).setIme(korisnik.getIme());
+			administratori.get(korisnickoIme).setPrezime(korisnik.getPrezime());
+			administratori.get(korisnickoIme).setPol(korisnik.getPol());
+		    administratori.get(korisnickoIme).setDatumRodjenja(korisnik.getDatumRodjenja());
+			saveAdministratori();
+		} else if(korisnik.getUloga() == Uloga.TRENER) {
+			treneri.get(korisnickoIme).setIme(korisnik.getIme());
+			treneri.get(korisnickoIme).setPrezime(korisnik.getPrezime());
+			treneri.get(korisnickoIme).setPol(korisnik.getPol());
+		    treneri.get(korisnickoIme).setDatumRodjenja(korisnik.getDatumRodjenja());
+			saveTreneri();
+		} else {
+			menadzeri.get(korisnickoIme).setIme(korisnik.getIme());
+			menadzeri.get(korisnickoIme).setPrezime(korisnik.getPrezime());
+			menadzeri.get(korisnickoIme).setPol(korisnik.getPol());
+		    menadzeri.get(korisnickoIme).setDatumRodjenja(korisnik.getDatumRodjenja());
+			saveMenadzeri();
+		}
 	}
 	
 	private void loadKupci(String contextPath) {

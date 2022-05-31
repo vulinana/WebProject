@@ -35,4 +35,25 @@ $(document).ready(function() {
    		 });
 	});
 	
+	$('form#forma').submit(function(event) {
+		event.preventDefault();
+		let ime = $('input[name="ime"]').val();
+		let prezime = $('input[name="prezime"]').val();
+		let pol = $('select[name="pol"]').val();
+		let datumRodjenja = $('input[name="datumRodjenja"]').val();
+		$.ajax({
+			url: 'rest/kupci/izmeniProfil',
+			type: 'PUT',
+			data: JSON.stringify({ime: ime, prezime: prezime, pol: pol, datumRodjenja: datumRodjenja}),
+			contentType: 'application/json',
+			success : function() {
+				alert('Profil je uspesno izmenjen!');
+			},
+			error : function(message) {
+				alert(message.responseText);
+			}
+		});
+	
+	});
+
 });

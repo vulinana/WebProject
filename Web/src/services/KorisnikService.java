@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
@@ -119,5 +120,20 @@ public class KorisnikService {
 		else {
 			throw new WebApplicationException(Response.status(400).entity("Nijedan korisnik nije ulogovan").build());
 		}
+	}
+	
+	@PUT
+	@Path("/izmeniProfil")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response izmeniProfil(Korisnik newKorisnik) {
+		
+		HttpSession session = request.getSession();
+		Korisnik korisnik = (Korisnik) session.getAttribute("korisnik");
+		newKorisnik.setUloga(korisnik.getUloga());
+		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
+		dao.izmeniKorisnika(korisnik.getKorisnickoIme(), newKorisnik);
+		return Response.status(200).build();
+		
 	}
 }
