@@ -3,18 +3,20 @@ package beans;
 
 public class Menadzer extends Korisnik{
 
-	private SportskiObjekat sportskiObjekat;
+	private String sportskiObjekat;
 
-	public Menadzer(String korisnickoIme, String lozinka, String ime, String prezime, String pol, String datumRodjenja, SportskiObjekat sportskiObjekat) {
+	public Menadzer() {}
+	
+	public Menadzer(String korisnickoIme, String lozinka, String ime, String prezime, String pol, String datumRodjenja, String sportskiObjekat) {
 		super(korisnickoIme, lozinka, ime, prezime, pol, datumRodjenja, Uloga.MENADZER);
 		this.sportskiObjekat = sportskiObjekat;
 	}
 
-	public SportskiObjekat getSportskiObjekat() {
+	public String getSportskiObjekat() {
 		return sportskiObjekat;
 	}
 
-	public void setSportskiObjekat(SportskiObjekat sportskiObjekat) {
+	public void setSportskiObjekat(String sportskiObjekat) {
 		this.sportskiObjekat = sportskiObjekat;
 	}
 	

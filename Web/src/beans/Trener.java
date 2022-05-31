@@ -7,6 +7,8 @@ public class Trener extends Korisnik {
 	
 	private List<IstorijaTreninga> istorijaTreninga;
 
+	public Trener() {}
+	
 	public Trener(String korisnickoIme, String lozinka, String ime, String prezime, String pol, String datumRodjenja,
 			Uloga uloga) {
 		super(korisnickoIme, lozinka, ime, prezime, pol, datumRodjenja, Uloga.TRENER);

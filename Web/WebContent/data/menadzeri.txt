@@ -1,0 +1,12 @@
+{
+  "menadzer1" : {
+    "korisnickoIme" : "menadzer1",
+    "lozinka" : "123",
+    "ime" : "Marko",
+    "prezime" : "Markovic",
+    "pol" : "MUSKO",
+    "datumRodjenja" : "2022-05-29",
+    "uloga" : "MENADZER",
+    "sportskiObjekat": "bla"
+  }
+}

@@ -8,7 +8,6 @@ $(document).ready(function() {
 		let datumRodjenja = $('input[name="datumRodjenja"]').val();
 		let korisnickoIme = $('input[name="korisnickoIme"]').val();
 		let lozinka = $('input[name="lozinka"]').val();
-		console.log(datumRodjenja);
 		$.ajax({
 			url: 'rest/kupci/registracija',
 			type: 'POST',

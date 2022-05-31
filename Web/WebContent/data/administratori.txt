@@ -1,0 +1,11 @@
+{
+  "admin1" : {
+    "korisnickoIme" : "admin1",
+    "lozinka" : "123",
+    "ime" : "Marko",
+    "prezime" : "Markovic",
+    "pol" : "MUSKO",
+    "datumRodjenja" : "2022-05-29",
+    "uloga" : "ADMINISTRATOR"
+  }
+}
