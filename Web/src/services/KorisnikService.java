@@ -1,6 +1,7 @@
 package services;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
@@ -135,5 +136,13 @@ public class KorisnikService {
 		dao.izmeniKorisnika(korisnik.getKorisnickoIme(), newKorisnik);
 		return Response.status(200).build();
 		
+	}
+	
+	@GET
+	@Path("/")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<Korisnik> getProducts() {
+		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
+		return dao.findAll();
 	}
 }

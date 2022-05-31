@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-		<title>Administrator Pocetna</title>
+		<title>Pregled korisnika</title>
 		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="style/homePageStyle.css">
+		<link rel="stylesheet" type="text/css" href="style/pregledKorisnikaStyle.css">
 		<script src="jquery-3.3.1.min.js"></script>
 		<script src="logout.js"></script>
+		<script src="pregledKorisnika.js"></script>
 </head>
 <body>
-  <div class="topnav">
+	  <div class="topnav">
   	  <a id="logout" href='login.html'>Odjavi se</a>
   	  <a class="active" href="#administratorHomePage">Početna</a>
       <a href="profil.html">Profil</a>
 </div>
-<div>
-	<ul>
-	<li><a href="pregledKorisnika.html">Korisnici</a></li>
-	</ul>
+<div align="center" class="centered">
+	<table id="tabela" border='1'>
+		<th>Korisničko ime</th>
+		<th>Ime</th>
+		<th>Prezime</th>
+		<th>Pol</th>
+		<th>Datum rođenja</th>
+		<th>Uloga</th>
+	</table>
 </div>
 </body>
 </html>

@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
@@ -136,6 +137,16 @@ public class KorisnikDAO {
 		    menadzeri.get(korisnickoIme).setDatumRodjenja(korisnik.getDatumRodjenja());
 			saveMenadzeri();
 		}
+	}
+	
+	public Collection<Korisnik> findAll(){
+		
+		HashMap<String, Korisnik> korisnici = new HashMap<String, Korisnik>();
+		korisnici.putAll(kupci);
+		korisnici.putAll(administratori);
+		korisnici.putAll(menadzeri);
+		korisnici.putAll(treneri);
+		return korisnici.values();
 	}
 	
 	private void loadKupci(String contextPath) {
