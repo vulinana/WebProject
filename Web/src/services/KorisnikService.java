@@ -7,6 +7,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -77,7 +78,7 @@ public class KorisnikService {
 		if (zeljeniKorisnik != null) {
 
 			if (zeljeniKorisnik.getLozinka().equals(korisnik.getLozinka())) {
-				session.setAttribute("korisnik", korisnik);
+				session.setAttribute("korisnik", zeljeniKorisnik);
 				return zeljeniKorisnik;
 			} else {
 				throw new WebApplicationException(Response.status(400).entity("Pogresna lozinka!").build());
@@ -87,5 +88,36 @@ public class KorisnikService {
 		}
 	}
 
+	@GET
+	@Path("/logout")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response logout() {
+		
+		HttpSession session = request.getSession();
+		Korisnik korisnik = (Korisnik) session.getAttribute("korisnik");
+		
+		if(korisnik != null) {
+			session.invalidate();
+			return Response.status(200).build();
+		}
+		else {
+			return Response.status(400).entity("Korisnik je vec izlogovan!").build();
+		}
+	}
 	
+	@GET
+	@Path("/ulogovanKorisnik")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Korisnik getUlogovanKorisnik() {
+		
+		HttpSession session = request.getSession();
+		Korisnik korisnik = (Korisnik) session.getAttribute("korisnik");
+		
+		if(korisnik != null) {
+			return (Korisnik) session.getAttribute("korisnik");
+		}
+		else {
+			throw new WebApplicationException(Response.status(400).entity("Nijedan korisnik nije ulogovan").build());
+		}
+	}
 }
