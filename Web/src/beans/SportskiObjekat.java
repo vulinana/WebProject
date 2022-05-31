@@ -1,5 +1,7 @@
 package beans;
 
+import java.awt.Image;
+
 enum TipObjekta{Teretana, Bazen, SportskiCentar, PlesniStudio}
 enum StatusObjekta{Radi, NeRadi}
 
@@ -10,7 +12,7 @@ public class SportskiObjekat {
 	//sadrzaj objekta
 	private StatusObjekta statusObjekta;
 	private Lokacija lokacija;
-	//logo-slika
+	private Image logo;
 	private double prosecnaOcena;
 	//raadno vreme
 	
