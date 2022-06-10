@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -50,6 +49,64 @@ public class SportskiObjekatDAO {
 		}
 		
 		return sortiraniObjekti;
+	}
+	
+	public List<SportskiObjekat> pretraziPoNazivu(String naziv){
+		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
+		
+		for (SportskiObjekat s: sportskiObjekti.values()) {
+			if(s.getNaziv().toLowerCase().equals(naziv.toLowerCase())) {
+				filtriraniObjekti.add(s);
+			}
+		}
+		
+		return filtriraniObjekti;
+	}
+	
+	public List<SportskiObjekat> pretraziPoMestu(String mesto){
+		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
+		
+		for (SportskiObjekat s: sportskiObjekti.values()) {
+			if(s.getLokacija().getAdresa().getMesto().toLowerCase().equals(mesto.toLowerCase())) {
+				filtriraniObjekti.add(s);
+			}
+		}
+		
+		return filtriraniObjekti;
+	}
+	
+	public List<SportskiObjekat> pretraziPoProsecnojOceni(double prosecnaOcena){
+		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
+		for (SportskiObjekat s: sportskiObjekti.values()) {
+			if(s.getProsecnaOcena() ==  prosecnaOcena) {
+				filtriraniObjekti.add(s);
+			}
+		}
+		
+		return filtriraniObjekti;
+	}
+	
+	public List<SportskiObjekat> pretraziPoTipu(SportskiObjekat.TipObjekta tipObjekta){
+		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
+		for (SportskiObjekat s: sportskiObjekti.values()) {
+			if(s.getTipObjekta() ==  tipObjekta) {
+				filtriraniObjekti.add(s);
+			}
+		}
+		
+		return filtriraniObjekti;
+	}
+	
+	public List<SportskiObjekat> pretraziPoSvimKriterijumima(SportskiObjekat so){
+		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
+		for (SportskiObjekat s: sportskiObjekti.values()) {
+			if(s.getNaziv().toLowerCase().equals(so.getNaziv().toLowerCase()) && s.getTipObjekta() == so.getTipObjekta() 
+				&& s.getLokacija().getAdresa().getMesto().toLowerCase().equals(so.getLokacija().getAdresa().getMesto().toLowerCase()) && s.getProsecnaOcena() == so.getProsecnaOcena()) {
+				filtriraniObjekti.add(s);
+			}
+		}
+		
+		return filtriraniObjekti;
 	}
 	
 	public void kreirajSportskiObjekat(SportskiObjekat sportskiObjekat) {

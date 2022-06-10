@@ -2,11 +2,12 @@ package beans;
 
 import beans.RadnoVreme.Dan;
 
-enum TipObjekta{Teretana, Bazen, SportskiCentar, PlesniStudio}
 
 public class SportskiObjekat {
 
 	public enum StatusObjekta{Radi, NeRadi}
+	public enum TipObjekta{Teretana, Bazen, SportskiCentar, PlesniStudio}
+	
 	private String naziv;
 	private TipObjekta tipObjekta;
 	//sadrzaj objekta

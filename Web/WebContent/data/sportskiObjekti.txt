@@ -2,7 +2,7 @@
   "Mega gym" : {
     "naziv" : "Mega gym",
     "tipObjekta" : "Teretana",
-    "lokacija" : { "geografskaSirina": 100.0, "geografskaDuzina": 100.0, "adresa": { "ulicaIBroj": "Nikole Tesle 27", "mesto": "Novi Sad, Srbija", "postanskiBroj": "222222"}},
+    "lokacija" : { "geografskaSirina": 100.0, "geografskaDuzina": 100.0, "adresa": { "ulicaIBroj": "Nikole Tesle 27", "mesto": "Novi Sad", "postanskiBroj": "222222"}},
     "logo" : "logo.jpg",
     "prosecnaOcena" : 10.0,
     "radnoVreme" : {"dani" : ["Ponedeljak", "Utorak"], "odVreme": 9, "doVreme": 21}
@@ -10,7 +10,7 @@
    "Super gym" : {
     "naziv" : "Super gym",
     "tipObjekta" : "Teretana",
-    "lokacija" : { "geografskaSirina": 100.0, "geografskaDuzina": 100.0, "adresa": { "ulicaIBroj": "Nikole Tesle 27", "mesto": "Novi Sad, Srbija", "postanskiBroj": "222222"}},
+    "lokacija" : { "geografskaSirina": 100.0, "geografskaDuzina": 100.0, "adresa": { "ulicaIBroj": "Nikole Tesle 27", "mesto": "Novi Sad", "postanskiBroj": "222222"}},
     "logo" : "logo2.jpg",
     "prosecnaOcena" : 10.0,
     "radnoVreme" : {"dani" : ["Ponedeljak", "Utorak"], "odVreme": 9, "doVreme": 21}
@@ -18,7 +18,7 @@
  "Extra gym" : {
     "naziv" : "Extra gym",
     "tipObjekta" : "Teretana",
-    "lokacija" : { "geografskaSirina": 100.0, "geografskaDuzina": 100.0, "adresa": { "ulicaIBroj": "Nikole Tesle 27", "mesto": "Novi Sad, Srbija", "postanskiBroj": "222222"}},
+    "lokacija" : { "geografskaSirina": 100.0, "geografskaDuzina": 100.0, "adresa": { "ulicaIBroj": "Nikole Tesle 27", "mesto": "Novi Sad", "postanskiBroj": "222222"}},
     "logo" : "logo3.jpg",
     "prosecnaOcena" : 10.0,
     "radnoVreme" : {"dani" : ["Ponedeljak", "Utorak","Sreda", "Cetvrtak", "Petak", "Subota"], "odVreme": 9, "doVreme": 24}
@@ -26,7 +26,7 @@
  "Tralala gym" : {
     "naziv" : "Tralala gym",
     "tipObjekta" : "Teretana",
-    "lokacija" : { "geografskaSirina": 100.0, "geografskaDuzina": 100.0, "adresa": { "ulicaIBroj": "Nikole Tesle 27", "mesto": "Novi Sad, Srbija", "postanskiBroj": "222222"}},
+    "lokacija" : { "geografskaSirina": 100.0, "geografskaDuzina": 100.0, "adresa": { "ulicaIBroj": "Nikole Tesle 27", "mesto": "Novi Sad", "postanskiBroj": "222222"}},
     "logo" : "logo.jpg",
     "prosecnaOcena" : 10.0,
     "radnoVreme" : {"dani" : ["Ponedeljak", "Utorak"], "odVreme": 9, "doVreme": 21}

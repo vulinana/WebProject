@@ -1,13 +1,10 @@
 package services;
 
-import java.awt.Image;
 import java.util.Collection;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -71,4 +68,30 @@ public class SportskiObjekatService {
 		return Response.status(200).build();
 	}
 	
+	
+	@PUT
+	@Path("/pretrazi")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<SportskiObjekat> pretrazi (SportskiObjekat sportskiObjekat) {
+		
+		String mesto = sportskiObjekat.getLokacija().getAdresa().getMesto();
+		SportskiObjekatDAO dao = (SportskiObjekatDAO) ctx.getAttribute("sportskiObjekatDAO");
+		if (sportskiObjekat.getNaziv() != null && sportskiObjekat.getNaziv() != "" && mesto != null && mesto != "" && sportskiObjekat.getTipObjekta() != null && sportskiObjekat.getProsecnaOcena() != 0.0) {
+			return dao.pretraziPoSvimKriterijumima(sportskiObjekat);
+		}
+		if (sportskiObjekat.getNaziv() != null && sportskiObjekat.getNaziv() != "") {
+			return dao.pretraziPoNazivu(sportskiObjekat.getNaziv());
+		} else if (sportskiObjekat.getTipObjekta() != null) {
+			return dao.pretraziPoTipu(sportskiObjekat.getTipObjekta());
+		}	
+		else if(mesto != null && mesto != ""){
+			return dao.pretraziPoMestu(sportskiObjekat.getLokacija().getAdresa().getMesto());
+		} else if (sportskiObjekat.getProsecnaOcena() != 0.0) {
+			return dao.pretraziPoProsecnojOceni(sportskiObjekat.getProsecnaOcena());
+		}
+		else {
+			return getSportskiObjekti();
+		}
+	}
 }

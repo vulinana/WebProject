@@ -40,6 +40,11 @@ function displayImages(sportskiObjekti){
 	}
 }
 
+function updateImages(sportskiObjekti) {
+	$('#row').html("");
+	displayImages(sportskiObjekti);
+}
+
 
 $(document).ready(function() {
 	$.get({
@@ -51,5 +56,27 @@ $(document).ready(function() {
 	
 	$('#popupButton').click(function() {
 			$('#popupOverlay, #popup').css("visibility", "hidden");
+	});
+	
+	
+	
+	$('form#formaZaPretragu').submit(function(event) {
+		event.preventDefault();
+		let naziv = $('#pretragaNaziv').val();
+		let mesto = $('#pretragaGradIliDrzava').val();
+		let prosecnaOcena = $('#pretragaProsecnaOcena').val();
+		let tipObjekta = $('#pretragaTipObjekta').val();
+		if (tipObjekta == ""){
+			tipObjekta = null;
+		}
+		$.ajax({
+			url: 'rest/sportskiObjekti/pretrazi',
+			type: 'PUT',
+			data: JSON.stringify({naziv: naziv, lokacija: { adresa: {mesto: mesto}}, prosecnaOcena: prosecnaOcena, tipObjekta: tipObjekta}),
+			contentType: 'application/json',
+			success: function(sportskiObjekti) {
+				updateImages(sportskiObjekti);
+			}
 		});
+	});
 });
