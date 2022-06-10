@@ -6,8 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -148,6 +150,20 @@ public class KorisnikDAO {
 		korisnici.putAll(treneri);
 		return korisnici.values();
 	}
+	
+	public List<Menadzer> findSlobodniMenadzeri(){
+			
+			List<Menadzer> slobodniMenadzeri = new ArrayList<Menadzer>();
+			
+			for (Menadzer m: menadzeri.values()) {
+				
+				if (m.getSportskiObjekat() != null && m.getSportskiObjekat() != "") {
+					slobodniMenadzeri.add(m);
+				}
+			}		
+			return slobodniMenadzeri;
+	}
+	
 	
 	private void loadKupci(String contextPath) {
 		FileWriter fileWriter = null;

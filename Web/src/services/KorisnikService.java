@@ -1,7 +1,7 @@
 package services;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
@@ -20,6 +20,7 @@ import javax.ws.rs.core.Response;
 
 import beans.Korisnik;
 import beans.Kupac;
+import beans.Menadzer;
 import dao.KorisnikDAO;
 
 @Path("/kupci")
@@ -141,8 +142,16 @@ public class KorisnikService {
 	@GET
 	@Path("/")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Korisnik> getProducts() {
+	public Collection<Korisnik> getKorisnici() {
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
 		return dao.findAll();
+	}
+	
+	@GET
+	@Path("/slobodniMenadzeri")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Menadzer> getSlobodniMenadzeri() {
+		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
+		return dao.findSlobodniMenadzeri();
 	}
 }

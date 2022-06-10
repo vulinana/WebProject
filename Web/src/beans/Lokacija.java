@@ -6,6 +6,8 @@ public class Lokacija {
 	private double geografskaDuzina;
 	private Adresa adresa;
 	
+	public Lokacija() {}
+	
 	public Lokacija(double geografskaSirina, double geografskaDuzina, Adresa adresa) {
 		super();
 		this.geografskaSirina = geografskaSirina;

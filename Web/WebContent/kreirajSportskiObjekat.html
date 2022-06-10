@@ -4,16 +4,8 @@
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="style/styles.css">
     <link rel="stylesheet" type="text/css" href="style/homePageStyle.css">
-    <style>
-      .map {
-        height: 200px;
-        width: 400px;
-      }
-    </style>
-    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/build/ol.js"></script>
     <script src="jquery-3.3.1.min.js"></script>
-    <script src="kreirajSportskiObjekat.js"></script>
-    <title>OpenLayers example</title>
+    <script src="sportskiObjekat.js"></script>
   </head>
   <body>
   <div class="topnav">
@@ -25,7 +17,7 @@
   <div align="center" class="centered">
 	    	<h1>Kreiraj sportski objekat:</h1>
 			<form id="forma">
-				<table>
+				<table id="tabela">
 					<tr><td><label class="label">Naziv:</label></td><td><input type="text" name="naziv" class="textBox" required></td></tr>
 					<tr><td><label class="label">Tip:</label></td><td><select name="pol" class="comboBox">
 					  <option value="Teretana">Teretana</option>
@@ -33,9 +25,13 @@
 					  <option value="PlesniStudio">Plesni studio</option>
 					  <option value="SportskiCentar">Sportski centar</option>
 					</select></td></tr>
-					<tr><td><label class="label">Logo:</label></td><td><input type="file" name="logo" class="textBox" required></td></tr>
-					<tr><td colspan='2'><label class="label">Lokacija:</label></td></tr>
-					<tr><td colspan="2" align='center'><div id="map" class="map"></div></td></tr>
+					<tr><td><label class="label">Logo:</label></td><td><input type="file" name="logo" id="logo" class="textBox" required></td></tr>
+					<tr><td><label class="label">Ulica i broj:</label></td><td><input type="text" name="ulicaIBroj" class="textBox" required></td></tr>
+					<tr><td><label class="label">Mesto:</label></td><td><input type="text" name="mesto" class="textBox" required></td></tr>
+					<tr><td><label class="label">Postanski broj:</label></td><td><input type="text" name="postanskiBroj" class="textBox" required></td></tr>
+					<tr><td><label class="label">Geografska širina:</label></td><td><input type="text" name="geografskaSirina" class="textBox" required></td></tr>
+					<tr><td><label class="label">Geografska dužina:</label></td><td><input type="text" name="geografskaDuzina" class="textBox" required></td></tr>
+					<tr id="menadzer"></tr>
 					<tr><td align="center" colspan="2"><input type="submit" value="Sačuvaj" class="buttonRegistrujSe"></td></tr>
 				</table>
 			</form>
