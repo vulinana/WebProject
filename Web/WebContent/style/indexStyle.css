@@ -144,6 +144,18 @@ html, body{
 }
 
 .sortComboBox {
-	margin-left:205px;
-	margin-bottom: 20px;
+	margin-left: 250px;
+}
+
+.checkBoxOtvoreno {
+	-webkit-appearance:none;
+    width:20px;
+    height:20px;
+    background:white;
+    border-radius:5px;
+    border:2px solid #555;
+}
+
+.checkBoxOtvoreno:checked {
+    background: green;
 }

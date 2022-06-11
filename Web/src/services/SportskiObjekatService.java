@@ -13,6 +13,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -142,64 +143,92 @@ public class SportskiObjekatService {
 	
 
 	@GET
-	@Path("/sortiraniPoProsecnojOceniOpadajuce")
+	@Path("/sortiraniPoProsecnojOceniOpadajuce/{bool}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<SportskiObjekat> getSortiraniSportskiObjektiOcenaOpadajuce() {
+	public Collection<SportskiObjekat> getSortiraniSportskiObjektiOcenaOpadajuce(@PathParam("bool") boolean otvoreno) {
 		SportskiObjekatDAO dao = (SportskiObjekatDAO) ctx.getAttribute("sportskiObjekatDAO");
-		prikazaniSportskiObjekti = dao.sortirajPoProsecnojOceniOpadajuce(prikazaniSportskiObjekti);
-		return prikazaniSportskiObjekti;
+		
+		if (otvoreno) {
+			return dao.getOtvoreniSportskiObjekti(dao.sortirajPoProsecnojOceniOpadajuce(new ArrayList<>(prikazaniSportskiObjekti)));
+		}
+		
+		return dao.sortirajPoProsecnojOceniOpadajuce(new ArrayList<>(prikazaniSportskiObjekti));
 	}
 	
 	@GET
-	@Path("/sortiraniPoProsecnojOceniRastuce")
+	@Path("/sortiraniPoProsecnojOceniRastuce/{bool}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<SportskiObjekat> getSortiraniSportskiObjektiOcenaRastuce() {
+	public Collection<SportskiObjekat> getSortiraniSportskiObjektiOcenaRastuce(@PathParam("bool") boolean otvoreno) {
 		SportskiObjekatDAO dao = (SportskiObjekatDAO) ctx.getAttribute("sportskiObjekatDAO");
-		prikazaniSportskiObjekti = dao.sortirajPoProsecnojOceniRastuce(prikazaniSportskiObjekti);
-		return prikazaniSportskiObjekti;
+		if (otvoreno) {
+			return dao.getOtvoreniSportskiObjekti(dao.sortirajPoProsecnojOceniRastuce(new ArrayList<>(prikazaniSportskiObjekti)));
+		}
+		return dao.sortirajPoProsecnojOceniRastuce(new ArrayList<SportskiObjekat>(prikazaniSportskiObjekti));
 	}
 	
 	@GET
-	@Path("/sortiraniPoNazivuRastuce")
+	@Path("/sortiraniPoNazivuRastuce/{bool}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<SportskiObjekat> getSortiraniSportskiObjektiNazivRastuce() {
+	public Collection<SportskiObjekat> getSortiraniSportskiObjektiNazivRastuce(@PathParam("bool") boolean otvoreno) {
 		SportskiObjekatDAO dao = (SportskiObjekatDAO) ctx.getAttribute("sportskiObjekatDAO");
-		prikazaniSportskiObjekti = dao.sortirajPoNazivuRastuce(prikazaniSportskiObjekti);
-		return prikazaniSportskiObjekti;
+		if (otvoreno) {
+			return dao.getOtvoreniSportskiObjekti(dao.sortirajPoNazivuRastuce(new ArrayList<SportskiObjekat>(prikazaniSportskiObjekti)));
+		}
+		return dao.sortirajPoNazivuRastuce(new ArrayList<SportskiObjekat>(prikazaniSportskiObjekti));
 	}
 	
 	@GET
-	@Path("/sortiraniPoNazivuOpadajuce")
+	@Path("/sortiraniPoNazivuOpadajuce/{bool}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<SportskiObjekat> getSortiraniSportskiObjektiNazivOpadajuce() {
+	public Collection<SportskiObjekat> getSortiraniSportskiObjektiNazivOpadajuce(@PathParam("bool") boolean otvoreno) {
 		SportskiObjekatDAO dao = (SportskiObjekatDAO) ctx.getAttribute("sportskiObjekatDAO");
-		prikazaniSportskiObjekti = dao.sortirajPoNazivuRastuce(prikazaniSportskiObjekti);
-		Collections.reverse(prikazaniSportskiObjekti);
-		return prikazaniSportskiObjekti;
+		List<SportskiObjekat> sortirani = dao.sortirajPoNazivuRastuce(new ArrayList<SportskiObjekat>(prikazaniSportskiObjekti));
+		Collections.reverse(sortirani);
+		if (otvoreno) {
+			return dao.getOtvoreniSportskiObjekti(sortirani);
+		}
+		return sortirani;
 	}
 	
 	@GET
-	@Path("/sortiraniPoLokacijiRastuce")
+	@Path("/sortiraniPoLokacijiRastuce/{bool}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<SportskiObjekat> getSortiraniSportskiObjektiLokacijaRastuce() {
+	public Collection<SportskiObjekat> getSortiraniSportskiObjektiLokacijaRastuce(@PathParam("bool") boolean otvoreno) {
 		SportskiObjekatDAO dao = (SportskiObjekatDAO) ctx.getAttribute("sportskiObjekatDAO");
-		prikazaniSportskiObjekti = dao.sortirajPoLokacijiRastuce(prikazaniSportskiObjekti);
-		return prikazaniSportskiObjekti;
+		if (otvoreno) {
+			return dao.getOtvoreniSportskiObjekti(dao.sortirajPoLokacijiRastuce(new ArrayList<>(prikazaniSportskiObjekti)));
+		}
+		return dao.sortirajPoLokacijiRastuce(new ArrayList<>(prikazaniSportskiObjekti));
 	}
 	
 	@GET
-	@Path("/sortiraniPoLokacijiOpadajuce")
+	@Path("/sortiraniPoLokacijiOpadajuce/{bool}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<SportskiObjekat> getSortiraniSportskiObjektiLokacijaOpadajuce() {
+	public Collection<SportskiObjekat> getSortiraniSportskiObjektiLokacijaOpadajuce(@PathParam("bool") boolean otvoreno) {
 		SportskiObjekatDAO dao = (SportskiObjekatDAO) ctx.getAttribute("sportskiObjekatDAO");
-		prikazaniSportskiObjekti = dao.sortirajPoLokacijiRastuce(prikazaniSportskiObjekti);
-		Collections.reverse(prikazaniSportskiObjekti);
+		List<SportskiObjekat> sortirani = dao.sortirajPoLokacijiRastuce(dao.sortirajPoLokacijiRastuce(new ArrayList<>(prikazaniSportskiObjekti)));
+		Collections.reverse(sortirani);
+		if (otvoreno) {
+			return dao.getOtvoreniSportskiObjekti(sortirani);
+		}
+		return sortirani;
+	}
+	
+	@GET
+	@Path("/pretrazeniSportskiObjekti/{bool}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<SportskiObjekat> getPretrazeniSportskiObjekti(@PathParam("bool") boolean otvoreno) {
+		if (otvoreno) {
+			SportskiObjekatDAO dao = (SportskiObjekatDAO) ctx.getAttribute("sportskiObjekatDAO");
+			return dao.getOtvoreniSportskiObjekti(prikazaniSportskiObjekti);
+		}
 		return prikazaniSportskiObjekti;
 	}
 }

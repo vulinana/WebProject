@@ -302,6 +302,18 @@ public class SportskiObjekatDAO {
 		return sortiraniObjekti;
 	}	
 	
+	public List<SportskiObjekat> getOtvoreniSportskiObjekti(List<SportskiObjekat> prikazaniSportskiObjekti){
+		
+		List<SportskiObjekat> otvoreniObjekti = new ArrayList<SportskiObjekat>();
+		for (SportskiObjekat s: prikazaniSportskiObjekti) {
+			if (s.odrediStatus() == SportskiObjekat.StatusObjekta.Radi) {
+				otvoreniObjekti.add(s);
+			}
+		}
+			
+		return otvoreniObjekti;
+	}	
+	
 	public void kreirajSportskiObjekat(SportskiObjekat sportskiObjekat) {
 			
 	}

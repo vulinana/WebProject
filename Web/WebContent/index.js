@@ -31,6 +31,72 @@ function updateImages(sportskiObjekti) {
 	displayImages(sportskiObjekti);
 }
 
+function sortiraj(){
+	
+	 let kriterijumZaSortiranje = $('#sortComboBox').val();
+   	 let kriterijumFiltriranja = document.querySelector('#otvorenoCheckBox').checked;
+   	 
+   	   if (kriterijumZaSortiranje == "sortiraj"){
+	       $.get({
+			url: 'rest/sportskiObjekti/pretrazeniSportskiObjekti/' + kriterijumFiltriranja,
+			success: function(sportskiObjekti) {
+				updateImages(sportskiObjekti);
+			}
+		   });
+	   } 
+   	   
+       if (kriterijumZaSortiranje == "prosecnaOcenaOpadajuce"){
+	       $.get({
+			url: 'rest/sportskiObjekti/sortiraniPoProsecnojOceniOpadajuce/' + kriterijumFiltriranja,
+			success: function(sportskiObjekti) {
+				updateImages(sportskiObjekti);
+			}
+		   });
+	   } 
+	   if (kriterijumZaSortiranje == "prosecnaOcenaRastuce"){
+			$.get({
+				url: 'rest/sportskiObjekti/sortiraniPoProsecnojOceniRastuce/' + kriterijumFiltriranja,
+				success: function(sportskiObjekti) {
+					updateImages(sportskiObjekti);
+				}
+		   });
+	   }
+	    if (kriterijumZaSortiranje == "nazivRastuce"){
+			$.get({
+				url: 'rest/sportskiObjekti/sortiraniPoNazivuRastuce/' + kriterijumFiltriranja,
+				success: function(sportskiObjekti) {
+					updateImages(sportskiObjekti);
+				}
+		   });
+	   }
+	   
+	   if (kriterijumZaSortiranje == "nazivOpadajuce"){
+			$.get({
+				url: 'rest/sportskiObjekti/sortiraniPoNazivuOpadajuce/' + kriterijumFiltriranja,
+				success: function(sportskiObjekti) {
+					updateImages(sportskiObjekti);
+				}
+		   });
+	   }
+	   
+	    if (kriterijumZaSortiranje == "lokacijaRastuce"){
+			$.get({
+				url: 'rest/sportskiObjekti/sortiraniPoLokacijiRastuce/' + kriterijumFiltriranja,
+				success: function(sportskiObjekti) {
+					updateImages(sportskiObjekti);
+				}
+		   });
+	   }
+	    if (kriterijumZaSortiranje == "lokacijaOpadajuce"){
+			$.get({
+				url: 'rest/sportskiObjekti/sortiraniPoLokacijiOpadajuce/' + kriterijumFiltriranja,
+				success: function(sportskiObjekti) {
+					updateImages(sportskiObjekti);
+				}
+		   });
+	   }
+	
+}
 
 $(document).ready(function() {
 	$.get({
@@ -68,58 +134,11 @@ $(document).ready(function() {
 	});
 	
 	 $('#sortComboBox').change(function(){
-       let kriterijumZaSortiranje = $('#sortComboBox').val();
-       console.log(kriterijumZaSortiranje);
-       if (kriterijumZaSortiranje == "prosecnaOcenaOpadajuce"){
-	       $.get({
-			url: 'rest/sportskiObjekti/sortiraniPoProsecnojOceniOpadajuce',
-			success: function(sportskiObjekti) {
-				updateImages(sportskiObjekti);
-			}
-		   });
-	   } 
-	   if (kriterijumZaSortiranje == "prosecnaOcenaRastuce"){
-			$.get({
-				url: 'rest/sportskiObjekti/sortiraniPoProsecnojOceniRastuce',
-				success: function(sportskiObjekti) {
-					updateImages(sportskiObjekti);
-				}
-		   });
-	   }
-	    if (kriterijumZaSortiranje == "nazivRastuce"){
-			$.get({
-				url: 'rest/sportskiObjekti/sortiraniPoNazivuRastuce',
-				success: function(sportskiObjekti) {
-					updateImages(sportskiObjekti);
-				}
-		   });
-	   }
-	   
-	   if (kriterijumZaSortiranje == "nazivOpadajuce"){
-			$.get({
-				url: 'rest/sportskiObjekti/sortiraniPoNazivuOpadajuce',
-				success: function(sportskiObjekti) {
-					updateImages(sportskiObjekti);
-				}
-		   });
-	   }
-	   
-	    if (kriterijumZaSortiranje == "lokacijaRastuce"){
-			$.get({
-				url: 'rest/sportskiObjekti/sortiraniPoLokacijiRastuce',
-				success: function(sportskiObjekti) {
-					updateImages(sportskiObjekti);
-				}
-		   });
-	   }
-	    if (kriterijumZaSortiranje == "lokacijaOpadajuce"){
-			$.get({
-				url: 'rest/sportskiObjekti/sortiraniPoLokacijiOpadajuce',
-				success: function(sportskiObjekti) {
-					updateImages(sportskiObjekti);
-				}
-		   });
-	   }
+         sortiraj();
     });
     
+    $("#otvorenoCheckBox").change(function() {
+		sortiraj();
+	});
+	   
 });
