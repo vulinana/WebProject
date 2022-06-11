@@ -231,6 +231,8 @@ public class SportskiObjekatDAO {
 		return sortiraniObjekti;
 	}
 	
+
+	
 	public List<SportskiObjekat> sortirajPoProsecnojOceniRastuce(List<SportskiObjekat> prikazaniSportskiObjekti){
 		
 		List<SportskiObjekat> sortiraniObjekti = new ArrayList<SportskiObjekat>();
@@ -245,6 +247,29 @@ public class SportskiObjekatDAO {
 				}
 				if (prikazaniSportskiObjekti.get(i).getProsecnaOcena() <= min) {
 					min = prikazaniSportskiObjekti.get(i).getProsecnaOcena();
+					tempSportskiObjekat = i;
+				}
+			}
+			sortiraniObjekti.add(prikazaniSportskiObjekti.get(tempSportskiObjekat));
+			prikazaniSportskiObjekti.remove(tempSportskiObjekat);
+		}
+		return sortiraniObjekti;
+	}
+	
+	public List<SportskiObjekat> sortirajPoNazivuRastuce(List<SportskiObjekat> prikazaniSportskiObjekti){
+		
+		List<SportskiObjekat> sortiraniObjekti = new ArrayList<SportskiObjekat>();
+		int tempSportskiObjekat = 0;
+		String min = null;
+		while (!prikazaniSportskiObjekti.isEmpty()) {
+			boolean prviProlaz = true;
+			for (int i = 0; i < prikazaniSportskiObjekti.size(); i++) {
+				if (prviProlaz) {
+					min = prikazaniSportskiObjekti.get(i).getNaziv();
+					prviProlaz = false;
+				}
+				if (prikazaniSportskiObjekti.get(i).getNaziv().compareTo(min) <= 0) {
+					min = prikazaniSportskiObjekti.get(i).getNaziv();
 					tempSportskiObjekat = i;
 				}
 			}

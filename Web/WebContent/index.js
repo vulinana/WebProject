@@ -85,6 +85,23 @@ $(document).ready(function() {
 				}
 		   });
 	   }
+	    if (kriterijumZaSortiranje == "nazivRastuce"){
+			$.get({
+				url: 'rest/sportskiObjekti/sortiraniPoNazivuRastuce',
+				success: function(sportskiObjekti) {
+					updateImages(sportskiObjekti);
+				}
+		   });
+	   }
+	   
+	   if (kriterijumZaSortiranje == "nazivOpadajuce"){
+			$.get({
+				url: 'rest/sportskiObjekti/sortiraniPoNazivuOpadajuce',
+				success: function(sportskiObjekti) {
+					updateImages(sportskiObjekti);
+				}
+		   });
+	   }
     });
     
 });
