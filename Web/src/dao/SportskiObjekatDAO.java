@@ -109,6 +109,110 @@ public class SportskiObjekatDAO {
 		return filtriraniObjekti;
 	}
 	
+	public List<SportskiObjekat> pretraziPoNazivuTipuMestu(String naziv, SportskiObjekat.TipObjekta tipObjekta, String mesto){
+		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
+		for (SportskiObjekat s: sportskiObjekti.values()) {
+			if(s.getNaziv().toLowerCase().equals(naziv.toLowerCase()) && s.getTipObjekta() == tipObjekta && s.getLokacija().getAdresa().getMesto().toLowerCase().equals(mesto.toLowerCase())){
+				filtriraniObjekti.add(s);
+			}
+		}
+		
+		return filtriraniObjekti;
+	}
+	
+	public List<SportskiObjekat> pretraziPoNazivuTipuProsecnojOceni(String naziv, SportskiObjekat.TipObjekta tipObjekta, double prosecnaOcena){
+		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
+		for (SportskiObjekat s: sportskiObjekti.values()) {
+			if(s.getNaziv().toLowerCase().equals(naziv.toLowerCase()) && s.getTipObjekta() == tipObjekta && s.getProsecnaOcena() == prosecnaOcena){
+				filtriraniObjekti.add(s);
+			}
+		}
+		
+		return filtriraniObjekti;
+	}
+	
+	
+	public List<SportskiObjekat> pretraziPoNazivuMestuProsecnojOceni(String naziv, String mesto, double prosecnaOcena){
+		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
+		for (SportskiObjekat s: sportskiObjekti.values()) {
+			if(s.getNaziv().toLowerCase().equals(naziv.toLowerCase()) && s.getLokacija().getAdresa().getMesto().toLowerCase().equals(mesto.toLowerCase()) && s.getProsecnaOcena() == prosecnaOcena){
+				filtriraniObjekti.add(s);
+			}
+		}
+		return filtriraniObjekti;
+	}
+	
+	public List<SportskiObjekat> pretraziPoTipuMestuProsecnojOceni(SportskiObjekat.TipObjekta tipObjekta, String mesto, double prosecnaOcena){
+		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
+		for (SportskiObjekat s: sportskiObjekti.values()) {
+			if(s.getTipObjekta() == tipObjekta && s.getLokacija().getAdresa().getMesto().toLowerCase().equals(mesto.toLowerCase()) && s.getProsecnaOcena() == prosecnaOcena){
+				filtriraniObjekti.add(s);
+			}
+		}
+		return filtriraniObjekti;
+	}
+	
+	public List<SportskiObjekat> pretraziPoNazivuTipu(String naziv, SportskiObjekat.TipObjekta tipObjekta){
+		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
+		for (SportskiObjekat s: sportskiObjekti.values()) {
+			if(s.getNaziv().toLowerCase().equals(naziv.toLowerCase()) && s.getTipObjekta() == tipObjekta){
+				filtriraniObjekti.add(s);
+			}
+		}
+		
+		return filtriraniObjekti;
+	}
+	
+	public List<SportskiObjekat> pretraziPoNazivuMestu(String naziv, String mesto){
+		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
+		for (SportskiObjekat s: sportskiObjekti.values()) {
+			if(s.getNaziv().toLowerCase().equals(naziv.toLowerCase()) && s.getLokacija().getAdresa().getMesto().toLowerCase().equals(mesto.toLowerCase())){
+				filtriraniObjekti.add(s);
+			}
+		}
+		return filtriraniObjekti;
+	}
+	
+	public List<SportskiObjekat> pretraziPoNazivuProsecnojOceni(String naziv, double prosecnaOcena){
+		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
+		for (SportskiObjekat s: sportskiObjekti.values()) {
+			if(s.getNaziv().toLowerCase().equals(naziv.toLowerCase()) && s.getProsecnaOcena() == prosecnaOcena){
+				filtriraniObjekti.add(s);
+			}
+		}
+		return filtriraniObjekti;
+	}
+	
+	public List<SportskiObjekat> pretraziPoTipuMestu(SportskiObjekat.TipObjekta tipObjekta, String mesto){
+		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
+		for (SportskiObjekat s: sportskiObjekti.values()) {
+			if(s.getTipObjekta() == tipObjekta && s.getLokacija().getAdresa().getMesto().toLowerCase().equals(mesto.toLowerCase())){
+				filtriraniObjekti.add(s);
+			}
+		}
+		return filtriraniObjekti;
+	}
+	
+	public List<SportskiObjekat> pretraziPoTipuProsecnojOceni(SportskiObjekat.TipObjekta tipObjekta, double prosecnaOcena){
+		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
+		for (SportskiObjekat s: sportskiObjekti.values()) {
+			if(s.getTipObjekta() == tipObjekta && s.getProsecnaOcena() == prosecnaOcena){
+				filtriraniObjekti.add(s);
+			}
+		}
+		return filtriraniObjekti;
+	}
+	
+	public List<SportskiObjekat> pretraziPoMestuProsecnojOceni(String mesto, double prosecnaOcena){
+		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
+		for (SportskiObjekat s: sportskiObjekti.values()) {
+			if(s.getLokacija().getAdresa().getMesto().toLowerCase().equals(mesto.toLowerCase()) && s.getProsecnaOcena() == prosecnaOcena){
+				filtriraniObjekti.add(s);
+			}
+		}
+		return filtriraniObjekti;
+	}
+	
 	public void kreirajSportskiObjekat(SportskiObjekat sportskiObjekat) {
 			
 	}

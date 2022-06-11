@@ -124,6 +124,21 @@ section.sec1 {
 	border-radius: 4px;
 }
 
+.search {
+	border-bottom: 2px;
+	border-bottom-color: black;
+}
+
 html, body{
 	overflow-x: hidden;
+}
+
+.comboBox {
+	width: 200px;
+	height: 30px;
+}
+
+.prosecnaOcena {
+	float: left;
+	background-color: orange;
 }

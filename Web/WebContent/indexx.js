@@ -7,32 +7,18 @@ function displayImages(sportskiObjekti){
 		let div2 = $('<div class="card text-center" style="width: 18rem;"></div>');
 		let img = $('<img class="card-img-top" src="pictures/' + s.logo +'" height="300"/>');
 		let div3 = $('<div class="card-body"></div>');
-		let title = $('<h5 class="card-title">'+ s.naziv +'</h5>');
-		let button = $('<button class="btn btn-primary">Saznaj više</button>');
-		$(button).click(function() {
-			$('#popupOverlay, #popup').css("visibility", "visible");
-			$('#naziv').text(s.naziv);
-			$('#tipObjekta').text(s.tipObjekta);
-			if (s.statusObjekta == "Radi"){
-				$('#status').text("Otvoreno");
-			} else{
-				$('#status').text("Zatvoreno");
-			}
-			$('#ulicaIBroj').text(s.lokacija.adresa.ulicaIBroj + ",  ");
-			$('#mesto').text(s.lokacija.adresa.mesto + ", ");
-			$('#postanskiBroj').text(s.lokacija.adresa.postanskiBroj);
-			$('#prosecnaOcena').text(s.prosecnaOcena);
-			$('#radnoVreme').text(s.radnoVreme.odVreme + "-" + s.radnoVreme.doVreme + "h, " + s.radnoVreme.dani[0] + "-" + s.radnoVreme.dani[s.radnoVreme.dani.length - 1]);
-		});
-		
+		let title = $('<h5 class="card-title">' + '<span class="prosecnaOcena">' + s.prosecnaOcena + '</span>' + s.naziv +'</h5>');
+		let adresa = $('<p style="font-size:14px; margin:0px;">' + s.lokacija.adresa.ulicaIBroj + ', ' +  s.lokacija.adresa.mesto + ', ' + s.lokacija.adresa.postanskiBroj +'</p>');
+		let tipObjekta = $('<p style="font-size:14px; margin:0px;">' + s.tipObjekta + '</p>');
 		let status;
 		if (s.statusObjekta == "Radi"){
-				status = $('<p style="color:green">Otvoreno</p>')
+				status = $('<p style="color:green; margin:0px;">Otvoreno</p>')
 		} else{
-				status = $('<p style="color:red">Zatvoreno</p>')
+				status = $('<p style="color:red; margin:0px;">Zatvoreno</p>')
 		}
+		let radnoVreme = $('<p style="font-size:14px; margin:0px;">' + s.radnoVreme.odVreme + "-" + s.radnoVreme.doVreme + "h, " + s.radnoVreme.dani[0] + "-" + s.radnoVreme.dani[s.radnoVreme.dani.length - 1] + '</p>');
 		
-		div3.append(title).append(status).append(button);
+		div3.append(title).append(tipObjekta).append(adresa).append(radnoVreme).append(status);
 		div2.append(img).append(div3);
 		div1.append(div2);
 		$('#row').append(div1);

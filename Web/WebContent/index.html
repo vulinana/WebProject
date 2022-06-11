@@ -4,10 +4,10 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link rel="stylesheet" type="text/css" href="style/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="style/indexStyles.css">
+	<link rel="stylesheet" type="text/css" href="style/indexStyle.css">
 	<link rel="stylesheet" type="text/css" href="style/homePageStyle.css">
 	<script src="jquery-3.3.1.min.js"></script>
-	<script src="index.js"></script>
+	<script src="indexx.js"></script>
 </head>
 <body>
 	 <div class="topnav">
@@ -16,11 +16,13 @@
 		 <a class="active" href="login.html">Početna</a>
 	</div>
  	
- 	<form id="formaZaPretragu">
- 		<table>
- 			<tr><td><input type="text" placeholder="Naziv" id="pretragaNaziv"/></td><td><select id="pretragaTipObjekta"><option value="">Tip objekta</option><option value="Teretana">Teretana</option><option value="Bazen">Bazen</option><option value="SportskiCentar">Sportski centar</option><option value="PlesniStudio">Plesni studio</option></select></select></td><td><input type="text" placeholder="Grad ili drzava" id="pretragaGradIliDrzava"/></td><td><input type="number" step="0.01" placeholder="Prosecna ocena" id="pretragaProsecnaOcena"/><input type="submit" value="Pretrazi"/></td></tr>
- 		</table>
- 	</form>
+ 	<div class="search">
+	 	<form id="formaZaPretragu">
+	 		<table>
+	 			<tr><td><input type="text" placeholder="Naziv" id="pretragaNaziv"/></td><td><select id="pretragaTipObjekta" class="comboBox"><option value="">Tip objekta</option><option value="Teretana">Teretana</option><option value="Bazen">Bazen</option><option value="SportskiCentar">Sportski centar</option><option value="PlesniStudio">Plesni studio</option></select></select></td><td><input type="text" placeholder="Grad ili država" id="pretragaGradIliDrzava"/></td><td><input type="number" step="0.01" placeholder="Prosečna ocena" id="pretragaProsecnaOcena"/><input type="submit" value="Pretraži"/></td></tr>
+	 		</table>
+	 	</form>
+	</div>
 	<div class="wrapper">      
         <section class="content" id="content">
           <div class="container">
