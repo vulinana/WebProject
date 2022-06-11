@@ -114,7 +114,8 @@ $(document).ready(function() {
 	
 	$('form#formaZaPretragu').submit(function(event) {
 		event.preventDefault();
-		$('#sortComboBox').val('Sortiraj');
+		$('#sortComboBox').val('sortiraj');
+		$('#otvorenoCheckBox').prop('checked', false);
 		let naziv = $('#pretragaNaziv').val();
 		let mesto = $('#pretragaGradIliDrzava').val();
 		let prosecnaOcena = $('#pretragaProsecnaOcena').val();
