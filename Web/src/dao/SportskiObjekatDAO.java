@@ -279,6 +279,29 @@ public class SportskiObjekatDAO {
 		return sortiraniObjekti;
 	}
 	
+	public List<SportskiObjekat> sortirajPoLokacijiRastuce(List<SportskiObjekat> prikazaniSportskiObjekti){
+		
+		List<SportskiObjekat> sortiraniObjekti = new ArrayList<SportskiObjekat>();
+		int tempSportskiObjekat = 0;
+		String min = null;
+		while (!prikazaniSportskiObjekti.isEmpty()) {
+			boolean prviProlaz = true;
+			for (int i = 0; i < prikazaniSportskiObjekti.size(); i++) {
+				if (prviProlaz) {
+					min = prikazaniSportskiObjekti.get(i).getLokacija().getAdresa().getMesto();
+					prviProlaz = false;
+				}
+				if (prikazaniSportskiObjekti.get(i).getLokacija().getAdresa().getMesto().compareTo(min) <= 0) {
+					min = prikazaniSportskiObjekti.get(i).getLokacija().getAdresa().getMesto();
+					tempSportskiObjekat = i;
+				}
+			}
+			sortiraniObjekti.add(prikazaniSportskiObjekti.get(tempSportskiObjekat));
+			prikazaniSportskiObjekti.remove(tempSportskiObjekat);
+		}
+		return sortiraniObjekti;
+	}	
+	
 	public void kreirajSportskiObjekat(SportskiObjekat sportskiObjekat) {
 			
 	}

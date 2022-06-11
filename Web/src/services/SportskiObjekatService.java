@@ -181,4 +181,25 @@ public class SportskiObjekatService {
 		Collections.reverse(prikazaniSportskiObjekti);
 		return prikazaniSportskiObjekti;
 	}
+	
+	@GET
+	@Path("/sortiraniPoLokacijiRastuce")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<SportskiObjekat> getSortiraniSportskiObjektiLokacijaRastuce() {
+		SportskiObjekatDAO dao = (SportskiObjekatDAO) ctx.getAttribute("sportskiObjekatDAO");
+		prikazaniSportskiObjekti = dao.sortirajPoLokacijiRastuce(prikazaniSportskiObjekti);
+		return prikazaniSportskiObjekti;
+	}
+	
+	@GET
+	@Path("/sortiraniPoLokacijiOpadajuce")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<SportskiObjekat> getSortiraniSportskiObjektiLokacijaOpadajuce() {
+		SportskiObjekatDAO dao = (SportskiObjekatDAO) ctx.getAttribute("sportskiObjekatDAO");
+		prikazaniSportskiObjekti = dao.sortirajPoLokacijiRastuce(prikazaniSportskiObjekti);
+		Collections.reverse(prikazaniSportskiObjekti);
+		return prikazaniSportskiObjekti;
+	}
 }

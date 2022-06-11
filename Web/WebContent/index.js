@@ -48,6 +48,7 @@ $(document).ready(function() {
 	
 	$('form#formaZaPretragu').submit(function(event) {
 		event.preventDefault();
+		$('#sortComboBox').val('Sortiraj');
 		let naziv = $('#pretragaNaziv').val();
 		let mesto = $('#pretragaGradIliDrzava').val();
 		let prosecnaOcena = $('#pretragaProsecnaOcena').val();
@@ -97,6 +98,23 @@ $(document).ready(function() {
 	   if (kriterijumZaSortiranje == "nazivOpadajuce"){
 			$.get({
 				url: 'rest/sportskiObjekti/sortiraniPoNazivuOpadajuce',
+				success: function(sportskiObjekti) {
+					updateImages(sportskiObjekti);
+				}
+		   });
+	   }
+	   
+	    if (kriterijumZaSortiranje == "lokacijaRastuce"){
+			$.get({
+				url: 'rest/sportskiObjekti/sortiraniPoLokacijiRastuce',
+				success: function(sportskiObjekti) {
+					updateImages(sportskiObjekti);
+				}
+		   });
+	   }
+	    if (kriterijumZaSortiranje == "lokacijaOpadajuce"){
+			$.get({
+				url: 'rest/sportskiObjekti/sortiraniPoLokacijiOpadajuce',
 				success: function(sportskiObjekti) {
 					updateImages(sportskiObjekti);
 				}
