@@ -213,6 +213,47 @@ public class SportskiObjekatDAO {
 		return filtriraniObjekti;
 	}
 	
+	public List<SportskiObjekat> sortirajPoProsecnojOceniOpadajuce(List<SportskiObjekat> prikazaniSportskiObjekti){
+		
+		List<SportskiObjekat> sortiraniObjekti = new ArrayList<SportskiObjekat>();
+		while (!prikazaniSportskiObjekti.isEmpty()) {
+			double max = -1;
+			int tempSportskiObjekat = 0;
+			for (int i = 0; i < prikazaniSportskiObjekti.size(); i++) {
+				if (prikazaniSportskiObjekti.get(i).getProsecnaOcena() >= max) {
+					max = prikazaniSportskiObjekti.get(i).getProsecnaOcena();
+					tempSportskiObjekat = i;
+				}
+			}
+			sortiraniObjekti.add(prikazaniSportskiObjekti.get(tempSportskiObjekat));
+			prikazaniSportskiObjekti.remove(tempSportskiObjekat);
+		}
+		return sortiraniObjekti;
+	}
+	
+	public List<SportskiObjekat> sortirajPoProsecnojOceniRastuce(List<SportskiObjekat> prikazaniSportskiObjekti){
+		
+		List<SportskiObjekat> sortiraniObjekti = new ArrayList<SportskiObjekat>();
+		int tempSportskiObjekat = 0;
+		double min = 0;
+		while (!prikazaniSportskiObjekti.isEmpty()) {
+			boolean prviProlaz = true;
+			for (int i = 0; i < prikazaniSportskiObjekti.size(); i++) {
+				if (prviProlaz) {
+					min = prikazaniSportskiObjekti.get(i).getProsecnaOcena();
+					prviProlaz = false;
+				}
+				if (prikazaniSportskiObjekti.get(i).getProsecnaOcena() <= min) {
+					min = prikazaniSportskiObjekti.get(i).getProsecnaOcena();
+					tempSportskiObjekat = i;
+				}
+			}
+			sortiraniObjekti.add(prikazaniSportskiObjekti.get(tempSportskiObjekat));
+			prikazaniSportskiObjekti.remove(tempSportskiObjekat);
+		}
+		return sortiraniObjekti;
+	}
+	
 	public void kreirajSportskiObjekat(SportskiObjekat sportskiObjekat) {
 			
 	}

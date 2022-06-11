@@ -142,3 +142,8 @@ html, body{
 	float: left;
 	background-color: orange;
 }
+
+.sortComboBox {
+	margin-left:205px;
+	margin-bottom: 20px;
+}

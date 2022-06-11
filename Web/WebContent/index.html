@@ -4,10 +4,10 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link rel="stylesheet" type="text/css" href="style/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="style/indexStyle.css">
+	<link rel="stylesheet" type="text/css" href="style/indexStyles.css">
 	<link rel="stylesheet" type="text/css" href="style/homePageStyle.css">
 	<script src="jquery-3.3.1.min.js"></script>
-	<script src="indexx.js"></script>
+	<script src="index.js"></script>
 </head>
 <body>
 	 <div class="topnav">
@@ -25,23 +25,12 @@
 	</div>
 	<div class="wrapper">      
         <section class="content" id="content">
+        <select class="sortComboBox" id="sortComboBox"><option hidden>Sortiraj</option><option value="nazivRastuce">Naziv-rastuće</option><option value="nazivOpadajuce">Naziv-opadajuće</option><option>Lokacija-rastuće</option><option>Lokacija-opadajuće</option><option value="prosecnaOcenaRastuce">Prosečna ocena-rastuće</option><option value="prosecnaOcenaOpadajuce">Prosečna ocena-opadajuće</option></select>
           <div class="container">
             <div class="row" id="row">
             </div>
           </div>
       </section>
- 	</div>
- 	
- 	<div class="popupOverlay" id="popupOverlay">
-	 	<div class="popup" id="popup">
-	 		<p><label>Naziv:&nbsp;</label><label id="naziv"></label></p>
-	 		<p><label>Tip objekta:&nbsp;</label><label id="tipObjekta"></label></p>
-	 		<p><label>Adresa:&nbsp;</label><label id="ulicaIBroj"></label><label id="mesto"></label><label id="postanskiBroj"></label></p>
-	 		<p><label>Prosečna ocena:&nbsp;</label><label id="prosecnaOcena"></label></p>	
-	 		<p><label>Radno vreme:&nbsp;</label><label id="radnoVreme"></label></p>
-	 		<p><label>Status:&nbsp;</label><label id="status"></label></p>
-	 		<button type="button" id="popupButton">Ok</button>
-	 	</div>
  	</div>
 </body>
 </html>

@@ -65,4 +65,26 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
+	 $('#sortComboBox').change(function(){
+       let kriterijumZaSortiranje = $('#sortComboBox').val();
+       console.log(kriterijumZaSortiranje);
+       if (kriterijumZaSortiranje == "prosecnaOcenaOpadajuce"){
+	       $.get({
+			url: 'rest/sportskiObjekti/sortiraniPoProsecnojOceniOpadajuce',
+			success: function(sportskiObjekti) {
+				updateImages(sportskiObjekti);
+			}
+		   });
+	   } 
+	   if (kriterijumZaSortiranje == "prosecnaOcenaRastuce"){
+			$.get({
+				url: 'rest/sportskiObjekti/sortiraniPoProsecnojOceniRastuce',
+				success: function(sportskiObjekti) {
+					updateImages(sportskiObjekti);
+				}
+		   });
+	   }
+    });
+    
 });

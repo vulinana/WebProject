@@ -1,6 +1,9 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
@@ -25,6 +28,7 @@ public class SportskiObjekatService {
 	ServletContext ctx;
 	@Context
 	HttpServletRequest request;
+	private static List<SportskiObjekat> prikazaniSportskiObjekti;
 	
 	public SportskiObjekatService() {
 	}
@@ -43,7 +47,8 @@ public class SportskiObjekatService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Collection<SportskiObjekat> getSportskiObjekti() {
 		SportskiObjekatDAO dao = (SportskiObjekatDAO) ctx.getAttribute("sportskiObjekatDAO");
-		return dao.findAll();
+		prikazaniSportskiObjekti = dao.findAll();
+		return prikazaniSportskiObjekti;
 	}
 	
 	@POST
@@ -83,40 +88,76 @@ public class SportskiObjekatService {
 		SportskiObjekatDAO dao = (SportskiObjekatDAO) ctx.getAttribute("sportskiObjekatDAO");
 		
 		if (naziv != null && naziv != "" && mesto != null && mesto != "" && tipObjekta != null && prosecnaOcena != 0.0) {
-			return dao.pretraziPoSvimKriterijumima(sportskiObjekat);
+			prikazaniSportskiObjekti = dao.pretraziPoSvimKriterijumima(sportskiObjekat);
+			return prikazaniSportskiObjekti;
 		} else if (naziv != null && naziv != "" && tipObjekta != null && mesto != null && mesto != "") {
-			return dao.pretraziPoNazivuTipuMestu(naziv, tipObjekta, mesto);
+			prikazaniSportskiObjekti = dao.pretraziPoNazivuTipuMestu(naziv, tipObjekta, mesto);
+			return prikazaniSportskiObjekti;
 		} else if (naziv != null && naziv != "" && tipObjekta != null && prosecnaOcena != 0.0) {
-			return dao.pretraziPoNazivuTipuProsecnojOceni(naziv, tipObjekta, prosecnaOcena);
+			prikazaniSportskiObjekti = dao.pretraziPoNazivuTipuProsecnojOceni(naziv, tipObjekta, prosecnaOcena);
+			return prikazaniSportskiObjekti;
 		} else if (naziv != null && naziv != "" && mesto != null && mesto != "" && prosecnaOcena != 0.0) {
-			return dao.pretraziPoNazivuMestuProsecnojOceni(naziv, mesto, prosecnaOcena);
+			prikazaniSportskiObjekti = dao.pretraziPoNazivuMestuProsecnojOceni(naziv, mesto, prosecnaOcena);
+			return prikazaniSportskiObjekti;
 		} else if (tipObjekta != null && mesto != null && mesto != "" && prosecnaOcena != 0.0) {
-			return dao.pretraziPoTipuMestuProsecnojOceni(tipObjekta, mesto, prosecnaOcena);
+			prikazaniSportskiObjekti = dao.pretraziPoTipuMestuProsecnojOceni(tipObjekta, mesto, prosecnaOcena);
+			return prikazaniSportskiObjekti;
 		} else if (naziv != null && naziv != "" && tipObjekta != null) {
-			return dao.pretraziPoNazivuTipu(naziv, tipObjekta);
+			prikazaniSportskiObjekti = dao.pretraziPoNazivuTipu(naziv, tipObjekta);
+			return prikazaniSportskiObjekti;
 		} else if (naziv != null && naziv != "" && mesto != null && mesto != "") {
-			return dao.pretraziPoNazivuMestu(naziv, mesto);
+			prikazaniSportskiObjekti = dao.pretraziPoNazivuMestu(naziv, mesto);
+			return prikazaniSportskiObjekti;
 		} else if (naziv != null && naziv != "" && prosecnaOcena != 0.0) {
-			return dao.pretraziPoNazivuProsecnojOceni(naziv, prosecnaOcena);
+			prikazaniSportskiObjekti = dao.pretraziPoNazivuProsecnojOceni(naziv, prosecnaOcena);
+			return prikazaniSportskiObjekti;
 		} else if (tipObjekta != null && mesto != null && mesto != "") {
-			return dao.pretraziPoTipuMestu(tipObjekta, mesto);
+			prikazaniSportskiObjekti = dao.pretraziPoTipuMestu(tipObjekta, mesto);
+			return prikazaniSportskiObjekti;
 		} else if (tipObjekta != null && prosecnaOcena != 0.0) {
-			return dao.pretraziPoTipuProsecnojOceni(tipObjekta, prosecnaOcena);
+			prikazaniSportskiObjekti = dao.pretraziPoTipuProsecnojOceni(tipObjekta, prosecnaOcena);
+			return prikazaniSportskiObjekti;
 		} else if (mesto != null && mesto != "" && prosecnaOcena != 0.0) {
-			return dao.pretraziPoMestuProsecnojOceni(mesto, prosecnaOcena);
+			prikazaniSportskiObjekti = dao.pretraziPoMestuProsecnojOceni(mesto, prosecnaOcena);
+			return prikazaniSportskiObjekti;
 		}
 		else if (naziv != null && naziv != "") {
-			return dao.pretraziPoNazivu(naziv);
+			prikazaniSportskiObjekti = dao.pretraziPoNazivu(naziv);
+			return prikazaniSportskiObjekti;
 		} else if (tipObjekta != null) {
-			return dao.pretraziPoTipu(tipObjekta);
+			prikazaniSportskiObjekti = dao.pretraziPoTipu(tipObjekta);
+			return prikazaniSportskiObjekti;
 		}	
 		else if(mesto != null && mesto != ""){
-			return dao.pretraziPoMestu(mesto);
+			prikazaniSportskiObjekti = dao.pretraziPoMestu(mesto);
+			return prikazaniSportskiObjekti;
 		} else if (prosecnaOcena != 0.0) {
-			return dao.pretraziPoProsecnojOceni(prosecnaOcena);
+			prikazaniSportskiObjekti = dao.pretraziPoProsecnojOceni(prosecnaOcena);
+			return prikazaniSportskiObjekti;
 		}
 		else {
 			return getSportskiObjekti();
 		}
+	}
+	
+
+	@GET
+	@Path("/sortiraniPoProsecnojOceniOpadajuce")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<SportskiObjekat> getSortiraniSportskiObjektiOcenaOpadajuce() {
+		SportskiObjekatDAO dao = (SportskiObjekatDAO) ctx.getAttribute("sportskiObjekatDAO");
+		prikazaniSportskiObjekti = dao.sortirajPoProsecnojOceniOpadajuce(prikazaniSportskiObjekti);
+		return prikazaniSportskiObjekti;
+	}
+	
+	@GET
+	@Path("/sortiraniPoProsecnojOceniRastuce")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<SportskiObjekat> getSortiraniSportskiObjektiOcenaRastuce() {
+		SportskiObjekatDAO dao = (SportskiObjekatDAO) ctx.getAttribute("sportskiObjekatDAO");
+		prikazaniSportskiObjekti = dao.sortirajPoProsecnojOceniRastuce(prikazaniSportskiObjekti);
+		return prikazaniSportskiObjekti;
 	}
 }
