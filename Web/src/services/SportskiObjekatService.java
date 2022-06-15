@@ -52,6 +52,15 @@ public class SportskiObjekatService {
 		return prikazaniSportskiObjekti;
 	}
 	
+	@GET
+	@Path("/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public SportskiObjekat getSportskiObjekatByNaziv(@PathParam("id") String naziv) {
+		SportskiObjekatDAO dao = (SportskiObjekatDAO) ctx.getAttribute("sportskiObjekatDAO");
+		return dao.getByNaziv(naziv);
+	}
+	
 	@POST
 	@Path("/uploadImage")
 	@Consumes(MediaType.APPLICATION_JSON)

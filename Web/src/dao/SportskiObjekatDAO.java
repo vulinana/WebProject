@@ -51,6 +51,17 @@ public class SportskiObjekatDAO {
 		return sortiraniObjekti;
 	}
 	
+	public SportskiObjekat getByNaziv(String naziv){
+		
+		for (SportskiObjekat s: sportskiObjekti.values()) {
+			if(s.getNaziv().equals(naziv)) {
+				return s;
+			}
+		}
+		
+		return null;
+	}
+	
 	public List<SportskiObjekat> pretraziPoNazivu(String naziv){
 		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
 		

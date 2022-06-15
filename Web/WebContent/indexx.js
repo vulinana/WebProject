@@ -1,11 +1,10 @@
 function displayImages(sportskiObjekti){
 	
-	
 	for (let s of sportskiObjekti){
 				
 		let div1 = $('<div class="col-sm-4"></div>');
 		let div2 = $('<div class="card text-center" style="width: 18rem;"></div>');
-		let img = $('<img class="card-img-top" src="pictures/' + s.logo +'" height="300"/>');
+		let img = $('<a href="prikazObjekta.html"><img class="card-img-top" src="pictures/' + s.logo + '" id="' +  s.naziv + '" onClick="saveId(this.id)" height="300"/></a>');
 		let div3 = $('<div class="card-body"></div>');
 		let title = $('<h5 class="card-title">' + '<span class="prosecnaOcena">' + s.prosecnaOcena + '</span>' + s.naziv +'</h5>');
 		let adresa = $('<p style="font-size:14px; margin:0px;">' + s.lokacija.adresa.ulicaIBroj + ', ' +  s.lokacija.adresa.mesto + ', ' + s.lokacija.adresa.postanskiBroj +'</p>');
@@ -22,14 +21,19 @@ function displayImages(sportskiObjekti){
 		div2.append(img).append(div3);
 		div1.append(div2);
 		$('#row').append(div1);
-			
 	}
+}
+
+function saveId(id)
+{
+	 	localStorage.setItem("selektovaniObjekat", JSON.stringify(id));
 }
 
 function updateImages(sportskiObjekti) {
 	$('#row').html("");
 	displayImages(sportskiObjekti);
 }
+
 
 function sortiraj(){
 	
@@ -141,5 +145,6 @@ $(document).ready(function() {
     $("#otvorenoCheckBox").change(function() {
 		sortiraj();
 	});
-	   
+	
+	
 });
