@@ -53,12 +53,12 @@ public class KorisnikService {
 	public Response registrujKupca(Kupac kupac) {
 		
 		if (kupac.getKorisnickoIme() == "" || kupac.getLozinka() == "") {
-			return Response.status(400).entity("Korisnicko ime i lozinka su obavezna polja").build();
+			return Response.status(400).entity("Korisničko ime i lozinka su obavezna polja").build();
 		}
 		
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
 		if(dao.korisnikExists(kupac.getKorisnickoIme())) {
-			return Response.status(400).entity("Korisnicko ime je zauzeto").build();
+			return Response.status(400).entity("Korisničko ime je zauzeto").build();
 		}
 		
 		dao.registerKupac(kupac);
@@ -84,10 +84,10 @@ public class KorisnikService {
 				session.setAttribute("korisnik", zeljeniKorisnik);
 				return zeljeniKorisnik;
 			} else {
-				throw new WebApplicationException(Response.status(400).entity("Pogresna lozinka!").build());
+				throw new WebApplicationException(Response.status(400).entity("Pogrešna lozinka!").build());
 			}
 		} else {
-			throw new WebApplicationException(Response.status(400).entity("Pogresno korisnicko ime!").build());
+			throw new WebApplicationException(Response.status(400).entity("Pogrešno korisničko ime!").build());
 		}
 	}
 

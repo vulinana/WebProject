@@ -4,10 +4,10 @@
 		<title>Registracija korisnika</title>
 		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="style/bootstrap.css">
-		<link rel="stylesheet" type="text/css" href="style/styles.css">
+		<link rel="stylesheet" type="text/css" href="style/registracijaStyles.css">
 		<link rel="stylesheet" type="text/css" href="style/homePageStyles.css">
 		<script src="jquery-3.3.1.min.js"></script>
-		<script src="registracija.js"></script>
+		<script src="registracijaa.js"></script>
 	</head>
 	<body>	
 	 	<div class="topnav">
@@ -27,10 +27,12 @@
 					</select></td></tr>
 					<tr><td><label class="label">Datum rođenja:</label></td><td><input type="date" name="datumRodjenja" class="datePicker" required></td></tr>
 					<tr><td><label class="label">Korisničko ime:</label></td><td><input type="text" name="korisnickoIme" class="textBox" required></td></tr>
-					<tr><td><label class="label">Lozinka:</label></td><td><input type="text" name="lozinka" class="textBox" required></td></tr>
+					<tr><td><label class="label">Lozinka:</label></td><td><input type="password" name="lozinka" class="textBox" required></td></tr>
+					<tr><td><label class="label">Ponovljena lozinka:</label></td><td><input type="password" name="ponovljenaLozinka" class="textBox" required></td></tr>
 					<tr><td align="center" colspan="2"><input type="submit" value="Registruj se" class="buttonRegistrujSe"></td></tr>
 				</table>
 			</form>
+			<p id="error" style="color:red;"></p>
 		</div>
 	</body>
 </html>
