@@ -1,0 +1,16 @@
+{
+  "f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454" : {
+    "id" : "f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454",
+    "kupac" : "anavulin",
+    "sportskiObjekat" : "Mega gym",
+    "tekstKomentara" : "top teretana",
+    "ocena" : 5
+  },
+   "f8c3de4d-1fea-4d7c-a8b0-29f63c4c3454" : {
+    "id" : "f8c3de4d-1fea-4d7c-a8b0-29f63c4c3454",
+    "kupac" : "anavulin",
+    "sportskiObjekat" : "Mega gym",
+    "tekstKomentara" : "Solidna teretana, ali vidjala sam i bolje!",
+    "ocena" : 5
+  }
+}

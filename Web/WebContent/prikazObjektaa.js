@@ -10,6 +10,20 @@ function prikaziPodatke(sportskiObjekat){
 	}
 }
 
+function prikaziKomentare(komentari){
+	
+	if (komentari.length == 0){
+		let nemaKomentara = $('<p>Za ovu teretanu trenutno nema komentara</p>');
+		$('#komentari').append(nemaKomentara);
+		return;
+	}
+	
+	for (let k of komentari){
+		let komentar = $('<p><span class="ocenaKomentar">' + k.ocena + '</span>&nbsp;' + k.kupac + ':</br>&nbsp;&nbsp;&nbsp;&nbsp;' + k.tekstKomentara +'</p>');
+		$('#komentari').append(komentar);
+	}
+	
+}
 
 $(document).ready(function() {
 	
@@ -21,5 +35,14 @@ $(document).ready(function() {
 				prikaziPodatke(sportskiObjekat);
 			}
 	 });
+	
+	 $.get({
+			url: 'rest/komentari/' + naziv,
+			success: function(komentari) {
+				prikaziKomentare(komentari);
+			}
+	 });
+	 
+	 console.log("ee");
 	
 });

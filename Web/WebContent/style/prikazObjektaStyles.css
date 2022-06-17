@@ -33,3 +33,18 @@
 	left: -357px;
 	font-size: 20px;
 }
+
+#komentari {
+	height: 350px;
+	width: 600px;
+	border: 1px solid black;
+	padding: 9px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	overflow-y:scroll;
+}
+
+.ocenaKomentar {
+	background: orange;
+}

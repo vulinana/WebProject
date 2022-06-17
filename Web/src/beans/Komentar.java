@@ -1,34 +1,39 @@
 package beans;
 
+import java.util.UUID;
 
 public class Komentar {
 	
-	private Kupac kupac;
-	private SportskiObjekat sportskiObjekat;
+	private UUID id;
+	private String kupac;
+	private String sportskiObjekat;
 	private String tekstKomentara;
 	private int ocena;
 	
-	public Komentar(Kupac kupac, SportskiObjekat sportskiObjekat, String tekstKomentara, int ocena) {
+	public Komentar() {}
+	
+	public Komentar(String kupac, String sportskiObjekat, String tekstKomentara, int ocena) {
 		super();
+		this.id = UUID.randomUUID();
 		this.kupac = kupac;
 		this.sportskiObjekat = sportskiObjekat;
 		this.tekstKomentara = tekstKomentara;
 		this.ocena = ocena;
 	}
 
-	public Kupac getKupac() {
+	public String getKupac() {
 		return kupac;
 	}
 
-	public void setKupac(Kupac kupac) {
+	public void setKupac(String kupac) {
 		this.kupac = kupac;
 	}
 
-	public SportskiObjekat getSportskiObjekat() {
+	public String getSportskiObjekat() {
 		return sportskiObjekat;
 	}
 
-	public void setSportskiObjekat(SportskiObjekat sportskiObjekat) {
+	public void setSportskiObjekat(String sportskiObjekat) {
 		this.sportskiObjekat = sportskiObjekat;
 	}
 
