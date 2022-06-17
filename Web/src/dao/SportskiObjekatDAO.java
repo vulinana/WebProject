@@ -22,7 +22,7 @@ import beans.SportskiObjekat;
 
 public class SportskiObjekatDAO {
 
-	private HashMap<String, SportskiObjekat> sportskiObjekti = new HashMap<String, SportskiObjekat>();
+	public static HashMap<String, SportskiObjekat> sportskiObjekti = new HashMap<String, SportskiObjekat>();
 	
 	public SportskiObjekatDAO() {
 		
@@ -329,7 +329,7 @@ public class SportskiObjekatDAO {
 			
 	}
 	
-	private void loadSportskiObjekti(String contextPath) {
+	public static void loadSportskiObjekti(String contextPath) {
 		FileWriter fileWriter = null;
 		BufferedReader in = null;
 		File file = null;

@@ -1,6 +1,7 @@
 package beans;
 
 import beans.RadnoVreme.Dan;
+import dao.KomentarDAO;
 
 
 public class SportskiObjekat {

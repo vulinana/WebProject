@@ -1,4 +1,30 @@
 {
+  "aa" : {
+    "korisnickoIme" : "aa",
+    "lozinka" : "1",
+    "ime" : "a",
+    "prezime" : "a",
+    "pol" : "MUSKO",
+    "datumRodjenja" : "2022-06-17",
+    "uloga" : "KUPAC",
+    "poseceniObjekti" : [ ],
+    "brojSakupljenihBodova" : 0.0,
+    "tipKupca" : "BRONZANI",
+    "clanarina" : "1"
+  },
+  "a" : {
+    "korisnickoIme" : "a",
+    "lozinka" : "123",
+    "ime" : "a",
+    "prezime" : "a",
+    "pol" : "MUSKO",
+    "datumRodjenja" : "2022-06-17",
+    "uloga" : "KUPAC",
+    "poseceniObjekti" : [ ],
+    "brojSakupljenihBodova" : 0.0,
+    "tipKupca" : "BRONZANI",
+    "clanarina" : "1"
+  },
   "anavulin" : {
     "korisnickoIme" : "anavulin",
     "lozinka" : "anavulin",
@@ -28,10 +54,10 @@
   "vulinana" : {
     "korisnickoIme" : "vulinana",
     "lozinka" : "123",
-    "ime" : "Ana",
+    "ime" : "Anica",
     "prezime" : "Vulin",
     "pol" : "ZENSKO",
-    "datumRodjenja" : "2022-05-31",
+    "datumRodjenja" : "2022-05-19",
     "uloga" : "KUPAC",
     "poseceniObjekti" : [ ],
     "brojSakupljenihBodova" : 0.0,

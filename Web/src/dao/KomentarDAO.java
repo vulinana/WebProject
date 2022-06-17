@@ -19,11 +19,12 @@ import com.fasterxml.jackson.databind.type.MapType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
 import beans.Komentar;
+import beans.SportskiObjekat;
 
 public class KomentarDAO {
 
 	private String path = "";
-	private HashMap<String, Komentar> komentari = new HashMap<String, Komentar>();
+	public static HashMap<String, Komentar> komentari = new HashMap<String, Komentar>();
 	
 	
 	public void setPath(String path) {
@@ -49,6 +50,28 @@ public class KomentarDAO {
 		}
 		
 		return zeljeniKomentari;
+	}
+	
+	public void odrediProsecnuOcenuZaObjekte() {
+		
+		SportskiObjekatDAO.loadSportskiObjekti(path);	
+		for (SportskiObjekat s: SportskiObjekatDAO.sportskiObjekti.values()) {
+			double prosecnaOcena = 0;
+			int brojOcena = 0;
+			for (Komentar k: KomentarDAO.komentari.values()) {
+				if (k.getSportskiObjekat().equals(s.getNaziv())) {
+					prosecnaOcena += k.getOcena();
+					brojOcena++;
+				}
+			}
+			
+			if (prosecnaOcena == 0) {
+				s.setProsecnaOcena(0);
+			}
+			else {
+				s.setProsecnaOcena(prosecnaOcena/brojOcena);
+			}
+		}
 	}
 	
 	private void loadKomentari(String contextPath) {

@@ -20,6 +20,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import beans.SportskiObjekat;
+import dao.KomentarDAO;
 import dao.SportskiObjekatDAO;
 
 @Path("/sportskiObjekti")
@@ -40,6 +41,10 @@ public class SportskiObjekatService {
 	    	String contextPath = ctx.getRealPath("");
 			ctx.setAttribute("sportskiObjekatDAO", new SportskiObjekatDAO(contextPath));
 		}
+		if (ctx.getAttribute("komentarDAO") == null) {
+	    	String contextPath = ctx.getRealPath("");
+			ctx.setAttribute("komentarDAO", new KomentarDAO(contextPath));
+		}
 	}
 	
 	@GET
@@ -48,6 +53,8 @@ public class SportskiObjekatService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Collection<SportskiObjekat> getSportskiObjekti() {
 		SportskiObjekatDAO dao = (SportskiObjekatDAO) ctx.getAttribute("sportskiObjekatDAO");
+		KomentarDAO komentarDAO = (KomentarDAO) ctx.getAttribute("komentarDAO");
+		komentarDAO.odrediProsecnuOcenuZaObjekte();
 		prikazaniSportskiObjekti = dao.findAll();
 		return prikazaniSportskiObjekti;
 	}

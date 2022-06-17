@@ -1,7 +1,11 @@
 function prikaziPodatke(sportskiObjekat){
 	$('#logo').attr("src", "pictures/" + sportskiObjekat.logo);
 	$('#naziv').text(sportskiObjekat.naziv);
-	$('#ocena').text("Ocena: " + sportskiObjekat.prosecnaOcena);
+	if(sportskiObjekat.prosecnaOcena != 0){
+		$('#ocena').text("Ocena: " + sportskiObjekat.prosecnaOcena);
+	} else{
+		$('#ocena').text("Ocena:");
+	}
 	$('#tipObjekta').text(sportskiObjekat.tipObjekta);
 	if (sportskiObjekat.statusObjekta == "Radi"){
 		$('#status').text("OTVORENO,  " + sportskiObjekat.radnoVreme.odVreme + "-" + sportskiObjekat.radnoVreme.doVreme + "h, " + sportskiObjekat.radnoVreme.dani[0] + "-" + sportskiObjekat.radnoVreme.dani[sportskiObjekat.radnoVreme.dani.length - 1]);
@@ -42,7 +46,5 @@ $(document).ready(function() {
 				prikaziKomentare(komentari);
 			}
 	 });
-	 
-	 console.log("ee");
 	
 });

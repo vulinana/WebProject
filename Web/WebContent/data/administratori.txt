@@ -3,7 +3,7 @@
     "korisnickoIme" : "admin1",
     "lozinka" : "123",
     "ime" : "Marko",
-    "prezime" : "Markovic",
+    "prezime" : "Petrovic",
     "pol" : "MUSKO",
     "datumRodjenja" : "2022-05-29",
     "uloga" : "ADMINISTRATOR"
