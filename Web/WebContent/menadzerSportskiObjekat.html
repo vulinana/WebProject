@@ -45,9 +45,27 @@
 					<tr><td>Trener:</td><td><select id="dodajObjekatTrener"></select></td></tr>
 				</table>
 				<button type="button" id="popupButtonOtkazi">Otkazi</button>
-				<button type="submit" id="popupButton">Dodaj</button>
+				<button type="submit" id="popupButton">Sacuvaj</button>
 			</form>
 		</div>
-</div>
+	</div>
+	<div class="popupOverlay2" id="popupOverlay2">
+		<div class="popup2" id="popup2">
+			<form id="izmeniTreningForma2">
+				<table>
+					<tr hidden><td>Id:</td><td><input type="text" required name="id2" id="izmeniObjekatId2"/></td></tr>
+					<tr><td>Naziv:</td><td><input type="text" required name="naziv2" id="izmeniObjekatNaziv2"/></td></tr>
+					<tr><td>Tip:</td><td><select id="tip2"></option><option value="Teretana">Teretana</option><option value="Grupni">Grupni</option><option value="Personalni">Personalni</option></select></td></tr>
+					<tr><td>Slika:</td><td><input type="file" required name="slika2" id="izmeniObjekatSlika2"/></td></tr>
+					<tr><td>Opis:</td><td><input type="text" name="opis2" id="izmeniObjekatOpis2"/></td></tr>
+					<tr><td>Trajanje (h):</td><td><input type="number" name="trajanje2" id="izmeniObjekatTrajanje2"/></td></tr>
+					<tr><td>Doplata:</td><td><input type="number" name="doplata2" id="izmeniObjekatDoplata2"/></td></tr>
+					<tr><td>Trener:</td><td><select id="izmeniObjekatTrener2"></select></td></tr>
+				</table>
+				<button type="button" id="popupButtonOtkazi2">Otkazi</button>
+				<button type="submit" id="popupButton2">Sacuvaj</button>
+			</form>
+		</div>
+	</div>
 </body>
 </html>

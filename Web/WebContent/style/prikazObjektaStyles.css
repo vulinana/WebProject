@@ -87,7 +87,7 @@ html{
 	display:flex;
 }
 
-.popup {
+.popup, .popup2 {
 	width: 600px;
 	background: #90EE90;
 	border-radius: 6px;
@@ -100,7 +100,7 @@ html{
 	visibility: hidden;
 }
 
-.popupOverlay {
+.popupOverlay, .popupOverlay2 {
 	background-color: rgba(0,0,0, .8);
 	border: solid 2px #666;
 	padding: 2rem;
@@ -124,7 +124,20 @@ html{
 	border-radius: 4px;
 }
 
-#popupButtonOtkazi {
+.popup2 button{
+	cursor: pointer;
+	width: 49%;
+	margin-top: 50px;
+	padding: 10px 0;
+	background: #6fd649;
+	color: #fff;
+	border: 0;
+	outline: none;
+	font-size:18px;
+	border-radius: 4px;
+}
+
+#popupButtonOtkazi, #popupButtonOtkazi2 {
 	float:left;
 	margin-right: 10px;
 	cursor: pointer;
@@ -147,4 +160,23 @@ html{
 	position: relative;
 	top: 0px;
 	background-color: lightgreen;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 1em;
+}
+
+
+#dodajObjekatNaziv, #dodajObjekatTrajanje, #dodajObjekatOpis, #dodajObjekatDoplata, #izmeniObjekatNaziv2, #izmeniObjekatTrajanje2, #izmeniObjekatOpis2, #izmeniObjekatDoplata2
+{
+    height:30px;
+    width:250px;
+    font-size:14pt;
+}
+
+#tip, #dodajObjekatTrener, #tip2, #izmeniObjekatTrener2 {
+    height:35px;
+    width:250px;
+    font-size:14pt;
 }

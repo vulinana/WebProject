@@ -42,8 +42,19 @@ function prikaziTreninge(treninzi){
 		let tekstTreninga =	$('<div class="tekstTreninga" id="tekstTreninga"></div>');
 		let slika = $('<img src="pictures/' + t.slika + '"/>');
 		let trening = $('<hr><h5>' + t.naziv + '</h5><p>Opis:&nbsp;&nbsp;' + t.opis + '</br>Trener:&nbsp;&nbsp;' + t.trener + '</br>Doplata:&nbsp;&nbsp;' + t.doplata + '</p>');
+		let izmeniTreningButton = $('<button>Izmeni trening</button>');
+		izmeniTreningButton.click(function(){
+			$('input[name="id2"]').val(t.id);
+			$('input[name="naziv2"]').val(t.naziv);
+			$('#tip2').val(t.tip);
+			$('input[name="opis2"]').val(t.opis);
+			$('input[name="trajanje2"]').val(t.trajanje);
+			$('input[name="doplata2"]').val(t.doplata);
+			$('#izmeniObjekatTrener2').val(t.trener);
+			$('#popupOverlay2, #popup2').css("visibility", "visible");
+		});
 		slikaTreninga.append(slika);
-		tekstTreninga.append(trening);
+		tekstTreninga.append(trening).append(izmeniTreningButton);
 		$('#sadrzajPrikazaTreninga').append(slikaTreninga);
 		$('#sadrzajPrikazaTreninga').append(tekstTreninga);
 	}
@@ -63,6 +74,14 @@ function dodajTrenere(treneri) {
 		for (let t of treneri) {
 				comboBoxOption = $('<option value="' + t.korisnickoIme + '">' + t.korisnickoIme + '</option>');
 				$('#dodajObjekatTrener').append(comboBoxOption);
+		}
+		
+		comboBoxOption = $('<option value="">Nema trenera</option>');
+		$('#izmeniObjekatTrener2').append(comboBoxOption);
+		
+		for (let t of treneri) {
+				comboBoxOption = $('<option value="' + t.korisnickoIme + '">' + t.korisnickoIme + '</option>');
+				$('#izmeniObjekatTrener2').append(comboBoxOption);
 		}
 }
 
@@ -133,8 +152,40 @@ $(document).ready(function() {
 	
 	});
 	
+	
+	$('form#izmeniTreningForma2').submit(function(event) {
+		event.preventDefault();
+		$('#popupOverlay2, #popup2').css("visibility", "hidden");
+		let id = $('input[name="id2"]').val();
+		let naziv = $('input[name="naziv2"]').val();
+		let tip = $('#tip2').val();
+		let slika = $('input[name="slika2"]').val();
+		let opis = $('input[name="opis2"]').val();
+		let trajanje = $('input[name="trajanje2"]').val();
+		let doplata = $('input[name="doplata2"]').val();
+		let trener = $('#izmeniObjekatTrener2').val();
+		var s = JSON.parse(localStorage.getItem("sportskiObjekat"));
+	 	let sportskiObjekatKomPripada = s.naziv;
+		
+		$.ajax({
+			url: 'rest/treninzi/izmeniTrening/' + id ,
+			type: 'PUT',
+			data: JSON.stringify({naziv: naziv, tip: tip, sportskiObjekatKomPripada: sportskiObjekatKomPripada, trajanje: trajanje, trener: trener, opis: opis, slika: slika, doplata: doplata}),
+			contentType: 'application/json',
+			success : function(treninzi) {
+				updateTreninge(treninzi);
+			}
+		});
+	
+	});
+	
+	
 	 $('#popupButtonOtkazi').click(function(){
 		$('#popupOverlay, #popup').css("visibility", "hidden");
+	});
+	
+	 $('#popupButtonOtkazi2').click(function(){
+		$('#popupOverlay2, #popup2').css("visibility", "hidden");
 	});
 	
 });

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -55,6 +56,19 @@ public class TreningDAO {
 	public Collection<Trening> kreirajNoviTrening(Trening trening){
 		
 		treninzi.put(trening.getId().toString(), trening);
+		saveTreninzi();
+		return treninzi.values();
+	}
+	
+	public Collection<Trening> izmeniTrening(UUID id, Trening trening){
+		
+		String idString = id.toString();
+		treninzi.get(idString).setNaziv(trening.getNaziv());
+		treninzi.get(idString).setTip(trening.getTip());
+		treninzi.get(idString).setSlika(trening.getSlika());
+		treninzi.get(idString).setOpis(trening.getOpis());
+		treninzi.get(idString).setTrajanje(trening.getTrajanje());
+		treninzi.get(idString).setDoplata(trening.getDoplata());
 		saveTreninzi();
 		return treninzi.values();
 	}

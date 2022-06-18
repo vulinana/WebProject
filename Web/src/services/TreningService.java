@@ -2,6 +2,7 @@ package services;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -57,5 +59,15 @@ public class TreningService {
 		trening.setSlika("trening1.jpg");
 		TreningDAO dao = (TreningDAO) ctx.getAttribute("treningDAO");
 		return dao.kreirajNoviTrening(trening);
+	}
+	
+	@PUT
+	@Path("/izmeniTrening/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<Trening> izmeniTrening(@PathParam("id") UUID id, Trening trening) {
+		trening.setSlika("trening1.jpg");
+		TreningDAO dao = (TreningDAO) ctx.getAttribute("treningDAO");
+		return dao.izmeniTrening(id, trening);
 	}
 }
