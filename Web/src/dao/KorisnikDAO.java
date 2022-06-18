@@ -165,6 +165,10 @@ public class KorisnikDAO {
 	}
 	
 	
+	public Collection<Trener> findTreneri(){
+		return treneri.values();
+	}
+	
 	private void loadKupci(String contextPath) {
 		FileWriter fileWriter = null;
 		BufferedReader in = null;

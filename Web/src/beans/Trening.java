@@ -95,5 +95,14 @@ public class Trening {
 	public void setDoplata(double doplata) {
 		this.doplata = doplata;
 	}
+
+	public UUID getId() {
+		return id;
+	}
+
+	public void setId() {
+		this.id = UUID.randomUUID();
+	}
+	
 	
 }

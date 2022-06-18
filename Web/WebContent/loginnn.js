@@ -1,7 +1,6 @@
 $(document).ready(function() {
 		
 		
-	console.log("ee");
 	$('form#forma').submit(function(event) {
 		event.preventDefault();
 		let korisnickoIme = $('input[name="korisnickoIme"]').val();

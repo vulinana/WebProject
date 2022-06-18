@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -51,6 +52,12 @@ public class TreningDAO {
 		return zeljeniTreninzi;
 	}
 	
+	public Collection<Trening> kreirajNoviTrening(Trening trening){
+		
+		treninzi.put(trening.getId().toString(), trening);
+		saveTreninzi();
+		return treninzi.values();
+	}
 	
 	private void loadTreninzi(String contextPath) {
 		FileWriter fileWriter = null;

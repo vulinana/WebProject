@@ -1,0 +1,18 @@
+table {
+    border-collapse: separate;
+    border-spacing: 0 1em;
+}
+
+
+#dodajObjekatNaziv, #dodajObjekatTrajanje, #dodajObjekatOpis, #dodajObjekatDoplata
+{
+    height:30px;
+    width:250px;
+    font-size:14pt;
+}
+
+#tip, #dodajObjekatTrener {
+    height:35px;
+    width:250px;
+    font-size:14pt;
+}

@@ -36,11 +36,16 @@ function prikaziTreninge(treninzi){
 		return;
 	}
 	
+		
 	for (let t of treninzi){
+		let slikaTreninga =	$('<div class="slikaTreninga" id="slikaTreninga"></div>');
+		let tekstTreninga =	$('<div class="tekstTreninga" id="tekstTreninga"></div>');
 		let slika = $('<img src="pictures/' + t.slika + '"/>');
 		let trening = $('<hr><h5>' + t.naziv + '</h5><p>Opis:&nbsp;&nbsp;' + t.opis + '</br>Trener:&nbsp;&nbsp;' + t.trener + '</br>Doplata:&nbsp;&nbsp;' + t.doplata + '</p>');
-		$('#slikaTreninga').append(slika);
-		$('#tekstTreninga').append(trening);
+		slikaTreninga.append(slika);
+		tekstTreninga.append(trening);
+		$('#sadrzajPrikazaTreninga').append(slikaTreninga);
+		$('#sadrzajPrikazaTreninga').append(tekstTreninga);
 	}
 }
 

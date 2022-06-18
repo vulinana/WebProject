@@ -36,12 +36,34 @@ function prikaziTreninge(treninzi){
 		return;
 	}
 	
+		
 	for (let t of treninzi){
+		let slikaTreninga =	$('<div class="slikaTreninga" id="slikaTreninga"></div>');
+		let tekstTreninga =	$('<div class="tekstTreninga" id="tekstTreninga"></div>');
 		let slika = $('<img src="pictures/' + t.slika + '"/>');
 		let trening = $('<hr><h5>' + t.naziv + '</h5><p>Opis:&nbsp;&nbsp;' + t.opis + '</br>Trener:&nbsp;&nbsp;' + t.trener + '</br>Doplata:&nbsp;&nbsp;' + t.doplata + '</p>');
-		$('#slikaTreninga').append(slika);
-		$('#tekstTreninga').append(trening);
+		slikaTreninga.append(slika);
+		tekstTreninga.append(trening);
+		$('#sadrzajPrikazaTreninga').append(slikaTreninga);
+		$('#sadrzajPrikazaTreninga').append(tekstTreninga);
 	}
+}
+
+function updateTreninge(treninzi){
+	$("#sadrzajPrikazaTreninga").html("");
+	prikaziTreninge(treninzi);
+}
+
+
+function dodajTrenere(treneri) {
+	
+		comboBoxOption = $('<option value="">Nema trenera</option>');
+		$('#dodajObjekatTrener').append(comboBoxOption);
+		
+		for (let t of treneri) {
+				comboBoxOption = $('<option value="' + t.korisnickoIme + '">' + t.korisnickoIme + '</option>');
+				$('#dodajObjekatTrener').append(comboBoxOption);
+		}
 }
 
 $(document).ready(function() {
@@ -51,6 +73,7 @@ $(document).ready(function() {
 	 $.get({
 			url: 'rest/sportskiObjekti/' + naziv,
 			success: function(sportskiObjekat) {
+				localStorage.setItem("sportskiObjekat", JSON.stringify(sportskiObjekat));
 				prikaziPodatke(sportskiObjekat);
 			}
 	 });
@@ -68,4 +91,50 @@ $(document).ready(function() {
 				prikaziTreninge(treninzi);
 			}
 	 });
+	 
+	  
+	 $.get({
+			url: 'rest/kupci/treneri',
+			success: function(treneri) {
+				dodajTrenere(treneri);
+			}
+	 });
+	 
+	 $('#buttonDodajTrening').click(function(){
+		$('#popupOverlay, #popup').css("visibility", "visible");
+	});
+	
+		
+	$('form#dodajTreningForma').submit(function(event) {
+		event.preventDefault();
+		$('#popupOverlay, #popup').css("visibility", "hidden");
+		let naziv = $('input[name="naziv"]').val();
+		let tip = $('#tip').val();
+		let slika = $('input[name="slika"]').val();
+		let opis = $('input[name="opis"]').val();
+		let trajanje = $('input[name="trajanje"]').val();
+		let doplata = $('input[name="doplata"]').val();
+		let trener = $('#dodajObjekatTrener').val();
+		var s = JSON.parse(localStorage.getItem("sportskiObjekat"));
+	 	let sportskiObjekatKomPripada = s.naziv;
+		
+		$.ajax({
+			url: 'rest/treninzi/kreirajNoviTrening',
+			type: 'POST',
+			data: JSON.stringify({naziv: naziv, tip: tip, sportskiObjekatKomPripada: sportskiObjekatKomPripada, trajanje: trajanje, trener: trener, opis: opis, slika: slika, doplata: doplata}),
+			contentType: 'application/json',
+			success : function(treninzi) {
+				updateTreninge(treninzi);
+			},
+			error : function(message) {
+				$('#error').text(message.responseText);
+			}
+		});
+	
+	});
+	
+	 $('#popupButtonOtkazi').click(function(){
+		$('#popupOverlay, #popup').css("visibility", "hidden");
+	});
+	
 });

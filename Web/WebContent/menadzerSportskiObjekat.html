@@ -5,9 +5,10 @@
 	<title>Insert title here</title>
 	<link rel="stylesheet" type="text/css" href="style/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="style/homePageStyles.css">
-	<link rel="stylesheet" type="text/css" href="style/prikazObjektaStyle.css">
+	<link rel="stylesheet" type="text/css" href="style/prikazObjektaStyles.css">
+	<link rel="stylesheet" type="text/css" href="style/dodajTreningStyle.css">
 	<script src="jquery-3.3.1.min.js"></script>
-	<script src="menadzerSportskiObjekat.js"></script>
+	<script src="menadzerSportskiObjekatt.js"></script>
 </head>
 <body>
 	<div class="topnav">
@@ -27,9 +28,26 @@
 		<h2>Komentari</h2>
 	</div>
 	<div class="treninzi" id="treninzi">
-		<h2>Treninzi</h2>
-		<div class="slikaTreninga" id="slikaTreninga"></div>
-		<div class="tekstTreninga" id="tekstTreninga"></div>
+		<div id="headerAndButton"><h2>Treninzi&nbsp;&nbsp;</h2><button id="buttonDodajTrening">Dodaj trening</button></div>
+		<div id="sadrzajPrikazaTreninga">
+		</div>
 	</div>
+	<div class="popupOverlay" id="popupOverlay">
+		<div class="popup" id="popup">
+			<form id="dodajTreningForma">
+				<table>
+					<tr><td>Naziv:</td><td><input type="text" required name="naziv" id="dodajObjekatNaziv"/></td></tr>
+					<tr><td>Tip:</td><td><select id="tip"></option><option value="Teretana">Teretana</option><option value="Grupni">Grupni</option><option value="Personalni">Personalni</option></select></td></tr>
+					<tr><td>Slika:</td><td><input type="file" required name="slika" id="dodajObjekatSlika"/></td></tr>
+					<tr><td>Opis:</td><td><input type="text" name="opis" id="dodajObjekatOpis"/></td></tr>
+					<tr><td>Trajanje (h):</td><td><input type="number" name="trajanje" id="dodajObjekatTrajanje"/></td></tr>
+					<tr><td>Doplata:</td><td><input type="number" name="doplata" id="dodajObjekatDoplata"/></td></tr>
+					<tr><td>Trener:</td><td><select id="dodajObjekatTrener"></select></td></tr>
+				</table>
+				<button type="button" id="popupButtonOtkazi">Otkazi</button>
+				<button type="submit" id="popupButton">Dodaj</button>
+			</form>
+		</div>
+</div>
 </body>
 </html>

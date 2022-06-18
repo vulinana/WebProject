@@ -21,6 +21,7 @@ import javax.ws.rs.core.Response;
 import beans.Korisnik;
 import beans.Kupac;
 import beans.Menadzer;
+import beans.Trener;
 import dao.KorisnikDAO;
 
 @Path("/kupci")
@@ -153,5 +154,13 @@ public class KorisnikService {
 	public List<Menadzer> getSlobodniMenadzeri() {
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
 		return dao.findSlobodniMenadzeri();
+	}
+	
+	@GET
+	@Path("/treneri")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<Trener> getTreneri() {
+		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
+		return dao.findTreneri();
 	}
 }
