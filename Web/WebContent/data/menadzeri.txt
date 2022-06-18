@@ -7,6 +7,6 @@
     "pol" : "MUSKO",
     "datumRodjenja" : "2022-05-29",
     "uloga" : "MENADZER",
-    "sportskiObjekat": "bla"
+    "sportskiObjekat": "Mega gym"
   }
 }

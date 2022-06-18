@@ -1,5 +1,7 @@
 $(document).ready(function() {
 		
+		
+	console.log("ee");
 	$('form#forma').submit(function(event) {
 		event.preventDefault();
 		let korisnickoIme = $('input[name="korisnickoIme"]').val();
@@ -10,6 +12,7 @@ $(document).ready(function() {
 			data: JSON.stringify({korisnickoIme: korisnickoIme, lozinka: lozinka}),
 			contentType: 'application/json',
 			success : function(korisnik) {
+				localStorage.setItem("ulogovaniKorisnik", JSON.stringify(korisnik));
 				alert('Logovanje je uspesno!');
 				if(korisnik.uloga == 'KUPAC'){
 					window.location.href = "http://localhost:8080/WebProject/kupacHomePage.html";

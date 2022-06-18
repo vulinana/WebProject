@@ -325,6 +325,7 @@ public class SportskiObjekatDAO {
 		return otvoreniObjekti;
 	}	
 	
+
 	public void kreirajSportskiObjekat(SportskiObjekat sportskiObjekat) {
 			
 	}

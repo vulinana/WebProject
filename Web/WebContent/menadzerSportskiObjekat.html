@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="style/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="style/homePageStyles.css">
+	<link rel="stylesheet" type="text/css" href="style/prikazObjektaStyle.css">
+	<script src="jquery-3.3.1.min.js"></script>
+	<script src="menadzerSportskiObjekat.js"></script>
+</head>
+<body>
+	<div class="topnav">
+  	  <a id="logout" href='login.html'>Odjavi se</a>
+  	  <a href="menadzerHomePage.html">Početna</a>
+      <a href="profil.html">Profil</a>
+      <a class="active" href="menadzerSportskiObjekat.html">Sportski objekat</a>
+  </div>
+	<div class="logoINaziv">
+		<img id="logo"/>
+		<h1 id="naziv"></h1>
+		<label id="ocena"></label>
+		<label id="tipObjekta"></label>
+		<label id="status"></label>
+	</div>
+	<div class="komentari" id="komentari">
+		<h2>Komentari</h2>
+	</div>
+	<div class="treninzi" id="treninzi">
+		<h2>Treninzi</h2>
+		<div class="slikaTreninga" id="slikaTreninga"></div>
+		<div class="tekstTreninga" id="tekstTreninga"></div>
+	</div>
+</body>
+</html>
