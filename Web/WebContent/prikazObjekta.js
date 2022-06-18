@@ -17,16 +17,31 @@ function prikaziPodatke(sportskiObjekat){
 function prikaziKomentare(komentari){
 	
 	if (komentari.length == 0){
-		let nemaKomentara = $('<p>Za ovu teretanu trenutno nema komentara</p>');
+		let nemaKomentara = $('<p>Trenutno nema komentara</p>');
 		$('#komentari').append(nemaKomentara);
 		return;
 	}
 	
 	for (let k of komentari){
-		let komentar = $('<p><span class="ocenaKomentar">' + k.ocena + '</span>&nbsp;' + k.kupac + ':</br>&nbsp;&nbsp;&nbsp;&nbsp;' + k.tekstKomentara +'</p>');
+		let komentar = $('<hr><p><span class="ocenaKomentar">' + k.ocena + '</span>&nbsp;' + k.kupac + ':</br>&nbsp;&nbsp;&nbsp;&nbsp;' + k.tekstKomentara +'</p>');
 		$('#komentari').append(komentar);
 	}
 	
+}
+
+function prikaziTreninge(treninzi){
+	if (treninzi.length == 0){
+		let nemaTreninga = $('<p>Trenutno nema treninga</p>');
+		$('#treninzi').append(nemaTreninga);
+		return;
+	}
+	
+	for (let t of treninzi){
+		let slika = $('<img src="pictures/' + t.slika + '"/>');
+		let trening = $('<hr><h5>' + t.naziv + '</h5><p>Opis:&nbsp;&nbsp;' + t.opis + '</br>Trener:&nbsp;&nbsp;' + t.trener + '</br>Doplata:&nbsp;&nbsp;' + t.doplata + '</p>');
+		$('#slikaTreninga').append(slika);
+		$('#tekstTreninga').append(trening);
+	}
 }
 
 $(document).ready(function() {
@@ -47,4 +62,10 @@ $(document).ready(function() {
 			}
 	 });
 	
+	 $.get({
+			url: 'rest/treninzi/' + naziv,
+			success: function(treninzi) {
+				prikaziTreninge(treninzi);
+			}
+	 });
 });

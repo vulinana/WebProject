@@ -27,6 +27,11 @@
 	font-size: 20px;
 }
 
+html{
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
 #status {
 	position: relative;
 	top: 175px;
@@ -35,16 +40,45 @@
 }
 
 #komentari {
-	height: 350px;
-	width: 600px;
-	border: 1px solid black;
+	height: 320px;
+	width: 99%;
+	border: 1px solid lightgray;
 	padding: 9px;
 	position: absolute;
 	bottom: 0;
-	left: 0;
+	left: 10px;
 	overflow-y:scroll;
 }
 
 .ocenaKomentar {
 	background: orange;
+}
+
+#treninzi {
+	height: auto;
+	width: 99%;
+	border: 1px solid lightgray;
+	padding: 9px;
+	position: absolute;
+	left: 10px;
+	top: 750px;
+}
+
+#slikaTreninga img {
+	max-width:700px;
+	max-height:400px;
+	width: 100%;
+	height: 100%;
+}
+
+#slikaTreninga {
+	position: relative;
+	float:left;
+	top: 15px;
+	width: 50%;
+	height: 100%;
+}
+
+#tekstTreninga {
+	position: relative;
 }

@@ -1,22 +1,27 @@
 package beans;
 
-import java.awt.Image;
+import java.util.UUID;
 
 enum TipTreninga {Grupni, Personalni, Teretana}
 
 public class Trening {
 	
+	private UUID id;
 	private String naziv;
 	private TipTreninga tip;
-	private SportskiObjekat sportskiObjekatKomPripada;
+	private String sportskiObjekatKomPripada;
 	private double trajanje;
-	private Trener trener;
+	private String trener;
 	private String opis;
-	private Image slika;
+	private String slika;
+	private double doplata;
+
+	public Trening() {}
 	
-	public Trening(String naziv, TipTreninga tip, SportskiObjekat sportskiObjekatKomPripada, double trajanje,
-			Trener trener, String opis, Image slika) {
+	public Trening(String naziv, TipTreninga tip, String sportskiObjekatKomPripada, double trajanje,
+			String trener, String opis, String slika, double doplata) {
 		super();
+		this.id = UUID.randomUUID();
 		this.naziv = naziv;
 		this.tip = tip;
 		this.sportskiObjekatKomPripada = sportskiObjekatKomPripada;
@@ -24,6 +29,7 @@ public class Trening {
 		this.trener = trener;
 		this.opis = opis;
 		this.slika = slika;
+		this.doplata = doplata;
 	}
 
 	public String getNaziv() {
@@ -42,11 +48,11 @@ public class Trening {
 		this.tip = tip;
 	}
 
-	public SportskiObjekat getSportskiObjekatKomPripada() {
+	public String getSportskiObjekatKomPripada() {
 		return sportskiObjekatKomPripada;
 	}
 
-	public void setSportskiObjekatKomPripada(SportskiObjekat sportskiObjekatKomPripada) {
+	public void setSportskiObjekatKomPripada(String sportskiObjekatKomPripada) {
 		this.sportskiObjekatKomPripada = sportskiObjekatKomPripada;
 	}
 
@@ -58,11 +64,11 @@ public class Trening {
 		this.trajanje = trajanje;
 	}
 
-	public Trener getTrener() {
+	public String getTrener() {
 		return trener;
 	}
 
-	public void setTrener(Trener trener) {
+	public void setTrener(String trener) {
 		this.trener = trener;
 	}
 
@@ -74,12 +80,20 @@ public class Trening {
 		this.opis = opis;
 	}
 
-	public Image getSlika() {
+	public String getSlika() {
 		return slika;
 	}
 
-	public void setSlika(Image slika) {
+	public void setSlika(String slika) {
 		this.slika = slika;
+	}
+	
+	public double getDoplata() {
+		return doplata;
+	}
+
+	public void setDoplata(double doplata) {
+		this.doplata = doplata;
 	}
 	
 }
