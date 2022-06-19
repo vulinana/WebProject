@@ -4,7 +4,7 @@ import java.util.List;
 
 public class RadnoVreme {
 
-	public enum Dan {Ponedeljak, Utorak, Sreda, Cetvrtak, Petak, Subota, Nedelja}
+	public enum Dan {Nedelja, Ponedeljak, Utorak, Sreda, Cetvrtak, Petak, Subota}
 
 	private List<Dan> dani;
 	private int odVreme;

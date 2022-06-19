@@ -63,6 +63,8 @@ public class KorisnikService {
 		}
 		
 		dao.registerKupac(kupac);
+		HttpSession session = request.getSession();
+		session.setAttribute("korisnik", kupac);
 		return Response.status(200).build();
 	}
 	

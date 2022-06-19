@@ -23,6 +23,7 @@ $(document).ready(function() {
 			contentType: 'application/json',
 			success : function() {
 				alert('Registracija je uspešna!');
+				window.location.href = "http://localhost:8080/WebShopREST/kupacHomePage.html";
 			},
 			error : function(message) {
 				$('#error').text(message.responseText);

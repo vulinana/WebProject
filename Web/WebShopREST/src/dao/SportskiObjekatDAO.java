@@ -70,7 +70,7 @@ public class SportskiObjekatDAO {
 		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
 		
 		for (SportskiObjekat s: sportskiObjekti.values()) {
-			if(s.getNaziv().toLowerCase().equals(naziv.toLowerCase())) {
+			if(s.getNaziv().toLowerCase().startsWith(naziv.toLowerCase())) {
 				filtriraniObjekti.add(s);
 			}
 		}
@@ -82,7 +82,7 @@ public class SportskiObjekatDAO {
 		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
 		
 		for (SportskiObjekat s: sportskiObjekti.values()) {
-			if(s.getLokacija().getAdresa().getMesto().toLowerCase().equals(mesto.toLowerCase())) {
+			if(s.getLokacija().getAdresa().getMesto().toLowerCase().startsWith(mesto.toLowerCase())) {
 				filtriraniObjekti.add(s);
 			}
 		}
