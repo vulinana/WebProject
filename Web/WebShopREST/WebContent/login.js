@@ -2,6 +2,7 @@ $(document).ready(function() {
 		
 		
 	$('form#forma').submit(function(event) {
+		console.log("ee");
 		event.preventDefault();
 		let korisnickoIme = $('input[name="korisnickoIme"]').val();
 		let lozinka = $('input[name="lozinka"]').val();
@@ -14,15 +15,15 @@ $(document).ready(function() {
 				localStorage.setItem("ulogovaniKorisnik", JSON.stringify(korisnik));
 				alert('Logovanje je uspesno!');
 				if(korisnik.uloga == 'KUPAC'){
-					window.location.href = "http://localhost:8080/WebProject/kupacHomePage.html";
+					window.location.href = "http://localhost:8080/WebShopREST/kupacHomePage.html";
 				}
 				else if(korisnik.uloga == 'ADMINISTRATOR'){
-					window.location.href = "http://localhost:8080/WebProject/administratorHomePage.html";
+					window.location.href = "http://localhost:8080/WebShopREST/administratorHomePage.html";
 				}
 				else if(korisnik.uloga == 'MENADZER'){
-					window.location.href = "http://localhost:8080/WebProject/menadzerHomePage.html";
+					window.location.href = "http://localhost:8080/WebShopREST/menadzerHomePage.html";
 				} else{
-					window.location.href = "http://localhost:8080/WebProject/trenerHomePage.html";
+					window.location.href = "http://localhost:8080/WebShopREST/trenerHomePage.html";
 				}
 			},
 			error : function(message) {
