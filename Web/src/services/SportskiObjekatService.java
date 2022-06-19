@@ -83,11 +83,9 @@ public class SportskiObjekatService {
 	@Path("/kreirajSportskiObjekat")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response kreirajSportskiObjekat(SportskiObjekat sportskiObjekat) {
-		
+	public Collection<SportskiObjekat> kreirajSportskiObjekat(SportskiObjekat sportskiObjekat) {
 		SportskiObjekatDAO dao = (SportskiObjekatDAO) ctx.getAttribute("sportskiObjekatDAO");
-		//dao.registerKupac(kupac);
-		return Response.status(200).build();
+		return dao.kreirajSportskiObjekat(sportskiObjekat);
 	}
 	
 	

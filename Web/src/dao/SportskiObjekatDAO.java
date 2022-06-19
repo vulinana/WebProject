@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,6 +24,8 @@ import beans.SportskiObjekat;
 public class SportskiObjekatDAO {
 
 	public static HashMap<String, SportskiObjekat> sportskiObjekti = new HashMap<String, SportskiObjekat>();
+	private String path = "";
+	
 	
 	public SportskiObjekatDAO() {
 		
@@ -31,6 +34,7 @@ public class SportskiObjekatDAO {
 	
 	public SportskiObjekatDAO(String contextPath) {
 		loadSportskiObjekti(contextPath);
+		path = contextPath;
 	}
 	
 	public List<SportskiObjekat> findAll(){
@@ -326,8 +330,10 @@ public class SportskiObjekatDAO {
 	}	
 	
 
-	public void kreirajSportskiObjekat(SportskiObjekat sportskiObjekat) {
-			
+	public Collection<SportskiObjekat> kreirajSportskiObjekat(SportskiObjekat sportskiObjekat) {
+		sportskiObjekti.put(sportskiObjekat.getNaziv(), sportskiObjekat);
+		saveSportskiObjekti();
+		return sportskiObjekti.values();
 	}
 	
 	public static void loadSportskiObjekti(String contextPath) {
@@ -377,7 +383,30 @@ public class SportskiObjekatDAO {
 				}
 			}
 		}
-		
+	}
+	
+	private void saveSportskiObjekti() {
+		File f = new File(path + "/data/sportskiObjekti.txt");
+		FileWriter fileWriter = null;
+		try {
+			fileWriter = new FileWriter(f);
+			ObjectMapper objectMapper = new ObjectMapper();
+			objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+			objectMapper.getFactory().configure(JsonGenerator.Feature.ESCAPE_NON_ASCII, true);
+			String stringUsers = objectMapper.writeValueAsString(sportskiObjekti);
+			fileWriter.write(stringUsers);
+			fileWriter.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (fileWriter != null) {
+				try {
+					fileWriter.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 	
 }

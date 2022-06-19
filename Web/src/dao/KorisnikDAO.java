@@ -65,6 +65,11 @@ public class KorisnikDAO {
 		saveKupci();
 	}
 	
+	public void registerMenadzer(Menadzer menadzer) {
+		menadzeri.put(menadzer.getKorisnickoIme(), menadzer);
+		saveMenadzeri();
+	}
+	
 	public Korisnik searchKupac(String korisnickoIme) {
 		for(Kupac k: kupci.values()) {
 			if(k.getKorisnickoIme().equals(korisnickoIme)) {
@@ -156,8 +161,7 @@ public class KorisnikDAO {
 			List<Menadzer> slobodniMenadzeri = new ArrayList<Menadzer>();
 			
 			for (Menadzer m: menadzeri.values()) {
-				
-				if (m.getSportskiObjekat() != null && m.getSportskiObjekat() != "") {
+				if (m.getSportskiObjekat() == null || m.getSportskiObjekat() == "") {
 					slobodniMenadzeri.add(m);
 				}
 			}		

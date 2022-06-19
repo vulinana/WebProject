@@ -67,6 +67,16 @@ public class KorisnikService {
 	}
 	
 	@POST
+	@Path("/registracijaMenadzera")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response registrujMenadzera(Menadzer menadzer) {
+		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
+		dao.registerMenadzer(menadzer);
+		return Response.status(200).build();
+	}
+	
+	@POST
 	@Path("/logovanje")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
