@@ -19,12 +19,5 @@
     "lokacija" : { "geografskaSirina": 100.0, "geografskaDuzina": 100.0, "adresa": { "ulicaIBroj": "Nikole Tesle 27", "mesto": "Novi Sad", "postanskiBroj": "222222"}},
     "logo" : "logo3.jpg",
     "radnoVreme" : {"dani" : ["Ponedeljak", "Utorak","Sreda", "Cetvrtak", "Petak", "Subota", "Nedelja"], "odVreme": 1, "doVreme": 24}
-  },
- "Tralala gym" : {
-    "naziv" : "Tralala gym",
-    "tipObjekta" : "Teretana",
-    "lokacija" : { "geografskaSirina": 100.0, "geografskaDuzina": 100.0, "adresa": { "ulicaIBroj": "Nikole Tesle 27", "mesto": "Novi Sad", "postanskiBroj": "222222"}},
-    "logo" : "logo.jpg",
-    "radnoVreme" : {"dani" : ["Ponedeljak", "Utorak"], "odVreme": 9, "doVreme": 21}
   }
 }
