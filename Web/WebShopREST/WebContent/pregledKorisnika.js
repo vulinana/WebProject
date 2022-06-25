@@ -39,7 +39,43 @@ function sortiraj(){
 				updateTable(korisnici);
 			}
 		   });
-	   } 
+	    } 
+	    
+	    if (kriterijumZaSortiranje == "prezimeRastuce"){
+	       $.get({
+			url: 'rest/kupci/sortiraniPoPrezimenuRastuce',
+			success: function(korisnici) {
+				updateTable(korisnici);
+			}
+		   });
+	    } 
+	    
+	    if (kriterijumZaSortiranje == "prezimeOpadajuce"){
+	       $.get({
+			url: 'rest/kupci/sortiraniPoPrezimenuOpadajuce',
+			success: function(korisnici) {
+				updateTable(korisnici);
+			}
+		   });
+	    } 
+	    
+	    if (kriterijumZaSortiranje == "korisnickoImeRastuce"){
+	       $.get({
+			url: 'rest/kupci/sortiraniPoKorisnickomImenuRastuce',
+			success: function(korisnici) {
+				updateTable(korisnici);
+			}
+		   });
+	    } 
+	    
+	      if (kriterijumZaSortiranje == "korisnickoImeOpadajuce"){
+	       $.get({
+			url: 'rest/kupci/sortiraniPoKorisnickomImenuOpadajuce',
+			success: function(korisnici) {
+				updateTable(korisnici);
+			}
+		   });
+	    } 
 	  
 }
 

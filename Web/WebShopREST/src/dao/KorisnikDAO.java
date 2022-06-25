@@ -289,6 +289,51 @@ public class KorisnikDAO {
 		return sortiraniKorisnici;
 	}
 	
+	public List<Korisnik> sortirajPoPrezimenuRastuce(List<Korisnik> prikazaniKorisnici){
+		
+		List<Korisnik> sortiraniKorisnici = new ArrayList<Korisnik>();
+		int tempKorisnik = 0;
+		String min = null;
+		while (!prikazaniKorisnici.isEmpty()) {
+			boolean prviProlaz = true;
+			for (int i = 0; i < prikazaniKorisnici.size(); i++) {
+				if (prviProlaz) {
+					min = prikazaniKorisnici.get(i).getPrezime().toLowerCase();
+					prviProlaz = false;
+				}
+				if (prikazaniKorisnici.get(i).getPrezime().toLowerCase().compareTo(min.toLowerCase()) <= 0) {
+					min = prikazaniKorisnici.get(i).getPrezime().toLowerCase();
+					tempKorisnik = i;
+				}
+			}
+			sortiraniKorisnici.add(prikazaniKorisnici.get(tempKorisnik));
+			prikazaniKorisnici.remove(tempKorisnik);
+		}
+		return sortiraniKorisnici;
+	}
+	
+	public List<Korisnik> sortirajPoKorisnickomImenuRastuce(List<Korisnik> prikazaniKorisnici){
+		
+		List<Korisnik> sortiraniKorisnici = new ArrayList<Korisnik>();
+		int tempKorisnik = 0;
+		String min = null;
+		while (!prikazaniKorisnici.isEmpty()) {
+			boolean prviProlaz = true;
+			for (int i = 0; i < prikazaniKorisnici.size(); i++) {
+				if (prviProlaz) {
+					min = prikazaniKorisnici.get(i).getKorisnickoIme().toLowerCase();
+					prviProlaz = false;
+				}
+				if (prikazaniKorisnici.get(i).getKorisnickoIme().toLowerCase().compareTo(min.toLowerCase()) <= 0) {
+					min = prikazaniKorisnici.get(i).getKorisnickoIme().toLowerCase();
+					tempKorisnik = i;
+				}
+			}
+			sortiraniKorisnici.add(prikazaniKorisnici.get(tempKorisnik));
+			prikazaniKorisnici.remove(tempKorisnik);
+		}
+		return sortiraniKorisnici;
+	}
 	
 	private void loadKupci(String contextPath) {
 		FileWriter fileWriter = null;
