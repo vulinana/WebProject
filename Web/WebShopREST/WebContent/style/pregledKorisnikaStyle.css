@@ -1,6 +1,5 @@
 .centered {
 	position: relative;
-  	top: 100px;
 }
 
 .tableKorisnici {
@@ -36,3 +35,7 @@
     border-bottom: 2px solid #009879;
 }
 
+.sortComboBox {
+	margin-top: 90px;
+	margin-left: 600px;
+}

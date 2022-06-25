@@ -1,6 +1,8 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,6 +14,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
@@ -33,6 +36,7 @@ public class KorisnikService {
 	ServletContext ctx;
 	@Context
 	HttpServletRequest request;
+	private static List<Korisnik> prikazaniKorisnici;
 	
 	public KorisnikService() {
 	}
@@ -159,7 +163,19 @@ public class KorisnikService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Collection<Korisnik> getKorisnici() {
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
-		return dao.findAll();
+		prikazaniKorisnici = dao.findAll();
+		return prikazaniKorisnici;
+	}
+	
+	@GET
+	@Path("/sortiraniPoImenuOpadajuce")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<Korisnik> getSortiraniSportskiObjektiNazivOpadajuce() {
+		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
+		List<Korisnik> sortirani = dao.sortirajPoImenuRastuce(new ArrayList<Korisnik>(prikazaniKorisnici));
+		Collections.reverse(sortirani);
+		return sortirani;
 	}
 	
 	@GET
@@ -189,21 +205,37 @@ public class KorisnikService {
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
 		
 		if (ime != null && ime != "" && prezime != null && prezime != "" && korisnickoIme != null && korisnickoIme != "") {
-			return dao.pretraziPoImenuPrezimenuKorisnickomImenu(ime, prezime, korisnickoIme);
+			prikazaniKorisnici = dao.pretraziPoImenuPrezimenuKorisnickomImenu(ime, prezime, korisnickoIme);
+			return prikazaniKorisnici;
 		} else if (ime != null && ime != "" && prezime != null && prezime != "") {
-			return dao.pretraziPoImenuPrezimenu(ime, prezime);
+			prikazaniKorisnici = dao.pretraziPoImenuPrezimenu(ime, prezime);
+			return prikazaniKorisnici;
 		} else if (ime != null && ime != "" && korisnickoIme != null && korisnickoIme != "") {
-			return dao.pretraziPoImenuKorisnickomImenu(ime, korisnickoIme);
+			prikazaniKorisnici =  dao.pretraziPoImenuKorisnickomImenu(ime, korisnickoIme);
+			return prikazaniKorisnici;
 		} else if (prezime != null && prezime != "" && korisnickoIme != null && korisnickoIme != "") {
-			return dao.pretraziPoPrezimenuKorisnickomImenu(prezime, korisnickoIme);
+			prikazaniKorisnici = dao.pretraziPoPrezimenuKorisnickomImenu(prezime, korisnickoIme);
+			return prikazaniKorisnici;
 		}
 		else if (ime != null && ime != "") {
-			return dao.pretraziPoImenu(ime);
+			prikazaniKorisnici = dao.pretraziPoImenu(ime);
+			return prikazaniKorisnici;
 		} else if (prezime != null && prezime != "") {
-			return dao.pretraziPoPrezimenu(prezime);
+			prikazaniKorisnici = dao.pretraziPoPrezimenu(prezime);
+			return prikazaniKorisnici;
 		} else if (korisnickoIme != null && korisnickoIme != "") {
-			return dao.pretraziPoKorisnickomImenu(korisnickoIme);
-		}
+			prikazaniKorisnici = dao.pretraziPoKorisnickomImenu(korisnickoIme);
+			return prikazaniKorisnici;
+		} 
 		return dao.findAll();
+	}
+	
+	@GET
+	@Path("/sortiraniPoImenuRastuce")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<Korisnik> getSortiraniKorisniciNazivRastuce() {
+		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
+		return dao.sortirajPoImenuRastuce(new ArrayList<Korisnik>(prikazaniKorisnici));
 	}
 }

@@ -24,6 +24,7 @@ import beans.Korisnik;
 import beans.Korisnik.Uloga;
 import beans.Kupac;
 import beans.Menadzer;
+import beans.SportskiObjekat;
 import beans.Trener;
 
 /***
@@ -146,14 +147,14 @@ public class KorisnikDAO {
 		}
 	}
 	
-	public Collection<Korisnik> findAll(){
+	public List<Korisnik> findAll(){
 		
-		HashMap<String, Korisnik> korisnici = new HashMap<String, Korisnik>();
-		korisnici.putAll(kupci);
-		korisnici.putAll(administratori);
-		korisnici.putAll(menadzeri);
-		korisnici.putAll(treneri);
-		return korisnici.values();
+		List<Korisnik> korisnici = new ArrayList<Korisnik>();
+		korisnici.addAll(kupci.values());
+		korisnici.addAll(administratori.values());
+		korisnici.addAll(menadzeri.values());
+		korisnici.addAll(treneri.values());
+		return korisnici;
 	}
 	
 	public List<Menadzer> findSlobodniMenadzeri(){
@@ -173,7 +174,7 @@ public class KorisnikDAO {
 		return treneri.values();
 	}
 	
-	public Collection<Korisnik> pretraziPoImenuPrezimenuKorisnickomImenu(String ime, String prezime, String korisnickoIme){
+	public List<Korisnik> pretraziPoImenuPrezimenuKorisnickomImenu(String ime, String prezime, String korisnickoIme){
 		
 		Collection<Korisnik> korisnici = findAll();
 		List<Korisnik> trazeniKorisnici = new ArrayList<Korisnik>();
@@ -186,7 +187,7 @@ public class KorisnikDAO {
 		return trazeniKorisnici;
 	}
 	
-	public Collection<Korisnik> pretraziPoImenuPrezimenu(String ime, String prezime){
+	public List<Korisnik> pretraziPoImenuPrezimenu(String ime, String prezime){
 		
 		Collection<Korisnik> korisnici = findAll();
 		List<Korisnik> trazeniKorisnici = new ArrayList<Korisnik>();
@@ -199,7 +200,7 @@ public class KorisnikDAO {
 		return trazeniKorisnici;
 	}
 	
-	public Collection<Korisnik> pretraziPoImenuKorisnickomImenu(String ime, String korisnickoIme){
+	public List<Korisnik> pretraziPoImenuKorisnickomImenu(String ime, String korisnickoIme){
 		
 		Collection<Korisnik> korisnici = findAll();
 		List<Korisnik> trazeniKorisnici = new ArrayList<Korisnik>();
@@ -212,7 +213,7 @@ public class KorisnikDAO {
 		return trazeniKorisnici;
 	}
 	
-	public Collection<Korisnik> pretraziPoPrezimenuKorisnickomImenu(String prezime, String korisnickoIme){
+	public List<Korisnik> pretraziPoPrezimenuKorisnickomImenu(String prezime, String korisnickoIme){
 		
 		Collection<Korisnik> korisnici = findAll();
 		List<Korisnik> trazeniKorisnici = new ArrayList<Korisnik>();
@@ -225,7 +226,7 @@ public class KorisnikDAO {
 		return trazeniKorisnici;
 	}
 	
-	public Collection<Korisnik> pretraziPoImenu(String ime){
+	public List<Korisnik> pretraziPoImenu(String ime){
 		
 		Collection<Korisnik> korisnici = findAll();
 		List<Korisnik> trazeniKorisnici = new ArrayList<Korisnik>();
@@ -238,7 +239,7 @@ public class KorisnikDAO {
 		return trazeniKorisnici;
 	}
 	
-	public Collection<Korisnik> pretraziPoPrezimenu(String prezime){
+	public List<Korisnik> pretraziPoPrezimenu(String prezime){
 		
 		Collection<Korisnik> korisnici = findAll();
 		List<Korisnik> trazeniKorisnici = new ArrayList<Korisnik>();
@@ -251,7 +252,7 @@ public class KorisnikDAO {
 		return trazeniKorisnici;
 	}
 	
-	public Collection<Korisnik> pretraziPoKorisnickomImenu(String korisnickoIme){
+	public List<Korisnik> pretraziPoKorisnickomImenu(String korisnickoIme){
 		
 		Collection<Korisnik> korisnici = findAll();
 		List<Korisnik> trazeniKorisnici = new ArrayList<Korisnik>();
@@ -263,6 +264,31 @@ public class KorisnikDAO {
 		
 		return trazeniKorisnici;
 	}
+	
+
+	public List<Korisnik> sortirajPoImenuRastuce(List<Korisnik> prikazaniKorisnici){
+		
+		List<Korisnik> sortiraniKorisnici = new ArrayList<Korisnik>();
+		int tempKorisnik = 0;
+		String min = null;
+		while (!prikazaniKorisnici.isEmpty()) {
+			boolean prviProlaz = true;
+			for (int i = 0; i < prikazaniKorisnici.size(); i++) {
+				if (prviProlaz) {
+					min = prikazaniKorisnici.get(i).getIme().toLowerCase();
+					prviProlaz = false;
+				}
+				if (prikazaniKorisnici.get(i).getIme().toLowerCase().compareTo(min.toLowerCase()) <= 0) {
+					min = prikazaniKorisnici.get(i).getIme().toLowerCase();
+					tempKorisnik = i;
+				}
+			}
+			sortiraniKorisnici.add(prikazaniKorisnici.get(tempKorisnik));
+			prikazaniKorisnici.remove(tempKorisnik);
+		}
+		return sortiraniKorisnici;
+	}
+	
 	
 	private void loadKupci(String contextPath) {
 		FileWriter fileWriter = null;

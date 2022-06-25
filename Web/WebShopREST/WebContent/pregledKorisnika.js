@@ -19,6 +19,31 @@ function updateTable(korisnici) {
 	}
 }
 
+function sortiraj(){
+	
+	 let kriterijumZaSortiranje = $('#sortComboBox').val();
+   	   
+       if (kriterijumZaSortiranje == "imeRastuce"){
+	       $.get({
+			url: 'rest/kupci/sortiraniPoImenuRastuce',
+			success: function(korisnici) {
+				updateTable(korisnici);
+			}
+		   });
+	   } 
+	   
+	    if (kriterijumZaSortiranje == "imeOpadajuce"){
+	       $.get({
+			url: 'rest/kupci/sortiraniPoImenuOpadajuce',
+			success: function(korisnici) {
+				updateTable(korisnici);
+			}
+		   });
+	   } 
+	  
+}
+
+
 
 $(document).ready(function() {
 	$.get({
@@ -43,4 +68,8 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
+	 $('#sortComboBox').change(function(){
+         sortiraj();
+    });
 });
