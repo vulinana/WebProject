@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="style/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="style/homePageStyles.css">
-		<link rel="stylesheet" type="text/css" href="style/pregledKorisnikaStyle.css">
+		<link rel="stylesheet" type="text/css" href="style/pregledKorisnikaStyles.css">
 		<script src="jquery-3.3.1.min.js"></script>
 		<script src="logout.js"></script>
 		<script src="pregledKorisnika.js"></script>
@@ -25,6 +25,7 @@
 	 		</table>
 	 	</form>
 	</div>
+	<p class="filteri"><select class="filter1ComboBox" id="filter1ComboBox"><option value="filtrirajPoUlozi" hidden="true">Filtriraj po ulozi</option><option value="ADMINISTRATOR">Administrator</option><option value="MENADZER">Menadzer</option><option value="TRENER">Trener</option><option value="KUPAC">Kupac</option></select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select class="filter2ComboBox" id="filter2ComboBox"><option value="filtrirajPoTipu" hidden="true">Filtriraj po tipu</option><option value="zlatni">Zlatni</option><option value="srebrni">Srebrni</option><option value="bronzani">Bronzani</option></select></p>
     <p><select class="sortComboBox" id="sortComboBox"><option value="sortiraj" hidden="true">Sortiraj</option><option value="imeRastuce">Ime - rastuće</option><option value="imeOpadajuce">Ime - opadajuće</option><option value="prezimeRastuce">Prezime - rastuće</option><option value="prezimeOpadajuce">Prezime - opadajuće</option><option value="korisnickoImeRastuce">Korisnicko ime - rastuće</option><option value="korisnickoImeOpadajuce">Korisnicko ime - opadajuće</option><option value="bodoviRastuce">Bodovi - rastuce</option><option value="bodoviOpadajuce">Bodovi - opadajuće</option></select></p>
 	<div align="center" class="centered">
 		<table id="tabela" class="tableKorisnici">

@@ -27,11 +27,25 @@ function updateTable(korisnici) {
 
 function sortiraj(){
 	
-	 let kriterijumZaSortiranje = $('#sortComboBox').val();
+	  let kriterijumZaSortiranje = $('#sortComboBox').val();
+	  let kriterijumZaFiltriranje;
+	  if ($('#filter1ComboBox').val() == 'filtrirajPoUlozi'){
+		 kriterijumZaFiltriranje = "bezUloge";
+      } else{
+		 kriterijumZaFiltriranje = $('#filter1ComboBox').val();
+	  }  
+   	   if (kriterijumZaSortiranje == "sortiraj"){
+	        $.get({
+			url: 'rest/kupci/filtrirajPoUlozi/' + kriterijumZaFiltriranje,
+			success: function(korisnici) {
+				updateTable(korisnici);
+			}
+		   });
+	   }
    	   
        if (kriterijumZaSortiranje == "imeRastuce"){
 	       $.get({
-			url: 'rest/kupci/sortiraniPoImenuRastuce',
+			url: 'rest/kupci/sortiraniPoImenuRastuce/' + kriterijumZaFiltriranje,
 			success: function(korisnici) {
 				updateTable(korisnici);
 			}
@@ -40,7 +54,7 @@ function sortiraj(){
 	   
 	    if (kriterijumZaSortiranje == "imeOpadajuce"){
 	       $.get({
-			url: 'rest/kupci/sortiraniPoImenuOpadajuce',
+			url: 'rest/kupci/sortiraniPoImenuOpadajuce/' + kriterijumZaFiltriranje,
 			success: function(korisnici) {
 				updateTable(korisnici);
 			}
@@ -49,7 +63,7 @@ function sortiraj(){
 	    
 	    if (kriterijumZaSortiranje == "prezimeRastuce"){
 	       $.get({
-			url: 'rest/kupci/sortiraniPoPrezimenuRastuce',
+			url: 'rest/kupci/sortiraniPoPrezimenuRastuce/' + kriterijumZaFiltriranje,
 			success: function(korisnici) {
 				updateTable(korisnici);
 			}
@@ -58,7 +72,7 @@ function sortiraj(){
 	    
 	    if (kriterijumZaSortiranje == "prezimeOpadajuce"){
 	       $.get({
-			url: 'rest/kupci/sortiraniPoPrezimenuOpadajuce',
+			url: 'rest/kupci/sortiraniPoPrezimenuOpadajuce/' + kriterijumZaFiltriranje,
 			success: function(korisnici) {
 				updateTable(korisnici);
 			}
@@ -67,7 +81,7 @@ function sortiraj(){
 	    
 	    if (kriterijumZaSortiranje == "korisnickoImeRastuce"){
 	       $.get({
-			url: 'rest/kupci/sortiraniPoKorisnickomImenuRastuce',
+			url: 'rest/kupci/sortiraniPoKorisnickomImenuRastuce/' + kriterijumZaFiltriranje,
 			success: function(korisnici) {
 				updateTable(korisnici);
 			}
@@ -76,7 +90,7 @@ function sortiraj(){
 	    
 	      if (kriterijumZaSortiranje == "korisnickoImeOpadajuce"){
 	       $.get({
-			url: 'rest/kupci/sortiraniPoKorisnickomImenuOpadajuce',
+			url: 'rest/kupci/sortiraniPoKorisnickomImenuOpadajuce/' + kriterijumZaFiltriranje,
 			success: function(korisnici) {
 				updateTable(korisnici);
 			}
@@ -86,7 +100,7 @@ function sortiraj(){
 	  
 	   if (kriterijumZaSortiranje == "bodoviRastuce"){
 	       $.get({
-			url: 'rest/kupci/sortiraniPoBodovimaRastuce',
+			url: 'rest/kupci/sortiraniPoBodovimaRastuce/' + kriterijumZaFiltriranje,
 			success: function(korisnici) {
 				updateTable(korisnici);
 			}
@@ -96,7 +110,7 @@ function sortiraj(){
 	    
 	    if (kriterijumZaSortiranje == "bodoviOpadajuce"){
 	       $.get({
-			url: 'rest/kupci/sortiraniPoBodovimaOpadajuce',
+			url: 'rest/kupci/sortiraniPoBodovimaOpadajuce/' + kriterijumZaFiltriranje,
 			success: function(korisnici) {
 				updateTable(korisnici);
 			}
@@ -116,6 +130,8 @@ $(document).ready(function() {
 	
 	$('form#formaZaPretragu').submit(function(event) {
 		event.preventDefault();
+		$('#sortComboBox').val('sortiraj');
+		$('#filter1ComboBox').val('filtrirajPoUlozi');
 		let ime = $('#pretragaIme').val();
 		let prezime = $('#pretragaPrezime').val();
 		let korisnickoIme = $('#pretragaKorisnickoIme').val();
@@ -131,6 +147,10 @@ $(document).ready(function() {
 	});
 	
 	 $('#sortComboBox').change(function(){
+         sortiraj();
+    });
+    
+     $('#filter1ComboBox').change(function(){
          sortiraj();
     });
 });

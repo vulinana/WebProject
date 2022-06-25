@@ -364,6 +364,16 @@ public class KorisnikDAO {
 		return sortiraniKorisnici;
 	}
 	
+	public List<Kupac> filtrirajPoUlozi(List<Kupac> prikazaniKorisnici, Korisnik.Uloga uloga){
+		List<Kupac> filtriraniKorisnici = new ArrayList<Kupac>();
+		for (Kupac k: prikazaniKorisnici) {
+			if (k.getUloga() == uloga) {
+				filtriraniKorisnici.add(k);
+			}
+		}
+		return filtriraniKorisnici;
+	}
+	
 	private void loadKupci(String contextPath) {
 		FileWriter fileWriter = null;
 		BufferedReader in = null;

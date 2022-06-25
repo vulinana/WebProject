@@ -22,6 +22,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import beans.Korisnik;
+import beans.Korisnik.Uloga;
 import beans.Kupac;
 import beans.Menadzer;
 import beans.SportskiObjekat;
@@ -220,83 +221,105 @@ public class KorisnikService {
 	}
 	
 	@GET
-	@Path("/sortiraniPoImenuRastuce")
+	@Path("/sortiraniPoImenuRastuce/{uloga}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Kupac> getSortiraniKorisniciNazivRastuce() {
+	public List<Kupac> getSortiraniKorisniciImeRastuce(@PathParam("uloga") String uloga) {
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
-		return dao.sortirajPoImenuRastuce(new ArrayList<Kupac>(prikazaniKorisnici));
+		if (uloga.equals("bezUloge")) {
+			return dao.sortirajPoImenuRastuce(new ArrayList<Kupac>(prikazaniKorisnici));
+		} else {
+			return dao.sortirajPoImenuRastuce(filtrirajPoUlozi(Uloga.valueOf(uloga)));
+		}
 	}
 	
 	@GET
-	@Path("/sortiraniPoImenuOpadajuce")
+	@Path("/sortiraniPoImenuOpadajuce/{uloga}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Kupac> getSortiraniKorisniciImeOpadajuce() {
-		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
-		List<Kupac> sortirani = dao.sortirajPoImenuRastuce(new ArrayList<Kupac>(prikazaniKorisnici));
+	public Collection<Kupac> getSortiraniKorisniciImeOpadajuce(@PathParam("uloga") String uloga) {
+		List<Kupac> sortirani = getSortiraniKorisniciImeRastuce(uloga);
 		Collections.reverse(sortirani);
 		return sortirani;
 	}
 	
 	@GET
-	@Path("/sortiraniPoPrezimenuRastuce")
+	@Path("/sortiraniPoPrezimenuRastuce/{uloga}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Kupac> getSortiraniKorisniciPrezimeRastuce() {
+	public List<Kupac> getSortiraniKorisniciPrezimeRastuce(@PathParam("uloga") String uloga) {
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
-		return dao.sortirajPoPrezimenuRastuce(new ArrayList<Kupac>(prikazaniKorisnici));
+		if (uloga.equals("bezUloge")) {
+			return dao.sortirajPoPrezimenuRastuce(new ArrayList<Kupac>(prikazaniKorisnici));
+		} else {
+			return dao.sortirajPoPrezimenuRastuce(filtrirajPoUlozi(Uloga.valueOf(uloga)));
+		}
 	}
 	
 	@GET
-	@Path("/sortiraniPoPrezimenuOpadajuce")
+	@Path("/sortiraniPoPrezimenuOpadajuce/{uloga}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Kupac> getSortiraniKorisniciPrezimeOpadajuce() {
-		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
-		List<Kupac> sortirani = dao.sortirajPoPrezimenuRastuce(new ArrayList<Kupac>(prikazaniKorisnici));
+	public Collection<Kupac> getSortiraniKorisniciPrezimeOpadajuce(@PathParam("uloga") String uloga) {
+		List<Kupac> sortirani = getSortiraniKorisniciPrezimeRastuce(uloga);
 		Collections.reverse(sortirani);
 		return sortirani;
 	}
 	
 	@GET
-	@Path("/sortiraniPoKorisnickomImenuRastuce")
+	@Path("/sortiraniPoKorisnickomImenuRastuce/{uloga}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Kupac> getSortiraniKorisniciKorisnickoImeRastuce() {
+	public List<Kupac> getSortiraniKorisniciKorisnickoImeRastuce(@PathParam("uloga") String uloga) {
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
-		return dao.sortirajPoKorisnickomImenuRastuce(new ArrayList<Kupac>(prikazaniKorisnici));
+		if (uloga.equals("bezUloge")) {
+			return dao.sortirajPoKorisnickomImenuRastuce(new ArrayList<Kupac>(prikazaniKorisnici));
+		} else {
+			return dao.sortirajPoKorisnickomImenuRastuce(filtrirajPoUlozi(Uloga.valueOf(uloga)));
+		}
 	}
 	
 	@GET
-	@Path("/sortiraniPoKorisnickomImenuOpadajuce")
+	@Path("/sortiraniPoKorisnickomImenuOpadajuce/{uloga}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Kupac> getSortiraniKorisniciKorisnickoImeOpadajuce() {
-		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
-		List<Kupac> sortirani = dao.sortirajPoKorisnickomImenuRastuce(new ArrayList<Kupac>(prikazaniKorisnici));
+	public Collection<Kupac> getSortiraniKorisniciKorisnickoImeOpadajuce(@PathParam("uloga") String uloga) {
+		List<Kupac> sortirani = getSortiraniKorisniciKorisnickoImeRastuce(uloga);
 		Collections.reverse(sortirani);
 		return sortirani;
 	}
 	
 	@GET
-	@Path("/sortiraniPoBodovimaRastuce")
+	@Path("/sortiraniPoBodovimaRastuce/{uloga}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Kupac> getSortiraniKorisniciBodovimaRastuce() {
+	public List<Kupac> getSortiraniKorisniciBodovimaRastuce(@PathParam("uloga") String uloga) {
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
-		return dao.sortirajPoBodovimaRastuce(new ArrayList<Kupac>(prikazaniKorisnici));
+		if (uloga.equals("bezUloge")) {
+			return dao.sortirajPoBodovimaRastuce(new ArrayList<Kupac>(prikazaniKorisnici));
+		} else {
+			return dao.sortirajPoBodovimaRastuce(filtrirajPoUlozi(Uloga.valueOf(uloga)));
+		}
 	}
 	
 
 	@GET
-	@Path("/sortiraniPoBodovimaOpadajuce")
+	@Path("/sortiraniPoBodovimaOpadajuce/{uloga}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Kupac> getSortiraniKorisniciBodovimaOpadajuce() {
-		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
-		List<Kupac> sortirani = dao.sortirajPoBodovimaRastuce(new ArrayList<Kupac>(prikazaniKorisnici));
+	public Collection<Kupac> getSortiraniKorisniciBodovimaOpadajuce(@PathParam("uloga") String uloga) {
+		List<Kupac> sortirani = getSortiraniKorisniciBodovimaRastuce(uloga);
 		Collections.reverse(sortirani);
 		return sortirani;
+	}
+	
+	
+	@GET
+	@Path("/filtrirajPoUlozi/{kriterijum}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Kupac> filtrirajPoUlozi(@PathParam("kriterijum") Korisnik.Uloga uloga) {
+		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
+		return dao.filtrirajPoUlozi(new ArrayList<Kupac>(prikazaniKorisnici), uloga);
 	}
 }
