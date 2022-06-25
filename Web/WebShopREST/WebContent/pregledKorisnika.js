@@ -6,13 +6,19 @@ function addKorisnikTr(korisnik) {
 	let tdPol = $('<td>' + korisnik.pol + '</td>');
 	let tdDatumRodjenja = $('<td>' + korisnik.datumRodjenja + '</td>');
 	let tdUloga = $('<td>' + korisnik.uloga + '</td>');
-	tr.append(tdKorisnickoIme).append(tdIme).append(tdPrezime).append(tdPol).append(tdDatumRodjenja).append(tdUloga);
+	let tdBodovi;
+	if (korisnik.uloga == 'KUPAC'){
+		tdBodovi = $('<td>' + korisnik.brojSakupljenihBodova + '</td>');
+	} else{
+		tdBodovi = $('<td></td>');
+	}
+	tr.append(tdKorisnickoIme).append(tdIme).append(tdPrezime).append(tdPol).append(tdDatumRodjenja).append(tdUloga).append(tdBodovi);
 	$('#tabela').append(tr);
 }
 
 function updateTable(korisnici) {
 	$('#tabela').html("");
-	let tr = $('<thead><tr><th>Korisničko ime</th><th>Ime</th><th>Prezime</th><th>Pol</th><th>Datum rodjenja</th><th>Uloga</th></tr></thead>');
+	let tr = $('<thead><tr><th>Korisničko ime</th><th>Ime</th><th>Prezime</th><th>Pol</th><th>Datum rodjenja</th><th>Uloga</th><th>Bodovi</th></tr></thead>');
 	$('#tabela').append(tr);
 	for (let korisnik of korisnici) {
 				addKorisnikTr(korisnik);
@@ -77,6 +83,25 @@ function sortiraj(){
 		   });
 	    } 
 	  
+	  
+	   if (kriterijumZaSortiranje == "bodoviRastuce"){
+	       $.get({
+			url: 'rest/kupci/sortiraniPoBodovimaRastuce',
+			success: function(korisnici) {
+				updateTable(korisnici);
+			}
+		   });
+	    } 
+	    
+	    
+	    if (kriterijumZaSortiranje == "bodoviOpadajuce"){
+	       $.get({
+			url: 'rest/kupci/sortiraniPoBodovimaOpadajuce',
+			success: function(korisnici) {
+				updateTable(korisnici);
+			}
+		   });
+	    } 
 }
 
 

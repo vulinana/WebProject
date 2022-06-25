@@ -147,13 +147,19 @@ public class KorisnikDAO {
 		}
 	}
 	
-	public List<Korisnik> findAll(){
+	public List<Kupac> findAll(){
 		
-		List<Korisnik> korisnici = new ArrayList<Korisnik>();
+		List<Kupac> korisnici = new ArrayList<Kupac>();
 		korisnici.addAll(kupci.values());
-		korisnici.addAll(administratori.values());
-		korisnici.addAll(menadzeri.values());
-		korisnici.addAll(treneri.values());
+		for (Administrator a: administratori.values()) {
+			korisnici.add(new Kupac(a.getKorisnickoIme(), a.getLozinka(), a.getIme(), a.getPrezime(), a.getPol(), a.getDatumRodjenja(), a.getUloga()));
+		}
+		for (Menadzer m: menadzeri.values()) {
+			korisnici.add(new Kupac(m.getKorisnickoIme(), m.getLozinka(), m.getIme(), m.getPrezime(), m.getPol(), m.getDatumRodjenja(), m.getUloga()));
+		}
+		for (Trener t: treneri.values()) {
+			korisnici.add(new Kupac(t.getKorisnickoIme(), t.getLozinka(), t.getIme(), t.getPrezime(), t.getPol(), t.getDatumRodjenja(), t.getUloga()));
+		}
 		return korisnici;
 	}
 	
@@ -174,11 +180,11 @@ public class KorisnikDAO {
 		return treneri.values();
 	}
 	
-	public List<Korisnik> pretraziPoImenuPrezimenuKorisnickomImenu(String ime, String prezime, String korisnickoIme){
+	public List<Kupac> pretraziPoImenuPrezimenuKorisnickomImenu(String ime, String prezime, String korisnickoIme){
 		
-		Collection<Korisnik> korisnici = findAll();
-		List<Korisnik> trazeniKorisnici = new ArrayList<Korisnik>();
-		for(Korisnik k: korisnici) {
+		Collection<Kupac> korisnici = findAll();
+		List<Kupac> trazeniKorisnici = new ArrayList<Kupac>();
+		for(Kupac k: korisnici) {
 			if (k.getIme().toLowerCase().startsWith(ime.toLowerCase()) && k.getPrezime().toLowerCase().startsWith(prezime.toLowerCase()) && k.getKorisnickoIme().toLowerCase().startsWith(korisnickoIme.toLowerCase())) {
 				trazeniKorisnici.add(k);
 			}
@@ -187,11 +193,11 @@ public class KorisnikDAO {
 		return trazeniKorisnici;
 	}
 	
-	public List<Korisnik> pretraziPoImenuPrezimenu(String ime, String prezime){
+	public List<Kupac> pretraziPoImenuPrezimenu(String ime, String prezime){
 		
-		Collection<Korisnik> korisnici = findAll();
-		List<Korisnik> trazeniKorisnici = new ArrayList<Korisnik>();
-		for(Korisnik k: korisnici) {
+		Collection<Kupac> korisnici = findAll();
+		List<Kupac> trazeniKorisnici = new ArrayList<Kupac>();
+		for(Kupac k: korisnici) {
 			if (k.getIme().toLowerCase().startsWith(ime.toLowerCase()) && k.getPrezime().toLowerCase().startsWith(prezime.toLowerCase())) {
 				trazeniKorisnici.add(k);
 			}
@@ -200,11 +206,11 @@ public class KorisnikDAO {
 		return trazeniKorisnici;
 	}
 	
-	public List<Korisnik> pretraziPoImenuKorisnickomImenu(String ime, String korisnickoIme){
+	public List<Kupac> pretraziPoImenuKorisnickomImenu(String ime, String korisnickoIme){
 		
-		Collection<Korisnik> korisnici = findAll();
-		List<Korisnik> trazeniKorisnici = new ArrayList<Korisnik>();
-		for(Korisnik k: korisnici) {
+		Collection<Kupac> korisnici = findAll();
+		List<Kupac> trazeniKorisnici = new ArrayList<Kupac>();
+		for(Kupac k: korisnici) {
 			if (k.getIme().toLowerCase().startsWith(ime.toLowerCase()) && k.getKorisnickoIme().toLowerCase().startsWith(korisnickoIme.toLowerCase())) {
 				trazeniKorisnici.add(k);
 			}
@@ -213,11 +219,11 @@ public class KorisnikDAO {
 		return trazeniKorisnici;
 	}
 	
-	public List<Korisnik> pretraziPoPrezimenuKorisnickomImenu(String prezime, String korisnickoIme){
+	public List<Kupac> pretraziPoPrezimenuKorisnickomImenu(String prezime, String korisnickoIme){
 		
-		Collection<Korisnik> korisnici = findAll();
-		List<Korisnik> trazeniKorisnici = new ArrayList<Korisnik>();
-		for(Korisnik k: korisnici) {
+		Collection<Kupac> korisnici = findAll();
+		List<Kupac> trazeniKorisnici = new ArrayList<Kupac>();
+		for(Kupac k: korisnici) {
 			if (k.getPrezime().toLowerCase().startsWith(prezime.toLowerCase()) && k.getKorisnickoIme().toLowerCase().startsWith(korisnickoIme.toLowerCase())) {
 				trazeniKorisnici.add(k);
 			}
@@ -226,11 +232,11 @@ public class KorisnikDAO {
 		return trazeniKorisnici;
 	}
 	
-	public List<Korisnik> pretraziPoImenu(String ime){
+	public List<Kupac> pretraziPoImenu(String ime){
 		
-		Collection<Korisnik> korisnici = findAll();
-		List<Korisnik> trazeniKorisnici = new ArrayList<Korisnik>();
-		for(Korisnik k: korisnici) {
+		Collection<Kupac> korisnici = findAll();
+		List<Kupac> trazeniKorisnici = new ArrayList<Kupac>();
+		for(Kupac k: korisnici) {
 			if (k.getIme().toLowerCase().startsWith(ime.toLowerCase())) {
 				trazeniKorisnici.add(k);
 			}
@@ -239,11 +245,11 @@ public class KorisnikDAO {
 		return trazeniKorisnici;
 	}
 	
-	public List<Korisnik> pretraziPoPrezimenu(String prezime){
+	public List<Kupac> pretraziPoPrezimenu(String prezime){
 		
-		Collection<Korisnik> korisnici = findAll();
-		List<Korisnik> trazeniKorisnici = new ArrayList<Korisnik>();
-		for(Korisnik k: korisnici) {
+		Collection<Kupac> korisnici = findAll();
+		List<Kupac> trazeniKorisnici = new ArrayList<Kupac>();
+		for(Kupac k: korisnici) {
 			if (k.getPrezime().toLowerCase().startsWith(prezime.toLowerCase())) {
 				trazeniKorisnici.add(k);
 			}
@@ -252,11 +258,11 @@ public class KorisnikDAO {
 		return trazeniKorisnici;
 	}
 	
-	public List<Korisnik> pretraziPoKorisnickomImenu(String korisnickoIme){
+	public List<Kupac> pretraziPoKorisnickomImenu(String korisnickoIme){
 		
-		Collection<Korisnik> korisnici = findAll();
-		List<Korisnik> trazeniKorisnici = new ArrayList<Korisnik>();
-		for(Korisnik k: korisnici) {
+		Collection<Kupac> korisnici = findAll();
+		List<Kupac> trazeniKorisnici = new ArrayList<Kupac>();
+		for(Kupac k: korisnici) {
 			if (k.getKorisnickoIme().toLowerCase().startsWith(korisnickoIme.toLowerCase())) {
 				trazeniKorisnici.add(k);
 			}
@@ -266,9 +272,9 @@ public class KorisnikDAO {
 	}
 	
 
-	public List<Korisnik> sortirajPoImenuRastuce(List<Korisnik> prikazaniKorisnici){
+	public List<Kupac> sortirajPoImenuRastuce(List<Kupac> prikazaniKorisnici){
 		
-		List<Korisnik> sortiraniKorisnici = new ArrayList<Korisnik>();
+		List<Kupac> sortiraniKorisnici = new ArrayList<Kupac>();
 		int tempKorisnik = 0;
 		String min = null;
 		while (!prikazaniKorisnici.isEmpty()) {
@@ -289,9 +295,9 @@ public class KorisnikDAO {
 		return sortiraniKorisnici;
 	}
 	
-	public List<Korisnik> sortirajPoPrezimenuRastuce(List<Korisnik> prikazaniKorisnici){
+	public List<Kupac> sortirajPoPrezimenuRastuce(List<Kupac> prikazaniKorisnici){
 		
-		List<Korisnik> sortiraniKorisnici = new ArrayList<Korisnik>();
+		List<Kupac> sortiraniKorisnici = new ArrayList<Kupac>();
 		int tempKorisnik = 0;
 		String min = null;
 		while (!prikazaniKorisnici.isEmpty()) {
@@ -312,9 +318,9 @@ public class KorisnikDAO {
 		return sortiraniKorisnici;
 	}
 	
-	public List<Korisnik> sortirajPoKorisnickomImenuRastuce(List<Korisnik> prikazaniKorisnici){
+	public List<Kupac> sortirajPoKorisnickomImenuRastuce(List<Kupac> prikazaniKorisnici){
 		
-		List<Korisnik> sortiraniKorisnici = new ArrayList<Korisnik>();
+		List<Kupac> sortiraniKorisnici = new ArrayList<Kupac>();
 		int tempKorisnik = 0;
 		String min = null;
 		while (!prikazaniKorisnici.isEmpty()) {
@@ -326,6 +332,29 @@ public class KorisnikDAO {
 				}
 				if (prikazaniKorisnici.get(i).getKorisnickoIme().toLowerCase().compareTo(min.toLowerCase()) <= 0) {
 					min = prikazaniKorisnici.get(i).getKorisnickoIme().toLowerCase();
+					tempKorisnik = i;
+				}
+			}
+			sortiraniKorisnici.add(prikazaniKorisnici.get(tempKorisnik));
+			prikazaniKorisnici.remove(tempKorisnik);
+		}
+		return sortiraniKorisnici;
+	}
+	
+	public List<Kupac> sortirajPoBodovimaRastuce(List<Kupac> prikazaniKorisnici){
+		
+		List<Kupac> sortiraniKorisnici = new ArrayList<Kupac>();
+		int tempKorisnik = 0;
+		double min = 0;
+		while (!prikazaniKorisnici.isEmpty()) {
+			boolean prviProlaz = true;
+			for (int i = 0; i < prikazaniKorisnici.size(); i++) {
+				if (prviProlaz) {
+					min = prikazaniKorisnici.get(i).getBrojSakupljenihBodova();
+					prviProlaz = false;
+				}
+				if (prikazaniKorisnici.get(i).getBrojSakupljenihBodova() <= min) {
+					min = prikazaniKorisnici.get(i).getBrojSakupljenihBodova();
 					tempKorisnik = i;
 				}
 			}

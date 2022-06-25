@@ -1,6 +1,7 @@
 package beans;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import beans.TipKupca.NazivTipaKupca;
@@ -21,16 +22,14 @@ public class Kupac extends Korisnik {
 		this.setPoseceniObjekti(new ArrayList<SportskiObjekat>());
 		this.setTipKupca(NazivTipaKupca.BRONZANI);
 	}
-	
-	public Kupac(String korisnickoIme, String lozinka, String ime, String prezime, String pol, String datumRodjenja) {
-		
-		super(korisnickoIme, lozinka, ime, prezime, pol, datumRodjenja, Uloga.KUPAC);
-		this.clanarinaId = "1";
+
+	public Kupac(String korisnickoIme, String lozinka, String ime, String prezime, Pol pol, Date datumRodjenja, Uloga uloga) {
+		super(korisnickoIme, lozinka, ime, prezime, pol.toString(), datumRodjenja, uloga);
+		this.clanarinaId = null;
 		this.poseceniObjekti = new ArrayList<SportskiObjekat>();
 		this.brojSakupljenihBodova = 0;
-		this.tipKupca = NazivTipaKupca.BRONZANI;
+		this.tipKupca = null;
 	}
-
 
 	public String getClanarina() {
 		return clanarinaId;

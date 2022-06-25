@@ -24,7 +24,7 @@ public class Korisnik {
 	public Korisnik() {
 	}
 	
-	public Korisnik(String korisnickoIme, String lozinka, String ime, String prezime, String pol, String datumRodjenja,
+	public Korisnik(String korisnickoIme, String lozinka, String ime, String prezime, String pol, Date datumRodjenja,
 			Uloga uloga) {
 		super();
 		this.korisnickoIme = korisnickoIme;
@@ -32,11 +32,7 @@ public class Korisnik {
 		this.ime = ime;
 		this.prezime = prezime;
 		this.pol = Pol.valueOf(pol);
-		try {
-			this.datumRodjenja = new SimpleDateFormat("yyyy-MM-dd").parse(datumRodjenja);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		} 
+		this.datumRodjenja = datumRodjenja;
 		this.uloga = uloga;
 	}
 

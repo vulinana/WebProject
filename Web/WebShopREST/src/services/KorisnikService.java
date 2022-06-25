@@ -36,7 +36,7 @@ public class KorisnikService {
 	ServletContext ctx;
 	@Context
 	HttpServletRequest request;
-	private static List<Korisnik> prikazaniKorisnici;
+	private static List<Kupac> prikazaniKorisnici;
 	
 	public KorisnikService() {
 	}
@@ -161,7 +161,7 @@ public class KorisnikService {
 	@GET
 	@Path("/")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Korisnik> getKorisnici() {
+	public Collection<Kupac> getKorisnici() {
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
 		prikazaniKorisnici = dao.findAll();
 		return prikazaniKorisnici;
@@ -187,7 +187,7 @@ public class KorisnikService {
 	@Path("/pretrazi")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Korisnik> pretrazi(Korisnik korisnik) {
+	public Collection<Kupac> pretrazi(Kupac korisnik) {
 		String ime = korisnik.getIme().trim();
 		String prezime = korisnik.getPrezime().trim();
 		String korisnickoIme = korisnik.getKorisnickoIme().trim();
@@ -216,25 +216,25 @@ public class KorisnikService {
 			prikazaniKorisnici = dao.pretraziPoKorisnickomImenu(korisnickoIme);
 			return prikazaniKorisnici;
 		} 
-		return dao.findAll();
+		return getKorisnici();
 	}
 	
 	@GET
 	@Path("/sortiraniPoImenuRastuce")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Korisnik> getSortiraniKorisniciNazivRastuce() {
+	public Collection<Kupac> getSortiraniKorisniciNazivRastuce() {
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
-		return dao.sortirajPoImenuRastuce(new ArrayList<Korisnik>(prikazaniKorisnici));
+		return dao.sortirajPoImenuRastuce(new ArrayList<Kupac>(prikazaniKorisnici));
 	}
 	
 	@GET
 	@Path("/sortiraniPoImenuOpadajuce")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Korisnik> getSortiraniKorisniciImeOpadajuce() {
+	public Collection<Kupac> getSortiraniKorisniciImeOpadajuce() {
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
-		List<Korisnik> sortirani = dao.sortirajPoImenuRastuce(new ArrayList<Korisnik>(prikazaniKorisnici));
+		List<Kupac> sortirani = dao.sortirajPoImenuRastuce(new ArrayList<Kupac>(prikazaniKorisnici));
 		Collections.reverse(sortirani);
 		return sortirani;
 	}
@@ -243,18 +243,18 @@ public class KorisnikService {
 	@Path("/sortiraniPoPrezimenuRastuce")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Korisnik> getSortiraniKorisniciPrezimeRastuce() {
+	public Collection<Kupac> getSortiraniKorisniciPrezimeRastuce() {
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
-		return dao.sortirajPoPrezimenuRastuce(new ArrayList<Korisnik>(prikazaniKorisnici));
+		return dao.sortirajPoPrezimenuRastuce(new ArrayList<Kupac>(prikazaniKorisnici));
 	}
 	
 	@GET
 	@Path("/sortiraniPoPrezimenuOpadajuce")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Korisnik> getSortiraniKorisniciPrezimeOpadajuce() {
+	public Collection<Kupac> getSortiraniKorisniciPrezimeOpadajuce() {
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
-		List<Korisnik> sortirani = dao.sortirajPoPrezimenuRastuce(new ArrayList<Korisnik>(prikazaniKorisnici));
+		List<Kupac> sortirani = dao.sortirajPoPrezimenuRastuce(new ArrayList<Kupac>(prikazaniKorisnici));
 		Collections.reverse(sortirani);
 		return sortirani;
 	}
@@ -263,18 +263,39 @@ public class KorisnikService {
 	@Path("/sortiraniPoKorisnickomImenuRastuce")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Korisnik> getSortiraniKorisniciKorisnickoImeRastuce() {
+	public Collection<Kupac> getSortiraniKorisniciKorisnickoImeRastuce() {
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
-		return dao.sortirajPoKorisnickomImenuRastuce(new ArrayList<Korisnik>(prikazaniKorisnici));
+		return dao.sortirajPoKorisnickomImenuRastuce(new ArrayList<Kupac>(prikazaniKorisnici));
 	}
 	
 	@GET
 	@Path("/sortiraniPoKorisnickomImenuOpadajuce")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Korisnik> getSortiraniKorisniciKorisnickoImeOpadajuce() {
+	public Collection<Kupac> getSortiraniKorisniciKorisnickoImeOpadajuce() {
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
-		List<Korisnik> sortirani = dao.sortirajPoKorisnickomImenuRastuce(new ArrayList<Korisnik>(prikazaniKorisnici));
+		List<Kupac> sortirani = dao.sortirajPoKorisnickomImenuRastuce(new ArrayList<Kupac>(prikazaniKorisnici));
+		Collections.reverse(sortirani);
+		return sortirani;
+	}
+	
+	@GET
+	@Path("/sortiraniPoBodovimaRastuce")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<Kupac> getSortiraniKorisniciBodovimaRastuce() {
+		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
+		return dao.sortirajPoBodovimaRastuce(new ArrayList<Kupac>(prikazaniKorisnici));
+	}
+	
+
+	@GET
+	@Path("/sortiraniPoBodovimaOpadajuce")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<Kupac> getSortiraniKorisniciBodovimaOpadajuce() {
+		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
+		List<Kupac> sortirani = dao.sortirajPoBodovimaRastuce(new ArrayList<Kupac>(prikazaniKorisnici));
 		Collections.reverse(sortirani);
 		return sortirani;
 	}
