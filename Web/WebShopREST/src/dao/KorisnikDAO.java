@@ -173,6 +173,97 @@ public class KorisnikDAO {
 		return treneri.values();
 	}
 	
+	public Collection<Korisnik> pretraziPoImenuPrezimenuKorisnickomImenu(String ime, String prezime, String korisnickoIme){
+		
+		Collection<Korisnik> korisnici = findAll();
+		List<Korisnik> trazeniKorisnici = new ArrayList<Korisnik>();
+		for(Korisnik k: korisnici) {
+			if (k.getIme().toLowerCase().startsWith(ime.toLowerCase()) && k.getPrezime().toLowerCase().startsWith(prezime.toLowerCase()) && k.getKorisnickoIme().toLowerCase().startsWith(korisnickoIme.toLowerCase())) {
+				trazeniKorisnici.add(k);
+			}
+		}
+		
+		return trazeniKorisnici;
+	}
+	
+	public Collection<Korisnik> pretraziPoImenuPrezimenu(String ime, String prezime){
+		
+		Collection<Korisnik> korisnici = findAll();
+		List<Korisnik> trazeniKorisnici = new ArrayList<Korisnik>();
+		for(Korisnik k: korisnici) {
+			if (k.getIme().toLowerCase().startsWith(ime.toLowerCase()) && k.getPrezime().toLowerCase().startsWith(prezime.toLowerCase())) {
+				trazeniKorisnici.add(k);
+			}
+		}
+		
+		return trazeniKorisnici;
+	}
+	
+	public Collection<Korisnik> pretraziPoImenuKorisnickomImenu(String ime, String korisnickoIme){
+		
+		Collection<Korisnik> korisnici = findAll();
+		List<Korisnik> trazeniKorisnici = new ArrayList<Korisnik>();
+		for(Korisnik k: korisnici) {
+			if (k.getIme().toLowerCase().startsWith(ime.toLowerCase()) && k.getKorisnickoIme().toLowerCase().startsWith(korisnickoIme.toLowerCase())) {
+				trazeniKorisnici.add(k);
+			}
+		}
+		
+		return trazeniKorisnici;
+	}
+	
+	public Collection<Korisnik> pretraziPoPrezimenuKorisnickomImenu(String prezime, String korisnickoIme){
+		
+		Collection<Korisnik> korisnici = findAll();
+		List<Korisnik> trazeniKorisnici = new ArrayList<Korisnik>();
+		for(Korisnik k: korisnici) {
+			if (k.getPrezime().toLowerCase().startsWith(prezime.toLowerCase()) && k.getKorisnickoIme().toLowerCase().startsWith(korisnickoIme.toLowerCase())) {
+				trazeniKorisnici.add(k);
+			}
+		}
+		
+		return trazeniKorisnici;
+	}
+	
+	public Collection<Korisnik> pretraziPoImenu(String ime){
+		
+		Collection<Korisnik> korisnici = findAll();
+		List<Korisnik> trazeniKorisnici = new ArrayList<Korisnik>();
+		for(Korisnik k: korisnici) {
+			if (k.getIme().toLowerCase().startsWith(ime.toLowerCase())) {
+				trazeniKorisnici.add(k);
+			}
+		}
+		
+		return trazeniKorisnici;
+	}
+	
+	public Collection<Korisnik> pretraziPoPrezimenu(String prezime){
+		
+		Collection<Korisnik> korisnici = findAll();
+		List<Korisnik> trazeniKorisnici = new ArrayList<Korisnik>();
+		for(Korisnik k: korisnici) {
+			if (k.getPrezime().toLowerCase().startsWith(prezime.toLowerCase())) {
+				trazeniKorisnici.add(k);
+			}
+		}
+		
+		return trazeniKorisnici;
+	}
+	
+	public Collection<Korisnik> pretraziPoKorisnickomImenu(String korisnickoIme){
+		
+		Collection<Korisnik> korisnici = findAll();
+		List<Korisnik> trazeniKorisnici = new ArrayList<Korisnik>();
+		for(Korisnik k: korisnici) {
+			if (k.getKorisnickoIme().toLowerCase().startsWith(korisnickoIme.toLowerCase())) {
+				trazeniKorisnici.add(k);
+			}
+		}
+		
+		return trazeniKorisnici;
+	}
+	
 	private void loadKupci(String contextPath) {
 		FileWriter fileWriter = null;
 		BufferedReader in = null;

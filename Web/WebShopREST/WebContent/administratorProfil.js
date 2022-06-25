@@ -12,25 +12,6 @@ $(document).ready(function() {
 				alert(message.responseText);
 			}
 		});
-		
-		$('#pocetna').click(function() {
-		 $.get({
-			url: "rest/kupci/ulogovanKorisnik",
-			success : function(korisnik) {
-				if(korisnik.uloga == 'KUPAC'){
-					window.location.href = "http://localhost:8080/WebShopREST/kupacHomePage.html";
-				}
-				else if(korisnik.uloga == 'MENADZER'){
-					window.location.href = "http://localhost:8080/WebShopREST/menadzerHomePage.html";
-				} else{
-					window.location.href = "http://localhost:8080/WebShopREST/trenerHomePage.html";
-				}
-			},	
-			error : function(message) {
-				alert(message.responseText);
-			}
-   		 });
-	});
 	
 	$('form#forma').submit(function(event) {
 		event.preventDefault();

@@ -17,7 +17,7 @@
 	position: absolute;
 	top: 10%;
 	left: 50%;
-	transform: translate(-50%, -3%) scale(1);
+	transform: translate(-50%, 10%) scale(1);
 	padding: 30px 30px 30px;
 	color: #333;
 	visibility: hidden;

@@ -11,23 +11,22 @@
 		<script src="pregledKorisnika.js"></script>
 </head>
 <body>
-	  <div class="topnav">
-  	  <a id="logout" href='login.html'>Odjavi se</a>
-  	  <a href="administratorHomePage.html">Početna</a>
-      <a href="profil.html">Profil</a>
-      <span class="leftPosition"><a class="active" href="pregledKorisnika.html">Korisnici</a></span>
-      <span class="leftPosition"><a href="administratorSportskiObjekti.html">Sportski objekti</a></span>
-</div>
+	 <div class="topnav">
+  	 	 <a id="logout" href='login.html'>Odjavi se</a>
+  	  	 <a href="administratorHomePage.html">Početna</a>
+      	 <a href="administratorProfil.html">Profil</a>
+      	 <span class="leftPosition"><a class="active" href="pregledKorisnika.html">Korisnici</a></span>
+      	 <span class="leftPosition"><a href="administratorSportskiObjekti.html">Sportski objekti</a></span>
+	</div>
+	<div class="search">
+	 	<form id="formaZaPretragu">
+	 		<table>
+	 			<tr><td><input type="text" placeholder="Ime" id="pretragaIme"/></td><td><input type="text" placeholder="Prezime" id="pretragaPrezime"/></td><td><input type="text" placeholder="Koriscničko ime" id="pretragaKorisnickoIme"/></td><td><input type="submit" value="Pretraži"/></td></tr>
+	 		</table>
+	 	</form>
+	</div>
 <div align="center" class="centered">
-	<table id="tabela" border='1'>
-		<tr>
-			<th>Korisničko ime</th>
-			<th>Ime</th>
-			<th>Prezime</th>
-			<th>Pol</th>
-			<th>Datum rođenja</th>
-			<th>Uloga</th>
-		</tr>
+	<table id="tabela" class="tableKorisnici">
 	</table>
 </div>
 </body>

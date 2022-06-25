@@ -1,10 +1,38 @@
 .centered {
-	position: fixed;
-  	top: 50%;
-	left: 50%;
-  	transform: translate(-50%, -50%);
+	position: relative;
+  	top: 100px;
 }
 
-table {
-   font-size: 20px;
+.tableKorisnici {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    width: 1200px;
+    max-height: 500px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    overflow: scroll;
 }
+
+.tableKorisnici thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.tableKorisnici th, .tableKorisnici td {
+    padding: 12px 15px;
+}
+
+.tableKorisnici tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.tableKorisnici tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.tableKorisnici tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+

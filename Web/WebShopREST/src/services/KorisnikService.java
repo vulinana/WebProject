@@ -21,8 +21,10 @@ import javax.ws.rs.core.Response;
 import beans.Korisnik;
 import beans.Kupac;
 import beans.Menadzer;
+import beans.SportskiObjekat;
 import beans.Trener;
 import dao.KorisnikDAO;
+import dao.SportskiObjekatDAO;
 
 @Path("/kupci")
 public class KorisnikService {
@@ -174,5 +176,34 @@ public class KorisnikService {
 	public Collection<Trener> getTreneri() {
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
 		return dao.findTreneri();
+	}
+	
+	@PUT
+	@Path("/pretrazi")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<Korisnik> pretrazi(Korisnik korisnik) {
+		String ime = korisnik.getIme().trim();
+		String prezime = korisnik.getPrezime().trim();
+		String korisnickoIme = korisnik.getKorisnickoIme().trim();
+		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
+		
+		if (ime != null && ime != "" && prezime != null && prezime != "" && korisnickoIme != null && korisnickoIme != "") {
+			return dao.pretraziPoImenuPrezimenuKorisnickomImenu(ime, prezime, korisnickoIme);
+		} else if (ime != null && ime != "" && prezime != null && prezime != "") {
+			return dao.pretraziPoImenuPrezimenu(ime, prezime);
+		} else if (ime != null && ime != "" && korisnickoIme != null && korisnickoIme != "") {
+			return dao.pretraziPoImenuKorisnickomImenu(ime, korisnickoIme);
+		} else if (prezime != null && prezime != "" && korisnickoIme != null && korisnickoIme != "") {
+			return dao.pretraziPoPrezimenuKorisnickomImenu(prezime, korisnickoIme);
+		}
+		else if (ime != null && ime != "") {
+			return dao.pretraziPoImenu(ime);
+		} else if (prezime != null && prezime != "") {
+			return dao.pretraziPoPrezimenu(prezime);
+		} else if (korisnickoIme != null && korisnickoIme != "") {
+			return dao.pretraziPoKorisnickomImenu(korisnickoIme);
+		}
+		return dao.findAll();
 	}
 }

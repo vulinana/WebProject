@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Profil</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="style/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="style/homePageStyles.css">
+	<link rel="stylesheet" type="text/css" href="style/profilStyle.css">
+	<script src="jquery-3.3.1.min.js"></script>
+	<script src="logout.js"></script>
+	<script src="administratorProfil.js"></script>
+</head>
+<body>
+	<div class="topnav">
+  	  <a id="logout" href='login.html'>Odjavi se</a>
+  	  <a href="administratorHomePage.html">Početna</a>
+      <a class="active" href="administratorProfil.html">Profil</a>
+      <span class="leftPosition"><a href="pregledKorisnika.html">Korisnici</a></span>
+      <span class="leftPosition"><a href="administratorSportskiObjekti.html">Sportski objekti</a></span>
+</div>
+	<div align="center" class="centered">
+	    	<h1>Lične informacije:</h1>
+			<form id="forma">
+				<table>
+					<tr><td><label class="label">Ime:</label></td><td><input type="text" name="ime" class="textBox" required></td></tr>
+					<tr><td><label class="label">Prezime:</label></td><td><input type="text" name="prezime" class="textBox" required></td></tr>
+					<tr><td><label class="label">Pol:</label></td><td><select name="pol" class="comboBox">
+					  <option value="MUSKO">Musko</option>
+					  <option value="ZENSKO">Zensko</option>
+					</select></td></tr>
+					<tr><td><label class="label">Datum rođenja:</label></td><td><input type="date" name="datumRodjenja" class="datePicker" required></td></tr>
+					<tr><td align="center" colspan="2"><input type="submit" value="Sacuvaj izmene" class="buttonRegistrujSe"></td></tr>
+				</table>
+	</form>
+	</div>
+</body>
+</html>
