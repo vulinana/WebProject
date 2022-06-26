@@ -39,7 +39,7 @@ $(document).ready(function() {
 				contentType: 'application/json',
 				success : function() {
 					$('#error').attr("hidden", true);
-					$('#success').text("Profil je uspesno izmenjen");
+					$('#success').text("Profil je uspešno izmenjen");
 					$('#success').fadeOut(3000);
 				},
 				error : function(message) {
