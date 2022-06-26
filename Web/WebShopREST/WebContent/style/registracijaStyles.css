@@ -42,3 +42,7 @@ table {
 	height:50px;
 	background-color:#90EE90;
 }
+
+.leftPosition a{
+	float: left;
+}

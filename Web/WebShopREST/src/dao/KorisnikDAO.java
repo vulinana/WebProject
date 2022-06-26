@@ -126,24 +126,36 @@ public class KorisnikDAO {
 			kupci.get(korisnickoIme).setPrezime(korisnik.getPrezime());
 			kupci.get(korisnickoIme).setPol(korisnik.getPol());
 			kupci.get(korisnickoIme).setDatumRodjenja(korisnik.getDatumRodjenja());
+			kupci.get(korisnickoIme).setKorisnickoIme(korisnik.getKorisnickoIme());
+			Kupac obj = kupci.remove(korisnickoIme);
+			kupci.put(korisnik.getKorisnickoIme() , obj);
 			saveKupci();
 		} else if(korisnik.getUloga() == Uloga.ADMINISTRATOR) {
 			administratori.get(korisnickoIme).setIme(korisnik.getIme());
 			administratori.get(korisnickoIme).setPrezime(korisnik.getPrezime());
 			administratori.get(korisnickoIme).setPol(korisnik.getPol());
 		    administratori.get(korisnickoIme).setDatumRodjenja(korisnik.getDatumRodjenja());
+		    administratori.get(korisnickoIme).setKorisnickoIme(korisnik.getKorisnickoIme());
+		    Administrator obj = administratori.remove(korisnickoIme);
+			administratori.put(korisnik.getKorisnickoIme() , obj);
 			saveAdministratori();
 		} else if(korisnik.getUloga() == Uloga.TRENER) {
 			treneri.get(korisnickoIme).setIme(korisnik.getIme());
 			treneri.get(korisnickoIme).setPrezime(korisnik.getPrezime());
 			treneri.get(korisnickoIme).setPol(korisnik.getPol());
 		    treneri.get(korisnickoIme).setDatumRodjenja(korisnik.getDatumRodjenja());
+		    treneri.get(korisnickoIme).setKorisnickoIme(korisnik.getKorisnickoIme());
+		    Trener obj = treneri.remove(korisnickoIme);
+			treneri.put(korisnik.getKorisnickoIme() , obj);
 			saveTreneri();
 		} else {
 			menadzeri.get(korisnickoIme).setIme(korisnik.getIme());
 			menadzeri.get(korisnickoIme).setPrezime(korisnik.getPrezime());
 			menadzeri.get(korisnickoIme).setPol(korisnik.getPol());
 		    menadzeri.get(korisnickoIme).setDatumRodjenja(korisnik.getDatumRodjenja());
+		    menadzeri.get(korisnickoIme).setKorisnickoIme(korisnik.getKorisnickoIme());
+		    Menadzer obj = menadzeri.remove(korisnickoIme);
+			menadzeri.put(korisnik.getKorisnickoIme() , obj);
 			saveMenadzeri();
 		}
 	}

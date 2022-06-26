@@ -149,15 +149,20 @@ public class KorisnikService {
 	@Path("/izmeniProfil")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response izmeniProfil(Korisnik newKorisnik) {
+	public Response izmeniProfil(@PathParam("username") String username, Korisnik newKorisnik) {
 		
 		HttpSession session = request.getSession();
 		Korisnik korisnik = (Korisnik) session.getAttribute("korisnik");
 		newKorisnik.setUloga(korisnik.getUloga());
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
-		dao.izmeniKorisnika(korisnik.getKorisnickoIme(), newKorisnik);
-		return Response.status(200).build();
 		
+		if (!korisnik.getKorisnickoIme().toLowerCase().equals(newKorisnik.getKorisnickoIme().toLowerCase()) && dao.korisnikExists(newKorisnik.getKorisnickoIme())) {
+			return Response.status(400).entity("Korisničko ime je zauzeto").build();
+		}
+		else {
+			dao.izmeniKorisnika(korisnik.getKorisnickoIme(), newKorisnik);
+			return Response.status(200).build();
+		}
 	}
 	
 	@GET

@@ -159,3 +159,7 @@ html, body{
 .checkBoxOtvoreno:checked {
     background: green;
 }
+
+.leftPosition a{
+	float: left;
+}

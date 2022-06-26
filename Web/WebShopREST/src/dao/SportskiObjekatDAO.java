@@ -115,8 +115,8 @@ public class SportskiObjekatDAO {
 	public List<SportskiObjekat> pretraziPoSvimKriterijumima(SportskiObjekat so){
 		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
 		for (SportskiObjekat s: sportskiObjekti.values()) {
-			if(s.getNaziv().toLowerCase().equals(so.getNaziv().toLowerCase()) && s.getTipObjekta() == so.getTipObjekta() 
-				&& s.getLokacija().getAdresa().getMesto().toLowerCase().equals(so.getLokacija().getAdresa().getMesto().toLowerCase()) && s.getProsecnaOcena() == so.getProsecnaOcena()) {
+			if(s.getNaziv().toLowerCase().startsWith(so.getNaziv().toLowerCase()) && s.getTipObjekta() == so.getTipObjekta() 
+				&& s.getLokacija().getAdresa().getMesto().toLowerCase().startsWith(so.getLokacija().getAdresa().getMesto().toLowerCase()) && s.getProsecnaOcena() == so.getProsecnaOcena()) {
 				filtriraniObjekti.add(s);
 			}
 		}
@@ -127,7 +127,7 @@ public class SportskiObjekatDAO {
 	public List<SportskiObjekat> pretraziPoNazivuTipuMestu(String naziv, SportskiObjekat.TipObjekta tipObjekta, String mesto){
 		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
 		for (SportskiObjekat s: sportskiObjekti.values()) {
-			if(s.getNaziv().toLowerCase().equals(naziv.toLowerCase()) && s.getTipObjekta() == tipObjekta && s.getLokacija().getAdresa().getMesto().toLowerCase().equals(mesto.toLowerCase())){
+			if(s.getNaziv().toLowerCase().startsWith(naziv.toLowerCase()) && s.getTipObjekta() == tipObjekta && s.getLokacija().getAdresa().getMesto().toLowerCase().startsWith(mesto.toLowerCase())){
 				filtriraniObjekti.add(s);
 			}
 		}
@@ -138,7 +138,7 @@ public class SportskiObjekatDAO {
 	public List<SportskiObjekat> pretraziPoNazivuTipuProsecnojOceni(String naziv, SportskiObjekat.TipObjekta tipObjekta, double prosecnaOcena){
 		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
 		for (SportskiObjekat s: sportskiObjekti.values()) {
-			if(s.getNaziv().toLowerCase().equals(naziv.toLowerCase()) && s.getTipObjekta() == tipObjekta && s.getProsecnaOcena() == prosecnaOcena){
+			if(s.getNaziv().toLowerCase().startsWith(naziv.toLowerCase()) && s.getTipObjekta() == tipObjekta && s.getProsecnaOcena() == prosecnaOcena){
 				filtriraniObjekti.add(s);
 			}
 		}
@@ -150,7 +150,7 @@ public class SportskiObjekatDAO {
 	public List<SportskiObjekat> pretraziPoNazivuMestuProsecnojOceni(String naziv, String mesto, double prosecnaOcena){
 		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
 		for (SportskiObjekat s: sportskiObjekti.values()) {
-			if(s.getNaziv().toLowerCase().equals(naziv.toLowerCase()) && s.getLokacija().getAdresa().getMesto().toLowerCase().equals(mesto.toLowerCase()) && s.getProsecnaOcena() == prosecnaOcena){
+			if(s.getNaziv().toLowerCase().startsWith(naziv.toLowerCase()) && s.getLokacija().getAdresa().getMesto().toLowerCase().startsWith(mesto.toLowerCase()) && s.getProsecnaOcena() == prosecnaOcena){
 				filtriraniObjekti.add(s);
 			}
 		}
@@ -160,7 +160,7 @@ public class SportskiObjekatDAO {
 	public List<SportskiObjekat> pretraziPoTipuMestuProsecnojOceni(SportskiObjekat.TipObjekta tipObjekta, String mesto, double prosecnaOcena){
 		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
 		for (SportskiObjekat s: sportskiObjekti.values()) {
-			if(s.getTipObjekta() == tipObjekta && s.getLokacija().getAdresa().getMesto().toLowerCase().equals(mesto.toLowerCase()) && s.getProsecnaOcena() == prosecnaOcena){
+			if(s.getTipObjekta() == tipObjekta && s.getLokacija().getAdresa().getMesto().toLowerCase().startsWith(mesto.toLowerCase()) && s.getProsecnaOcena() == prosecnaOcena){
 				filtriraniObjekti.add(s);
 			}
 		}
@@ -170,7 +170,7 @@ public class SportskiObjekatDAO {
 	public List<SportskiObjekat> pretraziPoNazivuTipu(String naziv, SportskiObjekat.TipObjekta tipObjekta){
 		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
 		for (SportskiObjekat s: sportskiObjekti.values()) {
-			if(s.getNaziv().toLowerCase().equals(naziv.toLowerCase()) && s.getTipObjekta() == tipObjekta){
+			if(s.getNaziv().toLowerCase().startsWith(naziv.toLowerCase()) && s.getTipObjekta() == tipObjekta){
 				filtriraniObjekti.add(s);
 			}
 		}
@@ -181,7 +181,7 @@ public class SportskiObjekatDAO {
 	public List<SportskiObjekat> pretraziPoNazivuMestu(String naziv, String mesto){
 		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
 		for (SportskiObjekat s: sportskiObjekti.values()) {
-			if(s.getNaziv().toLowerCase().equals(naziv.toLowerCase()) && s.getLokacija().getAdresa().getMesto().toLowerCase().equals(mesto.toLowerCase())){
+			if(s.getNaziv().toLowerCase().startsWith(naziv.toLowerCase()) && s.getLokacija().getAdresa().getMesto().toLowerCase().startsWith(mesto.toLowerCase())){
 				filtriraniObjekti.add(s);
 			}
 		}
@@ -191,7 +191,7 @@ public class SportskiObjekatDAO {
 	public List<SportskiObjekat> pretraziPoNazivuProsecnojOceni(String naziv, double prosecnaOcena){
 		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
 		for (SportskiObjekat s: sportskiObjekti.values()) {
-			if(s.getNaziv().toLowerCase().equals(naziv.toLowerCase()) && s.getProsecnaOcena() == prosecnaOcena){
+			if(s.getNaziv().toLowerCase().startsWith(naziv.toLowerCase()) && s.getProsecnaOcena() == prosecnaOcena){
 				filtriraniObjekti.add(s);
 			}
 		}
@@ -201,7 +201,7 @@ public class SportskiObjekatDAO {
 	public List<SportskiObjekat> pretraziPoTipuMestu(SportskiObjekat.TipObjekta tipObjekta, String mesto){
 		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
 		for (SportskiObjekat s: sportskiObjekti.values()) {
-			if(s.getTipObjekta() == tipObjekta && s.getLokacija().getAdresa().getMesto().toLowerCase().equals(mesto.toLowerCase())){
+			if(s.getTipObjekta() == tipObjekta && s.getLokacija().getAdresa().getMesto().toLowerCase().startsWith(mesto.toLowerCase())){
 				filtriraniObjekti.add(s);
 			}
 		}
@@ -221,7 +221,7 @@ public class SportskiObjekatDAO {
 	public List<SportskiObjekat> pretraziPoMestuProsecnojOceni(String mesto, double prosecnaOcena){
 		List<SportskiObjekat> filtriraniObjekti = new ArrayList<SportskiObjekat>();
 		for (SportskiObjekat s: sportskiObjekti.values()) {
-			if(s.getLokacija().getAdresa().getMesto().toLowerCase().equals(mesto.toLowerCase()) && s.getProsecnaOcena() == prosecnaOcena){
+			if(s.getLokacija().getAdresa().getMesto().toLowerCase().startsWith(mesto.toLowerCase()) && s.getProsecnaOcena() == prosecnaOcena){
 				filtriraniObjekti.add(s);
 			}
 		}
