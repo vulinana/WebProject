@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="style/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="style/homePageStyles.css">
 	<link rel="stylesheet" type="text/css" href="style/prikazObjektaStyles.css">
-	<link rel="stylesheet" type="text/css" href="style/dodajTreningStyle.css">
+	<link rel="stylesheet" type="text/css" href="style/menadzerSportskiObjekatStyle.css">
 	<script src="jquery-3.3.1.min.js"></script>
 	<script src="menadzerSportskiObjekatt.js"></script>
 </head>
@@ -34,18 +34,18 @@
 	</div>
 	<div class="popupOverlay" id="popupOverlay">
 		<div class="popup" id="popup">
-			<form id="dodajTreningForma">
+			<form id="dodajTreningForma" action="http://localhost:8080/WebShopREST/rest/treninzi/uploadImage" method="post" enctype="multipart/form-data">
 				<table>
-					<tr><td>Naziv:</td><td><input type="text" required name="naziv" id="dodajObjekatNaziv"/></td></tr>
-					<tr><td>Tip:</td><td><select id="tip"></option><option value="Teretana">Teretana</option><option value="Grupni">Grupni</option><option value="Personalni">Personalni</option></select></td></tr>
-					<tr><td>Slika:</td><td><input type="file" required name="slika" id="dodajObjekatSlika"/></td></tr>
+					<tr><td>Naziv:</td><td><input type="text" name="naziv" id="dodajObjekatNaziv" required/></td><td><p id="error" class="errorMessage"></p></td></tr>
+					<tr><td>Tip:</td><td><select id="tip"><option value="Teretana">Teretana</option><option value="Grupni">Grupni</option><option value="Personalni">Personalni</option></select></td></tr>
+					<tr><td>Slika:</td><td><input type="file" name="file" id="file" required/></td></tr>
 					<tr><td>Opis:</td><td><input type="text" name="opis" id="dodajObjekatOpis"/></td></tr>
 					<tr><td>Trajanje (h):</td><td><input type="number" name="trajanje" id="dodajObjekatTrajanje"/></td></tr>
 					<tr><td>Doplata:</td><td><input type="number" name="doplata" id="dodajObjekatDoplata"/></td></tr>
 					<tr><td>Trener:</td><td><select id="dodajObjekatTrener"></select></td></tr>
 				</table>
-				<button type="button" id="popupButtonOtkazi">Otkazi</button>
-				<button type="submit" id="popupButton">Sacuvaj</button>
+				<button type="button" id="popupButtonOtkazi">Otkaži</button>
+				<button type="submit" id="popupButton">Sačuvaj</button>
 			</form>
 		</div>
 	</div>
@@ -62,8 +62,8 @@
 					<tr><td>Doplata:</td><td><input type="number" name="doplata2" id="izmeniObjekatDoplata2"/></td></tr>
 					<tr><td>Trener:</td><td><select id="izmeniObjekatTrener2"></select></td></tr>
 				</table>
-				<button type="button" id="popupButtonOtkazi2">Otkazi</button>
-				<button type="submit" id="popupButton2">Sacuvaj</button>
+				<button type="button" id="popupButtonOtkazi2">Otkaži</button>
+				<button type="submit" id="popupButton2">Sačuvaj</button>
 			</form>
 		</div>
 	</div>

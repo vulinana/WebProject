@@ -123,33 +123,46 @@ $(document).ready(function() {
 		$('#popupOverlay, #popup').css("visibility", "visible");
 	});
 	
-		
 	$('form#dodajTreningForma').submit(function(event) {
 		event.preventDefault();
-		$('#popupOverlay, #popup').css("visibility", "hidden");
 		let naziv = $('input[name="naziv"]').val();
 		let tip = $('#tip').val();
-		let slika = $('input[name="slika"]').val();
 		let opis = $('input[name="opis"]').val();
 		let trajanje = $('input[name="trajanje"]').val();
 		let doplata = $('input[name="doplata"]').val();
 		let trener = $('#dodajObjekatTrener').val();
 		var s = JSON.parse(localStorage.getItem("sportskiObjekat"));
 	 	let sportskiObjekatKomPripada = s.naziv;
-		
+	 	
+	 	var file = $('input[name="file"').get(0).files[0];
+		var formData = new FormData();
+		formData.append('file', file);
 		$.ajax({
-			url: 'rest/treninzi/kreirajNoviTrening',
-			type: 'POST',
-			data: JSON.stringify({naziv: naziv, tip: tip, sportskiObjekatKomPripada: sportskiObjekatKomPripada, trajanje: trajanje, trener: trener, opis: opis, slika: slika, doplata: doplata}),
-			contentType: 'application/json',
-			success : function(treninzi) {
-				updateTreninge(treninzi);
-			},
-			error : function(message) {
-				$('#error').text(message.responseText);
-			}
+		  url :  'rest/treninzi/uploadImage',
+		  type : 'POST',
+		  data : formData,
+		  cache : false,
+		  contentType : false,
+		  processData : false,
+		  success : function(slikaNaziv) {
+			setTimeout(function(){
+					 $.ajax({
+						url: 'rest/treninzi/kreirajNoviTrening',
+						type: 'POST',
+						data: JSON.stringify({naziv: naziv, tip: tip, sportskiObjekatKomPripada: sportskiObjekatKomPripada, trajanje: trajanje, trener: trener, opis: opis, slika: slikaNaziv, doplata: doplata}),
+						contentType: 'application/json',
+						success : function(treninzi) {
+							updateTreninge(treninzi);	
+							$('#popupOverlay, #popup').css("visibility", "hidden");		
+						},
+						error : function(message) {
+							$('#error').text('Naziv vec postoji!');
+							$("#error").show();
+						}
+					});
+				} , 3000);
+		  }
 		});
-	
 	});
 	
 	

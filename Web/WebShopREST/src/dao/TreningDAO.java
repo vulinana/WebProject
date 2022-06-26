@@ -73,6 +73,15 @@ public class TreningDAO {
 		return treninzi.values();
 	}
 	
+	public boolean treningExists(String naziv) {
+		for (Trening t: treninzi.values()) {
+			if (t.getNaziv().toLowerCase().equals(naziv.toLowerCase())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	private void loadTreninzi(String contextPath) {
 		FileWriter fileWriter = null;
 		BufferedReader in = null;
