@@ -26,6 +26,7 @@ import beans.Korisnik.Uloga;
 import beans.Kupac;
 import beans.Menadzer;
 import beans.SportskiObjekat;
+import beans.TipKupca.NazivTipaKupca;
 import beans.Trener;
 import dao.KorisnikDAO;
 import dao.SportskiObjekatDAO;
@@ -221,94 +222,114 @@ public class KorisnikService {
 	}
 	
 	@GET
-	@Path("/sortiraniPoImenuRastuce/{uloga}")
+	@Path("/sortiraniPoImenuRastuce/{uloga}/{tip}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Kupac> getSortiraniKorisniciImeRastuce(@PathParam("uloga") String uloga) {
+	public List<Kupac> getSortiraniKorisniciImeRastuce(@PathParam("uloga") String uloga, @PathParam("tip") String tip) {
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
 		if (uloga.equals("bezUloge")) {
 			return dao.sortirajPoImenuRastuce(new ArrayList<Kupac>(prikazaniKorisnici));
 		} else {
-			return dao.sortirajPoImenuRastuce(filtrirajPoUlozi(Uloga.valueOf(uloga)));
+			List<Kupac> filtriraniKorisniciPoUlozi = filtrirajPoUlozi(Uloga.valueOf(uloga));
+			if (!tip.equals("bezTipa")) {
+				List<Kupac> filtriraniKorisniciPoUloziITipu = filtrirajPoTipuPriv(filtriraniKorisniciPoUlozi, tip);
+				return dao.sortirajPoImenuRastuce(filtriraniKorisniciPoUloziITipu);
+			}
+			return dao.sortirajPoImenuRastuce(filtriraniKorisniciPoUlozi);
 		}
 	}
 	
 	@GET
-	@Path("/sortiraniPoImenuOpadajuce/{uloga}")
+	@Path("/sortiraniPoImenuOpadajuce/{uloga}/{tip}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Kupac> getSortiraniKorisniciImeOpadajuce(@PathParam("uloga") String uloga) {
-		List<Kupac> sortirani = getSortiraniKorisniciImeRastuce(uloga);
+	public Collection<Kupac> getSortiraniKorisniciImeOpadajuce(@PathParam("uloga") String uloga, @PathParam("tip") String tip) {
+		List<Kupac> sortirani = getSortiraniKorisniciImeRastuce(uloga, tip);
 		Collections.reverse(sortirani);
 		return sortirani;
 	}
 	
 	@GET
-	@Path("/sortiraniPoPrezimenuRastuce/{uloga}")
+	@Path("/sortiraniPoPrezimenuRastuce/{uloga}/{tip}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Kupac> getSortiraniKorisniciPrezimeRastuce(@PathParam("uloga") String uloga) {
+	public List<Kupac> getSortiraniKorisniciPrezimeRastuce(@PathParam("uloga") String uloga, @PathParam("tip") String tip) {
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
 		if (uloga.equals("bezUloge")) {
 			return dao.sortirajPoPrezimenuRastuce(new ArrayList<Kupac>(prikazaniKorisnici));
 		} else {
-			return dao.sortirajPoPrezimenuRastuce(filtrirajPoUlozi(Uloga.valueOf(uloga)));
+			List<Kupac> filtriraniKorisniciPoUlozi = filtrirajPoUlozi(Uloga.valueOf(uloga));
+			if (!tip.equals("bezTipa")) {
+				List<Kupac> filtriraniKorisniciPoUloziITipu = filtrirajPoTipuPriv(filtriraniKorisniciPoUlozi, tip);
+				return dao.sortirajPoPrezimenuRastuce(filtriraniKorisniciPoUloziITipu);
+			}
+			return dao.sortirajPoPrezimenuRastuce(filtriraniKorisniciPoUlozi);
 		}
 	}
 	
 	@GET
-	@Path("/sortiraniPoPrezimenuOpadajuce/{uloga}")
+	@Path("/sortiraniPoPrezimenuOpadajuce/{uloga}/{tip}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Kupac> getSortiraniKorisniciPrezimeOpadajuce(@PathParam("uloga") String uloga) {
-		List<Kupac> sortirani = getSortiraniKorisniciPrezimeRastuce(uloga);
+	public Collection<Kupac> getSortiraniKorisniciPrezimeOpadajuce(@PathParam("uloga") String uloga, @PathParam("tip") String tip) {
+		List<Kupac> sortirani = getSortiraniKorisniciPrezimeRastuce(uloga, tip);
 		Collections.reverse(sortirani);
 		return sortirani;
 	}
 	
 	@GET
-	@Path("/sortiraniPoKorisnickomImenuRastuce/{uloga}")
+	@Path("/sortiraniPoKorisnickomImenuRastuce/{uloga}/{tip}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Kupac> getSortiraniKorisniciKorisnickoImeRastuce(@PathParam("uloga") String uloga) {
+	public List<Kupac> getSortiraniKorisniciKorisnickoImeRastuce(@PathParam("uloga") String uloga, @PathParam("tip") String tip) {
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
 		if (uloga.equals("bezUloge")) {
 			return dao.sortirajPoKorisnickomImenuRastuce(new ArrayList<Kupac>(prikazaniKorisnici));
 		} else {
-			return dao.sortirajPoKorisnickomImenuRastuce(filtrirajPoUlozi(Uloga.valueOf(uloga)));
+			List<Kupac> filtriraniKorisniciPoUlozi = filtrirajPoUlozi(Uloga.valueOf(uloga));
+			if (!tip.equals("bezTipa")) {
+				List<Kupac> filtriraniKorisniciPoUloziITipu = filtrirajPoTipuPriv(filtriraniKorisniciPoUlozi, tip);
+				return dao.sortirajPoKorisnickomImenuRastuce(filtriraniKorisniciPoUloziITipu);
+			}
+			return dao.sortirajPoKorisnickomImenuRastuce(filtriraniKorisniciPoUlozi);
 		}
 	}
 	
 	@GET
-	@Path("/sortiraniPoKorisnickomImenuOpadajuce/{uloga}")
+	@Path("/sortiraniPoKorisnickomImenuOpadajuce/{uloga}/{tip}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Kupac> getSortiraniKorisniciKorisnickoImeOpadajuce(@PathParam("uloga") String uloga) {
-		List<Kupac> sortirani = getSortiraniKorisniciKorisnickoImeRastuce(uloga);
+	public Collection<Kupac> getSortiraniKorisniciKorisnickoImeOpadajuce(@PathParam("uloga") String uloga, @PathParam("tip") String tip) {
+		List<Kupac> sortirani = getSortiraniKorisniciKorisnickoImeRastuce(uloga, tip);
 		Collections.reverse(sortirani);
 		return sortirani;
 	}
 	
 	@GET
-	@Path("/sortiraniPoBodovimaRastuce/{uloga}")
+	@Path("/sortiraniPoBodovimaRastuce/{uloga}/{tip}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Kupac> getSortiraniKorisniciBodovimaRastuce(@PathParam("uloga") String uloga) {
+	public List<Kupac> getSortiraniKorisniciBodovimaRastuce(@PathParam("uloga") String uloga, @PathParam("tip") String tip) {
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
 		if (uloga.equals("bezUloge")) {
 			return dao.sortirajPoBodovimaRastuce(new ArrayList<Kupac>(prikazaniKorisnici));
 		} else {
-			return dao.sortirajPoBodovimaRastuce(filtrirajPoUlozi(Uloga.valueOf(uloga)));
+			List<Kupac> filtriraniKorisniciPoUlozi = filtrirajPoUlozi(Uloga.valueOf(uloga));
+			if (!tip.equals("bezTipa")) {
+				List<Kupac> filtriraniKorisniciPoUloziITipu = filtrirajPoTipuPriv(filtriraniKorisniciPoUlozi, tip);
+				return dao.sortirajPoBodovimaRastuce(filtriraniKorisniciPoUloziITipu);
+			}
+			return dao.sortirajPoBodovimaRastuce(filtriraniKorisniciPoUlozi);
 		}
 	}
 	
 
 	@GET
-	@Path("/sortiraniPoBodovimaOpadajuce/{uloga}")
+	@Path("/sortiraniPoBodovimaOpadajuce/{uloga}/{tip}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Kupac> getSortiraniKorisniciBodovimaOpadajuce(@PathParam("uloga") String uloga) {
-		List<Kupac> sortirani = getSortiraniKorisniciBodovimaRastuce(uloga);
+	public Collection<Kupac> getSortiraniKorisniciBodovimaOpadajuce(@PathParam("uloga") String uloga, @PathParam("tip") String tip) {
+		List<Kupac> sortirani = getSortiraniKorisniciBodovimaRastuce(uloga, tip);
 		Collections.reverse(sortirani);
 		return sortirani;
 	}
@@ -321,5 +342,19 @@ public class KorisnikService {
 	public List<Kupac> filtrirajPoUlozi(@PathParam("kriterijum") Korisnik.Uloga uloga) {
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
 		return dao.filtrirajPoUlozi(new ArrayList<Kupac>(prikazaniKorisnici), uloga);
+	}
+	
+	@GET
+	@Path("/filtrirajPoTipuKupca/{kriterijum}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Kupac> filtrirajPoTipu(@PathParam("kriterijum") String tipKupca) {
+		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
+		return dao.filtrirajPoTipu(new ArrayList<Kupac>(prikazaniKorisnici), NazivTipaKupca.valueOf(tipKupca));
+	}
+	
+	private List<Kupac> filtrirajPoTipuPriv(List<Kupac> korisnici, String tipKupca) {
+		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
+		return dao.filtrirajPoTipu(korisnici, NazivTipaKupca.valueOf(tipKupca));
 	}
 }

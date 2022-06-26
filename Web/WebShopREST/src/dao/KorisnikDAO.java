@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 import beans.Administrator;
 import beans.Korisnik;
 import beans.Korisnik.Uloga;
+import beans.TipKupca.NazivTipaKupca;
 import beans.Kupac;
 import beans.Menadzer;
 import beans.SportskiObjekat;
@@ -368,6 +369,16 @@ public class KorisnikDAO {
 		List<Kupac> filtriraniKorisnici = new ArrayList<Kupac>();
 		for (Kupac k: prikazaniKorisnici) {
 			if (k.getUloga() == uloga) {
+				filtriraniKorisnici.add(k);
+			}
+		}
+		return filtriraniKorisnici;
+	}
+	
+	public List<Kupac> filtrirajPoTipu(List<Kupac> prikazaniKorisnici, NazivTipaKupca tipKupca){
+		List<Kupac> filtriraniKorisnici = new ArrayList<Kupac>();
+		for (Kupac k: prikazaniKorisnici) {
+			if (k.getTipKupca() == tipKupca) {
 				filtriraniKorisnici.add(k);
 			}
 		}
