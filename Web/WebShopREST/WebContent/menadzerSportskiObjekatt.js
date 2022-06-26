@@ -42,7 +42,7 @@ function prikaziTreninge(treninzi){
 		let tekstTreninga =	$('<div class="tekstTreninga" id="tekstTreninga"></div>');
 		let slika = $('<img src="pictures/' + t.slika + '"/>');
 		let trening = $('<hr><h5>' + t.naziv + '</h5><p>Opis:&nbsp;&nbsp;' + t.opis + '</br>Trener:&nbsp;&nbsp;' + t.trener + '</br>Doplata:&nbsp;&nbsp;' + t.doplata + '</p>');
-		let izmeniTreningButton = $('<button>Izmeni trening</button>');
+		let izmeniTreningButton = $('<button class="izmeniButtons">Izmeni informacije</button>');
 		izmeniTreningButton.click(function(){
 			$('input[name="id2"]').val(t.id);
 			$('input[name="naziv2"]').val(t.naziv);
@@ -53,8 +53,14 @@ function prikaziTreninge(treninzi){
 			$('#izmeniObjekatTrener2').val(t.trener);
 			$('#popupOverlay2, #popup2').css("visibility", "visible");
 		});
+		let promeniSlikuButton = $('<button class="izmeniButtons">Promeni sliku</button>');
+		promeniSlikuButton.click(function(){
+			$('input[name="id3"]').val(t.id);
+			$('input[name="naziv3"]').val(t.naziv);
+			$('#popupOverlay3, #popup3').css("visibility", "visible");	
+		});
 		slikaTreninga.append(slika);
-		tekstTreninga.append(trening).append(izmeniTreningButton);
+		tekstTreninga.append(trening).append(izmeniTreningButton).append(promeniSlikuButton);
 		$('#sadrzajPrikazaTreninga').append(slikaTreninga);
 		$('#sadrzajPrikazaTreninga').append(tekstTreninga);
 	}
@@ -193,12 +199,47 @@ $(document).ready(function() {
 	});
 	
 	
+	
 	 $('#popupButtonOtkazi').click(function(){
 		$('#popupOverlay, #popup').css("visibility", "hidden");
 	});
 	
 	 $('#popupButtonOtkazi2').click(function(){
 		$('#popupOverlay2, #popup2').css("visibility", "hidden");
+	});
+	
+	$('#popupButtonOtkazi3').click(function(){
+		$('#popupOverlay3, #popup3').css("visibility", "hidden");
+	});
+	
+	$('form#promeniSliku').submit(function(event) {
+		event.preventDefault();
+		let id = $('input[name="id3"]').val();
+	 	var file = $('input[name="file3"').get(0).files[0];
+		var formData = new FormData();
+		formData.append('file', file);
+		$.ajax({
+		  url :  'rest/treninzi/uploadImage',
+		  type : 'POST',
+		  data : formData,
+		  cache : false,
+		  contentType : false,
+		  processData : false,
+		  success : function(slikaNaziv) {
+			setTimeout(function(){
+					 $.ajax({
+						url: 'rest/treninzi/izmeniSlikuTreninga/' + id,
+						type: 'PUT',
+						data: JSON.stringify({slika: slikaNaziv}),
+						contentType: 'application/json',
+						success : function(treninzi) {
+							updateTreninge(treninzi);	
+							$('#popupOverlay3, #popup3').css("visibility", "hidden");	
+						}
+					});
+				} , 3000);
+		  }
+		});
 	});
 	
 });

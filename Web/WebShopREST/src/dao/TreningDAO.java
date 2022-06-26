@@ -65,10 +65,18 @@ public class TreningDAO {
 		String idString = id.toString();
 		treninzi.get(idString).setNaziv(trening.getNaziv());
 		treninzi.get(idString).setTip(trening.getTip());
-		treninzi.get(idString).setSlika(trening.getSlika());
 		treninzi.get(idString).setOpis(trening.getOpis());
 		treninzi.get(idString).setTrajanje(trening.getTrajanje());
 		treninzi.get(idString).setDoplata(trening.getDoplata());
+		treninzi.get(idString).setTrener(trening.getTrener());
+		saveTreninzi();
+		return treninzi.values();
+	}
+	
+	public Collection<Trening> izmeniSlikuTreninga(UUID id, Trening trening){
+		
+		String idString = id.toString();
+		treninzi.get(idString).setSlika(trening.getSlika());
 		saveTreninzi();
 		return treninzi.values();
 	}

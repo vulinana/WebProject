@@ -3,3 +3,9 @@
 	margin: auto;
 	text-align: center;
 }
+
+.izmeniButtons {
+	background-color: lightgreen;
+	padding: 5px;
+	margin: 2px;
+}

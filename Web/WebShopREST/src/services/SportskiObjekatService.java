@@ -64,19 +64,10 @@ public class SportskiObjekatService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public SportskiObjekat getSportskiObjekatByNaziv(@PathParam("id") String naziv) {
+		KomentarDAO komentarDAO = (KomentarDAO) ctx.getAttribute("komentarDAO");
+		komentarDAO.odrediProsecnuOcenuZaObjekte();
 		SportskiObjekatDAO dao = (SportskiObjekatDAO) ctx.getAttribute("sportskiObjekatDAO");
 		return dao.getByNaziv(naziv);
-	}
-	
-	@POST
-	@Path("/uploadImage")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response uploadImage(String sportskiObjekat) {
-		
-		SportskiObjekatDAO dao = (SportskiObjekatDAO) ctx.getAttribute("sportskiObjekatDAO");
-		//dao.registerKupac(kupac);
-		return Response.status(200).build();
 	}
 	
 	@POST
