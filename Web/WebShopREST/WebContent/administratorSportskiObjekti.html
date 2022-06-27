@@ -5,10 +5,14 @@
     <title>Sportski objekti</title>
     <link rel="stylesheet" type="text/css" href="style/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="style/homePageStyles.css">
-    <link rel="stylesheet" type="text/css" href="style/administratorSportskiObjektiStyles.css">
+    <link rel="stylesheet" type="text/css" href="style/administratorSportskiObjektiStyle.css">
     <script src="jquery-3.3.1.min.js"></script>
     <script src="administratorSportskiObjektii.js"></script>
     <script src="logout.js"></script>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css" type="text/css">
+    <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/ol-geocoder@latest/dist/ol-geocoder.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/ol-geocoder"></script>
   </head>
   <body>
   <div class="topnav">
@@ -30,6 +34,12 @@
  	<div class="popupOverlay" id="popupOverlay">
 		<div class="popup" id="popup">
 		<h5>Dodavanje sportskog objekta:</h5>
+		<div id="js-map" class="map"> 
+		</div>
+		<input type="text" id="ulica" readonly/>
+		<input type="text" id="broj" style="width:50px;" readonly/>
+		<input type="text" id="grad" readonly/>
+		<input type="text" id="postanskiBroj" style="width:140px;" readonly/>
 			<form id="dodajObjekatForma">
 				<table id="tabela">
 					<tr><td><label class="label">Naziv:</label></td><td><input type="text" name="naziv" class="textBox" required></td></tr>
@@ -40,11 +50,6 @@
 					  <option value="SportskiCentar">Sportski centar</option>
 					</select></td></tr>
 					<tr><td><label class="label">Logo:</label></td><td><input type="file" name="file" id="file" class="textBox" required></td></tr>
-					<tr><td><label class="label">Ulica i broj:</label></td><td><input type="text" name="ulicaIBroj" class="textBox" required></td></tr>
-					<tr><td><label class="label">Mesto:</label></td><td><input type="text" name="mesto" class="textBox" required></td></tr>
-					<tr><td><label class="label">Postanski broj:</label></td><td><input type="text" name="postanskiBroj" class="textBox" required></td></tr>
-					<tr><td><label class="label">Geografska širina:</label></td><td><input type="text" name="geografskaSirina" class="textBox" required></td></tr>
-					<tr><td><label class="label">Geografska dužina:</label></td><td><input type="text" name="geografskaDuzina" class="textBox" required></td></tr>
 					<tr id="menadzer"></tr>
 				</table>
 				<button type="button" id="popupButtonOtkazi">Otkaži</button>
@@ -62,7 +67,7 @@
 					<tr><td><label class="label">Prezime:</label></td><td><input type="text" name="prezime" class="textBox" required></td></tr>
 					<tr><td><label class="label">Pol:</label></td><td><select name="pol" class="comboBox">
 					  <option value="MUSKO">Muško</option>
-					  <option value="ZENSKO">žensko</option>
+					  <option value="ZENSKO">Žensko</option>
 					</select></td></tr>
 					<tr><td><label class="label">Datum rođenja:</label></td><td><input type="date" name="datumRodjenja" class="datePicker" required></td></tr>
 					<tr><td><label class="label">Korisničko ime:</label></td><td><input type="text" name="korisnickoIme" class="textBox" required></td></tr>

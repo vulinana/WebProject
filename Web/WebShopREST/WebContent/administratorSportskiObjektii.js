@@ -1,3 +1,48 @@
+window.onload = init;
+
+function init(){
+	const map = new ol.Map({
+		view: new ol.View({
+			center: [0, 0],
+			zoom: 2
+		}),
+		layers: [
+			new ol.layer.Tile({
+				source: new ol.source.OSM()
+			})
+		],
+		target: 'js-map'
+	})
+	
+	var geocoder = new Geocoder('nominatim', {
+	  provider: 'osm',
+	  lang: 'en-US',
+	  placeholder: 'Pretraži adresu ...',
+	  targetType: 'text-input',
+	  limit: 5,
+	  keepOpen: true
+	});
+	map.addControl(geocoder);
+	geocoder.on('addresschosen', function(evt){
+	  let address = evt.address;
+	  let ulica = address.details.road;
+	  let broj = address.details.houseNumber;
+	  let ulicaIBroj = ulica + " " + broj;
+	  let mesto = address.details.city;
+	  let postanskiBroj = address.details.postcode;
+	  $('#ulica').val(ulica);
+	  $('#broj').val(broj);
+	  $('#grad').val(mesto);
+	  $('#postanskiBroj').val(postanskiBroj);
+	  const coords = ol.proj.transform(evt.coordinate, "EPSG:3857", "EPSG:4326");
+	  map.getView().animate({zoom: 15, center: ol.proj.fromLonLat(coords)});
+	  localStorage.setItem("lokacija", JSON.stringify({geografskaSirina: coords[0], geografskaDuzina: coords[1], adresa: {ulicaIBroj: ulicaIBroj, mesto: mesto, postanskiBroj: postanskiBroj}}));
+	  $('#error').text("");
+	});
+}
+
+
+
 function ucitajMenadzere(menadzeri) {
 	let tdMenadzerLabela = $('<td><label class="label">Menadzer:</labela></td>');
 	
@@ -80,7 +125,6 @@ $(document).ready(function() {
 		
 	 $('#popupButtonOtkazi').click(function(){
 		$('#popupOverlay, #popup').css("visibility", "hidden");
-		localStorage.setItem("menadzerZaSportskiObjekat", null);
 	});
 	
 	 $('#popupButtonOtkazi2').click(function(){
@@ -131,17 +175,24 @@ $(document).ready(function() {
 		$('#error').text("");
 		let naziv = $('input[name="naziv"]').val();
 		let tip = $('#tip').val();
-		let ulicaIBroj = $('input[name="ulicaIBroj"]').val();
-		let mesto = $('input[name="mesto"]').val();
-		let postanskiBroj = $('input[name="postanskiBroj"]').val();
-		let geografskaSirina = $('input[name="geografskaSirina"]').val();
-		let geografskaDuzina = $('input[name="geografskaSirina"]').val();
+		
+		var lokacija = JSON.parse(localStorage.getItem("lokacija"));
+	 	if (lokacija == null){
+			$('#error').text("Pretrazite adresu!");
+			return;
+		}
 		
 		var menadzer = JSON.parse(localStorage.getItem("menadzerZaSportskiObjekat"));
 		if (menadzer == null){
 			$('#error').text("Menadžer nije odabran");
 			return;
 		}
+		
+		let ulicaIBroj = lokacija.adresa.ulicaIBroj;
+		let mesto = lokacija.adresa.mesto;
+		let postanskiBroj = lokacija.adresa.postanskiBroj;
+		let geografskaSirina = lokacija.geografskaSirina;
+		let geografskaDuzina = lokacija.geografskaDuzina;
 		
 		var file = $('input[name="file"').get(0).files[0];
 		var formData = new FormData();
@@ -154,7 +205,6 @@ $(document).ready(function() {
 		  contentType : false,
 		  processData : false,
 		  success : function(slikaNaziv) {
-			console.log(slikaNaziv);
 			setTimeout(function(){
 					 $.ajax({
 						url: 'rest/sportskiObjekti/kreirajSportskiObjekat',
@@ -175,14 +225,21 @@ $(document).ready(function() {
 							
 							displayImage(s);	
 							$('#popupOverlay, #popup').css("visibility", "hidden");		
+							localStorage.setItem("menadzerZaSportskiObjekat", null);
+							localStorage.setItem("lokacija", null);
+							$('input[name="naziv"]').val("");
+							$('#ulica').val("");
+							$('#broj').val("");
+							$('#grad').val("");
+							$('#postanskiBroj').val("");
 						},
 						error : function(message) {
 							$('#error').text("Naziv za sportski objekat mora biti jedinstven");
+							return;
 						}
 					});
 				} , 3000);
 		  }
 		});
-		localStorage.setItem("menadzerZaSportskiObjekat", null);
 	});
 });
