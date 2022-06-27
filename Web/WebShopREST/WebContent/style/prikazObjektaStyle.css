@@ -1,6 +1,7 @@
 .logoINaziv img {
     float: left;
     position: relative;
+    top: 10px;
     left: 10px;
   	width: 200px;
  	height: 200px;
@@ -22,7 +23,7 @@
 
 #tipObjekta {
 	position: relative;
-	top: 140px;
+	top: 180px;
 	left: -40px;
 	font-size: 20px;
 }
@@ -34,7 +35,7 @@ html{
 
 #status {
 	position: relative;
-	top: 175px;
+	top: 215px;
 	left: -250px;
 	font-size: 20px;
 }
@@ -46,6 +47,7 @@ html{
 	padding: 9px;
 	position: absolute;
 	bottom: 0;
+	top:450px;
 	left: 10px;
 	overflow-y:scroll;
 }
@@ -61,7 +63,7 @@ html{
 	padding: 9px;
 	position: absolute;
 	left: 10px;
-	top: 750px;
+	top: 800px;
 }
 
 #slikaTreninga img {
@@ -179,4 +181,19 @@ table {
     height:35px;
     width:250px;
     font-size:14pt;
+}
+
+.map {
+	position: absolute;
+	float:left;
+	top: 70px;
+	left: 700px;
+	width: 600px;
+	height: 300px;
+}
+
+#adresa {
+	position: absolute;
+	top: 390px;
+	left: 850px;
 }

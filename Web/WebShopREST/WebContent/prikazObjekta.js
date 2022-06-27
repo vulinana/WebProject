@@ -1,4 +1,31 @@
 function prikaziPodatke(sportskiObjekat){
+	const map = new ol.Map({
+		view: new ol.View({
+			center: [0, 0],
+			zoom: 2
+		}),
+		layers: [
+			new ol.layer.Tile({
+				source: new ol.source.OSM()
+			})
+		],
+		target: 'js-map'
+	});
+	
+	var layer = new ol.layer.Vector({
+     source: new ol.source.Vector({
+         features: [
+             new ol.Feature({
+                 geometry: new ol.geom.Point(ol.proj.fromLonLat([sportskiObjekat.lokacija.geografskaDuzina, sportskiObjekat.lokacija.geografskaSirina]))
+             })
+         ]
+     })
+ 	});
+ 	map.addLayer(layer);
+	
+	map.getView().animate({zoom: 16, center: ol.proj.fromLonLat([sportskiObjekat.lokacija.geografskaDuzina, sportskiObjekat.lokacija.geografskaSirina])});
+	let adresa =  sportskiObjekat.lokacija.adresa.ulicaIBroj + ', ' +  sportskiObjekat.lokacija.adresa.mesto + ', ' + sportskiObjekat.lokacija.adresa.postanskiBroj;
+	$('#adresa').text(adresa);
 	$('#logo').attr("src", "pictures/" + sportskiObjekat.logo);
 	$('#naziv').text(sportskiObjekat.naziv);
 	if(sportskiObjekat.prosecnaOcena != 0){

@@ -36,7 +36,7 @@ function init(){
 	  $('#postanskiBroj').val(postanskiBroj);
 	  const coords = ol.proj.transform(evt.coordinate, "EPSG:3857", "EPSG:4326");
 	  map.getView().animate({zoom: 15, center: ol.proj.fromLonLat(coords)});
-	  localStorage.setItem("lokacija", JSON.stringify({geografskaSirina: coords[0], geografskaDuzina: coords[1], adresa: {ulicaIBroj: ulicaIBroj, mesto: mesto, postanskiBroj: postanskiBroj}}));
+	  localStorage.setItem("lokacija", JSON.stringify({geografskaDuzina: coords[0], geografskaSirina: coords[1], adresa: {ulicaIBroj: ulicaIBroj, mesto: mesto, postanskiBroj: postanskiBroj}}));
 	  $('#error').text("");
 	});
 }
