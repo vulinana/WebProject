@@ -4,11 +4,10 @@
     <meta charset="utf-8">
     <title>Sportski objekti</title>
     <link rel="stylesheet" type="text/css" href="style/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="style/styles.css">
     <link rel="stylesheet" type="text/css" href="style/homePageStyles.css">
-    <link rel="stylesheet" type="text/css" href="style/administratorSportskiObjektiStyle.css">
+    <link rel="stylesheet" type="text/css" href="style/administratorSportskiObjektiStyles.css">
     <script src="jquery-3.3.1.min.js"></script>
-    <script src="administratorSportskiObjekti.js"></script>
+    <script src="administratorSportskiObjektii.js"></script>
     <script src="logout.js"></script>
   </head>
   <body>
@@ -30,16 +29,17 @@
  	</div>
  	<div class="popupOverlay" id="popupOverlay">
 		<div class="popup" id="popup">
+		<h5>Dodavanje sportskog objekta:</h5>
 			<form id="dodajObjekatForma">
 				<table id="tabela">
 					<tr><td><label class="label">Naziv:</label></td><td><input type="text" name="naziv" class="textBox" required></td></tr>
-					<tr><td><label class="label">Tip:</label></td><td><select name="tip" class="comboBox">
+					<tr><td><label class="label">Tip:</label></td><td><select name="tip" id="tip" class="comboBox">
 					  <option value="Teretana">Teretana</option>
 					  <option value="Bazen">Bazen</option>
 					  <option value="PlesniStudio">Plesni studio</option>
 					  <option value="SportskiCentar">Sportski centar</option>
 					</select></td></tr>
-					<tr><td><label class="label">Logo:</label></td><td><input type="file" name="logo" id="logo" class="textBox" required></td></tr>
+					<tr><td><label class="label">Logo:</label></td><td><input type="file" name="file" id="file" class="textBox" required></td></tr>
 					<tr><td><label class="label">Ulica i broj:</label></td><td><input type="text" name="ulicaIBroj" class="textBox" required></td></tr>
 					<tr><td><label class="label">Mesto:</label></td><td><input type="text" name="mesto" class="textBox" required></td></tr>
 					<tr><td><label class="label">Postanski broj:</label></td><td><input type="text" name="postanskiBroj" class="textBox" required></td></tr>
@@ -50,27 +50,29 @@
 				<button type="button" id="popupButtonOtkazi">Otkaži</button>
 				<button type="submit" id="popupButton">Sačuvaj</button>
 			</form>
+			<p class="label" id="error" style="color:red;"></p>
 		</div>
 	</div>
 	<div class="popupOverlay2" id="popupOverlay2">
 		<div class="popup2" id="popup2">
-			<h5>Registracija menadzera</h5>
+			<h5>Registracija menadžera</h5>
 			<form id="dodajMenadzeraForma">
 				<table>
 					<tr><td><label class="label">Ime:</label></td><td><input type="text" name="ime" class="textBox" required></td></tr>
 					<tr><td><label class="label">Prezime:</label></td><td><input type="text" name="prezime" class="textBox" required></td></tr>
 					<tr><td><label class="label">Pol:</label></td><td><select name="pol" class="comboBox">
-					  <option value="MUSKO">Musko</option>
-					  <option value="ZENSKO">Zensko</option>
+					  <option value="MUSKO">Muško</option>
+					  <option value="ZENSKO">žensko</option>
 					</select></td></tr>
 					<tr><td><label class="label">Datum rođenja:</label></td><td><input type="date" name="datumRodjenja" class="datePicker" required></td></tr>
-					<tr><td><label class="label">Korisnicko ime:</label></td><td><input type="text" name="korisnickoIme" class="textBox" required></td></tr>
+					<tr><td><label class="label">Korisničko ime:</label></td><td><input type="text" name="korisnickoIme" class="textBox" required></td></tr>
 					<tr><td><label class="label">Lozinka:</label></td><td><input type="password" name="lozinka" class="textBox" required></td></tr>
 					<tr><td><label class="label">Ponovljena lozinka:</label></td><td><input type="password" name="ponovljenaLozinka" class="textBox" required></td></tr>
 				</table>
 				<button type="button" id="popupButtonOtkazi2">Otkaži</button>
 				<button type="submit" id="popupButton2">Sačuvaj</button>
 			</form>
+			<p class="label" id="error2" style="color:red;"></p>
 		</div>
 	</div>
   </body>

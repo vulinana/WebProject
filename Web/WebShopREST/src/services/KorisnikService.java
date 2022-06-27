@@ -77,6 +77,19 @@ public class KorisnikService {
 	}
 	
 	@POST
+	@Path("/usernameExists")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response usernameExists(Menadzer menadzer) {
+		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
+		if (dao.korisnikExists(menadzer.getKorisnickoIme())) {
+			return Response.status(400).build();
+		}
+		return Response.status(200).build();
+	}
+	
+	
+	@POST
 	@Path("/registracijaMenadzera")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)

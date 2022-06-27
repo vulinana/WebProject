@@ -1,8 +1,15 @@
 package services;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -15,11 +22,16 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
+import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
+import org.glassfish.jersey.media.multipart.FormDataParam;
+
+import beans.RadnoVreme;
 import beans.SportskiObjekat;
+import beans.RadnoVreme.Dan;
 import dao.KomentarDAO;
 import dao.SportskiObjekatDAO;
 
@@ -68,15 +80,6 @@ public class SportskiObjekatService {
 		komentarDAO.odrediProsecnuOcenuZaObjekte();
 		SportskiObjekatDAO dao = (SportskiObjekatDAO) ctx.getAttribute("sportskiObjekatDAO");
 		return dao.getByNaziv(naziv);
-	}
-	
-	@POST
-	@Path("/kreirajSportskiObjekat")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<SportskiObjekat> kreirajSportskiObjekat(SportskiObjekat sportskiObjekat) {
-		SportskiObjekatDAO dao = (SportskiObjekatDAO) ctx.getAttribute("sportskiObjekatDAO");
-		return dao.kreirajSportskiObjekat(sportskiObjekat);
 	}
 	
 	
@@ -235,5 +238,60 @@ public class SportskiObjekatService {
 			return dao.getOtvoreniSportskiObjekti(prikazaniSportskiObjekti);
 		}
 		return prikazaniSportskiObjekti;
+	}
+	
+	@POST
+	@Path("/uploadImage")
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	public String uploadFile(@FormDataParam("file") InputStream uploadedInputStream, @FormDataParam("file") FormDataContentDisposition fileDetail) {
+		String imageName = getImageName();
+		saveToDisk(uploadedInputStream, imageName);
+		return imageName;
+	}
+	
+	private void saveToDisk(InputStream uploadedInputStream,String imageName) {
+		
+		String uploadedFileLocation = ctx.getRealPath("") + "/pictures/" + imageName;
+		try {
+			OutputStream out = new FileOutputStream(new File(uploadedFileLocation));
+			int read = 0;
+			byte[] bytes = new byte[1024];
+			
+			out = new FileOutputStream(new File(uploadedFileLocation));
+			while((read = uploadedInputStream.read(bytes)) != -1) {
+				out.write(bytes, 0, read);
+			}
+			out.flush();
+			out.close();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private String getImageName() {
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+		Date now = new Date();
+		String timeStamp = sdf.format(now);
+		return "image" + timeStamp + ".jpg";
+	}
+	
+	@POST
+	@Path("/kreirajSportskiObjekat")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public SportskiObjekat kreirajSportskiObjekat(SportskiObjekat sportskiObjekat) throws Exception {
+		SportskiObjekatDAO dao = (SportskiObjekatDAO) ctx.getAttribute("sportskiObjekatDAO");
+		if (dao.sportskiObjekatExists(sportskiObjekat.getNaziv())) {
+			throw new Exception("Naziv sportskog objekta mora biti jedinstven!");
+		}
+		
+		List<RadnoVreme.Dan> dani = new ArrayList<RadnoVreme.Dan>();
+		dani.add(Dan.Ponedeljak);
+		dani.add(Dan.Utorak);
+		RadnoVreme radnoVreme = new RadnoVreme(dani, 9, 21);
+		sportskiObjekat.setRadnoVreme(radnoVreme);
+		sportskiObjekat.odrediStatus();
+		return dao.kreirajSportskiObjekat(sportskiObjekat);
 	}
 }

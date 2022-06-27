@@ -1,6 +1,7 @@
 package beans;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Trener extends Korisnik {
@@ -9,7 +10,7 @@ public class Trener extends Korisnik {
 
 	public Trener() {}
 	
-	public Trener(String korisnickoIme, String lozinka, String ime, String prezime, String pol, String datumRodjenja,
+	public Trener(String korisnickoIme, String lozinka, String ime, String prezime, String pol, Date datumRodjenja,
 			Uloga uloga) {
 		super(korisnickoIme, lozinka, ime, prezime, pol, datumRodjenja, Uloga.TRENER);
 		this.istorijaTreninga = new ArrayList<IstorijaTreninga>();

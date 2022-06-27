@@ -330,10 +330,20 @@ public class SportskiObjekatDAO {
 	}	
 	
 
-	public Collection<SportskiObjekat> kreirajSportskiObjekat(SportskiObjekat sportskiObjekat) {
+	public SportskiObjekat kreirajSportskiObjekat(SportskiObjekat sportskiObjekat) {
 		sportskiObjekti.put(sportskiObjekat.getNaziv(), sportskiObjekat);
 		saveSportskiObjekti();
-		return sportskiObjekti.values();
+		return sportskiObjekat;
+	}
+	
+	public boolean sportskiObjekatExists(String naziv) {
+		for (SportskiObjekat s: sportskiObjekti.values()) {
+			if (s.getNaziv().toLowerCase().equals(naziv.toLowerCase())) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	public static void loadSportskiObjekti(String contextPath) {

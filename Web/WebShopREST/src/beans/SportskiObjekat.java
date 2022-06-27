@@ -1,7 +1,6 @@
 package beans;
 
 import beans.RadnoVreme.Dan;
-import dao.KomentarDAO;
 
 
 public class SportskiObjekat {
@@ -11,7 +10,6 @@ public class SportskiObjekat {
 	
 	private String naziv;
 	private TipObjekta tipObjekta;
-	//sadrzaj objekta
 	private StatusObjekta statusObjekta;
 	private Lokacija lokacija;
 	private String logo;

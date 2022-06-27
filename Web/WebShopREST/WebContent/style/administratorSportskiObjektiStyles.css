@@ -17,7 +17,7 @@
 	position: absolute;
 	top: 10%;
 	left: 50%;
-	transform: translate(-50%, 10%) scale(1);
+	transform: translate(-50%, -8%) scale(1);
 	padding: 30px 30px 30px;
 	color: #333;
 	visibility: hidden;
@@ -91,4 +91,39 @@
 #kreirajMenadzeraButton {
 	margin-top: 0px;
 	height: 45px;
+}
+
+.textBox
+{
+    height:30px;
+    width:250px;
+    font-size:14pt;
+}
+
+.datePicker
+{
+    height:35px;
+    width:250px;
+    font-size:14pt;
+}
+
+.comboBox
+{
+    height:35px;
+    width:250px;
+    font-size:14pt;
+}
+
+.label{
+	font-size:14pt;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 1em;
+}
+
+.prosecnaOcena {
+	float: left;
+	background-color: orange;
 }

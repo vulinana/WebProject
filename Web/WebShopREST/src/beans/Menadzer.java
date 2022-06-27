@@ -1,5 +1,6 @@
 package beans;
 
+import java.util.Date;
 
 public class Menadzer extends Korisnik{
 
@@ -7,7 +8,7 @@ public class Menadzer extends Korisnik{
 
 	public Menadzer() {}
 	
-	public Menadzer(String korisnickoIme, String lozinka, String ime, String prezime, String pol, String datumRodjenja, String sportskiObjekat) {
+	public Menadzer(String korisnickoIme, String lozinka, String ime, String prezime, String pol, Date datumRodjenja, String sportskiObjekat) {
 		super(korisnickoIme, lozinka, ime, prezime, pol, datumRodjenja, Uloga.MENADZER);
 		this.sportskiObjekat = sportskiObjekat;
 	}

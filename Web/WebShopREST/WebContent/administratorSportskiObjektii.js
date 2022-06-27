@@ -4,7 +4,7 @@ function ucitajMenadzere(menadzeri) {
 	let td = $('<td></td>');
 	let izaberiMenadzera;
 	if (menadzeri.length === 0){
-		izaberiMenadzera = $('<button id="kreirajMenadzeraButton">Kreiraj</button>');
+		izaberiMenadzera = $('<button type="button" id="kreirajMenadzeraButton">Kreiraj</button>');
 		izaberiMenadzera.click(function(){
 			$('#popupOverlay2, #popup2').css("visibility", "visible");
 		});
@@ -22,13 +22,11 @@ function ucitajMenadzere(menadzeri) {
 	$('#menadzer').append(tdMenadzerLabela).append(td);
 }
 
-function displayImages(sportskiObjekti){
-	
-	for (let s of sportskiObjekti){
+function displayImage(s){
 				
 		let div1 = $('<div class="col-sm-4"></div>');
 		let div2 = $('<div class="card text-center" style="width: 18rem;"></div>');
-		let img = $('<a href="prikazObjekta.html"><img class="card-img-top" src="pictures/' + s.logo + '" id="' +  s.naziv + '" onClick="saveId(this.id)" height="300"/></a>');
+		let img = $('<a href="administratorPrikazObjekta.html"><img class="card-img-top" src="pictures/' + s.logo + '" id="' +  s.naziv + '" onClick="saveId(this.id)" height="300"/></a>');
 		let div3 = $('<div class="card-body"></div>');
 		let title;
 		if (s.prosecnaOcena != 0){
@@ -50,14 +48,21 @@ function displayImages(sportskiObjekti){
 		div2.append(img).append(div3);
 		div1.append(div2);
 		$('#row').append(div1);
-	}
 }
+
+function saveId(id)
+{
+	 	localStorage.setItem("selektovaniObjekat", JSON.stringify(id));
+}
+
 
 $(document).ready(function() {
 	$.get({
 		url: 'rest/sportskiObjekti',
 		success: function(sportskiObjekti) {
-			displayImages(sportskiObjekti);
+			for (let s of sportskiObjekti) {
+				displayImage(s);
+			}
 		}
 	});
 	
@@ -75,6 +80,7 @@ $(document).ready(function() {
 		
 	 $('#popupButtonOtkazi').click(function(){
 		$('#popupOverlay, #popup').css("visibility", "hidden");
+		localStorage.setItem("menadzerZaSportskiObjekat", null);
 	});
 	
 	 $('#popupButtonOtkazi2').click(function(){
@@ -83,7 +89,7 @@ $(document).ready(function() {
 	
 	$('form#dodajMenadzeraForma').submit(function(event) {
 		event.preventDefault();
-		$('#popupOverlay2, #popup2').css("visibility", "hidden");
+		$('#error2').text("");
 		let ime = $('input[name="ime"]').val();
 		let prezime = $('input[name="prezime"]').val();
 		let pol = $('select[name="pol"]').val();
@@ -93,24 +99,38 @@ $(document).ready(function() {
 		let ponovljenaLozinka = $('input[name="ponovljenaLozinka"]').val();
 		
 		if(lozinka != ponovljenaLozinka){
-			$('#error').text("Lozinke se ne poklapaju!");
+			$('#error2').text("Lozinke se ne poklapaju!");
 			return;
 		}
 		
-		let menadzer = {ime: ime, prezime: prezime, pol: pol, datumRodjenja: datumRodjenja, uloga: 'MENADZER', korisnickoIme: korisnickoIme, lozinka: lozinka, sportskiObjekat: ""};
-		localStorage.setItem("menadzerZaSportskiObjekat", JSON.stringify(menadzer));
-		$('#menadzer').html("");
-		let tdMenadzerLabela = $('<td><label class="label">Menadzer:</labela></td>');
-		let td = $('<td><label class="label">' + menadzer.korisnickoIme + '</label></td>');
-		$('#menadzer').append(tdMenadzerLabela).append(td);
+		$.ajax({
+			url: 'rest/kupci/usernameExists',
+			type: 'POST',
+			data: JSON.stringify({ime: ime, prezime: prezime, pol: pol, datumRodjenja: datumRodjenja, uloga: 'MENADZER', korisnickoIme: korisnickoIme, lozinka: lozinka, sportskiObjekat: ""}),
+			contentType: 'application/json',
+			success : function(message) {
+				localStorage.setItem("menadzerZaSportskiObjekat", JSON.stringify({ime: ime, prezime: prezime, pol: pol, datumRodjenja: datumRodjenja, uloga: 'MENADZER', korisnickoIme: korisnickoIme, lozinka: lozinka, sportskiObjekat: ""}));
+				$('#menadzer').html("");
+				let tdMenadzerLabela = $('<td><label class="label">Menadzer:</labela></td>');
+				let td = $('<td><button type="button" id="kreirajMenadzeraButton">' + korisnickoIme + '</button></td>');
+				td.click(function(){
+					$('#popupOverlay2, #popup2').css("visibility", "visible");
+				});
+				$('#menadzer').append(tdMenadzerLabela).append(td);
+				$('#popupOverlay2, #popup2').css("visibility", "hidden");
+			},
+			error : function(message) {
+				$('#error2').text("Zauzeto korisničko ime");
+			}
+		});
 	});
+	
 	
 	$('form#dodajObjekatForma').submit(function(event) {
 		event.preventDefault();
-		$('#popupOverlay, #popup').css("visibility", "hidden");
+		$('#error').text("");
 		let naziv = $('input[name="naziv"]').val();
 		let tip = $('#tip').val();
-		let logo = $('select[name="logo"]').val();
 		let ulicaIBroj = $('input[name="ulicaIBroj"]').val();
 		let mesto = $('input[name="mesto"]').val();
 		let postanskiBroj = $('input[name="postanskiBroj"]').val();
@@ -118,17 +138,51 @@ $(document).ready(function() {
 		let geografskaDuzina = $('input[name="geografskaSirina"]').val();
 		
 		var menadzer = JSON.parse(localStorage.getItem("menadzerZaSportskiObjekat"));
-		menadzer.sportskiObjekat = naziv;
+		if (menadzer == null){
+			$('#error').text("Menadžer nije odabran");
+			return;
+		}
 		
+		var file = $('input[name="file"').get(0).files[0];
+		var formData = new FormData();
+		formData.append('file', file);
 		$.ajax({
-			url: 'rest/kupci/registracijaMenadzera',
-			type: 'POST',
-			data: JSON.stringify(menadzer),
-			contentType: 'application/json',
-			success : function() {
-				alert('Registracija menadzera je uspešna!');
-			}
+		  url :  'rest/sportskiObjekti/uploadImage',
+		  type : 'POST',
+		  data : formData,
+		  cache : false,
+		  contentType : false,
+		  processData : false,
+		  success : function(slikaNaziv) {
+			console.log(slikaNaziv);
+			setTimeout(function(){
+					 $.ajax({
+						url: 'rest/sportskiObjekti/kreirajSportskiObjekat',
+						type: 'POST',
+						data: JSON.stringify({naziv: naziv, tipObjekta: tip, logo: slikaNaziv, lokacija : {geografskaSirina: geografskaSirina, geografskaDuzina: geografskaDuzina, adresa: {ulicaIBroj: ulicaIBroj, mesto: mesto, postanskiBroj: postanskiBroj}}}),
+						contentType: 'application/json',
+						success : function(s) {
+							menadzer.sportskiObjekat = naziv;
+							$.ajax({
+								url: 'rest/kupci/registracijaMenadzera',
+								type: 'POST',
+								data: JSON.stringify(menadzer),
+								contentType: 'application/json',
+								success : function() {
+									alert('Registracija menadzera je uspešna!');
+								}
+							});
+							
+							displayImage(s);	
+							$('#popupOverlay, #popup').css("visibility", "hidden");		
+						},
+						error : function(message) {
+							$('#error').text("Naziv za sportski objekat mora biti jedinstven");
+						}
+					});
+				} , 3000);
+		  }
 		});
+		localStorage.setItem("menadzerZaSportskiObjekat", null);
 	});
-	
 });

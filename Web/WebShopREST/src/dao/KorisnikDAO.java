@@ -397,6 +397,8 @@ public class KorisnikDAO {
 		return filtriraniKorisnici;
 	}
 	
+	
+	
 	private void loadKupci(String contextPath) {
 		FileWriter fileWriter = null;
 		BufferedReader in = null;
