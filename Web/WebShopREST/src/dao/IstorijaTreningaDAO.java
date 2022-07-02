@@ -6,8 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -17,68 +19,60 @@ import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
 import com.fasterxml.jackson.databind.type.MapType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
-import beans.ClanarinaKupac;
+import beans.IstorijaTreninga;
 
-public class ClanarinaKupacDAO {
-	
+public class IstorijaTreningaDAO {
+
 	private String path = "";
-	public static HashMap<String, ClanarinaKupac> clanarineKupac = new HashMap<String, ClanarinaKupac>();
+	public static HashMap<String, IstorijaTreninga> istorijaTreningaZaKupce = new HashMap<String, IstorijaTreninga>();
 	
-	public Collection<ClanarinaKupac> findAll(){	
-		return clanarineKupac.values();
-	}
 	
 	public void setPath(String path) {
 		this.path = path;
 	}
 	
-	public ClanarinaKupacDAO() {
+	public IstorijaTreningaDAO() {
 		
 	}
 	
-	public ClanarinaKupacDAO(String contextPath) {
+	public IstorijaTreningaDAO(String contextPath) {
 		path = contextPath;
-		loadClanarineKupac(contextPath);
+		loadIstorijaTreninga(contextPath);
 	}
 	
-	public void kreirajClanarinu(ClanarinaKupac clanarinaKupac) {
-		clanarineKupac.put(clanarinaKupac.getKupac(), clanarinaKupac);
-		saveClanarineKupac();
-	}
-
-	public ClanarinaKupac getClanarinaZaKupca (String korisnickoImeKupca) {
-		for (ClanarinaKupac ck: clanarineKupac.values()) {
-			if (ck.getKupac().equals(korisnickoImeKupca)) {
-				return ck;
+	public Collection<IstorijaTreninga> findAll(String korisnickoImeKupca){
+		
+		List<IstorijaTreninga> istorijaTreningaZaZeljenogKupca = new ArrayList<IstorijaTreninga>();
+		for (IstorijaTreninga i: istorijaTreningaZaKupce.values()) {
+			if (i.getKupac().equals(korisnickoImeKupca)) {
+				istorijaTreningaZaZeljenogKupca.add(i);
 			}
 		}
-		return null;
+		return istorijaTreningaZaZeljenogKupca;
 	}
 	
-	public void izmeniStatusClanarine (ClanarinaKupac clanarinaKupac) {
-		clanarineKupac.get(clanarinaKupac.getKupac()).setStatus(clanarinaKupac.getStatus());
-		saveClanarineKupac();
+	public Collection<IstorijaTreninga> kreirajTreningUIstoriji(IstorijaTreninga istorijaTreninga){
+		
+		istorijaTreningaZaKupce.put(istorijaTreninga.getId().toString(), istorijaTreninga);
+		saveIstorijaTreninga();
+		return istorijaTreningaZaKupce.values();
+		
 	}
 	
-	public void izmeniBrojPreostalihTermina(ClanarinaKupac clanarinaKupac) {
-		clanarineKupac.get(clanarinaKupac.getKupac()).setBrojPreostalihTermina(clanarinaKupac.getBrojPreostalihTermina());
-		saveClanarineKupac();
-	}
-	
-	private void loadClanarineKupac(String contextPath) {
+	private void loadIstorijaTreninga(String contextPath) {
 		FileWriter fileWriter = null;
 		BufferedReader in = null;
 		File file = null;
 		try {
-			file = new File(contextPath + "/data/clanarineKupac.txt");
+			file = new File(contextPath + "/data/istorijaTreninga.txt");
 			in = new BufferedReader(new FileReader(file));
 			ObjectMapper objectMapper = new ObjectMapper();
 			objectMapper.setVisibilityChecker(
 					VisibilityChecker.Std.defaultInstance().withFieldVisibility(JsonAutoDetect.Visibility.ANY));
 			TypeFactory factory = TypeFactory.defaultInstance();
-			MapType type = factory.constructMapType(HashMap.class, String.class, ClanarinaKupac.class);
+			MapType type = factory.constructMapType(HashMap.class, String.class, IstorijaTreninga.class);
 			objectMapper.getFactory().configure(JsonGenerator.Feature.ESCAPE_NON_ASCII, true);
-			clanarineKupac = ((HashMap<String, ClanarinaKupac>) objectMapper.readValue(file, type));
+			istorijaTreningaZaKupce = ((HashMap<String, IstorijaTreninga>) objectMapper.readValue(file, type));
 		} catch (FileNotFoundException fnfe) {
 			try {
 				file.createNewFile();
@@ -86,7 +80,7 @@ public class ClanarinaKupacDAO {
 				ObjectMapper objectMapper = new ObjectMapper();
 				objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 				objectMapper.getFactory().configure(JsonGenerator.Feature.ESCAPE_NON_ASCII, true);
-				String stringUsers = objectMapper.writeValueAsString(clanarineKupac);
+				String stringUsers = objectMapper.writeValueAsString(istorijaTreningaZaKupce);
 				fileWriter.write(stringUsers);
 				fileWriter.flush();
 			} catch (IOException e) {
@@ -115,15 +109,15 @@ public class ClanarinaKupacDAO {
 		
 	}
 	
-	private void saveClanarineKupac() {
-		File f = new File(path + "/data/clanarineKupac.txt");
+	private void saveIstorijaTreninga() {
+		File f = new File(path + "/data/istorijaTreninga.txt");
 		FileWriter fileWriter = null;
 		try {
 			fileWriter = new FileWriter(f);
 			ObjectMapper objectMapper = new ObjectMapper();
 			objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 			objectMapper.getFactory().configure(JsonGenerator.Feature.ESCAPE_NON_ASCII, true);
-			String stringUsers = objectMapper.writeValueAsString(clanarineKupac);
+			String stringUsers = objectMapper.writeValueAsString(istorijaTreningaZaKupce);
 			fileWriter.write(stringUsers);
 			fileWriter.flush();
 		} catch (IOException e) {

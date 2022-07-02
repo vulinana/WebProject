@@ -3,6 +3,6 @@
     "id" : "CLASSIC S",
     "tipClanarine" : "Mesecna",
     "cena" : 2400.0,
-    "brojTermina" : "30 termina"
+    "brojTermina" : "30"
   }
 }

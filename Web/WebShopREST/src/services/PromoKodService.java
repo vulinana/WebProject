@@ -50,7 +50,7 @@ public class PromoKodService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Collection<PromoKod> kreirajPromoKod(PromoKod promoKod) throws Exception {
 		PromoKodDAO dao = (PromoKodDAO) ctx.getAttribute("promoKodDAO");
-		if (dao.promoKodExists(promoKod.getOznaka())) {
+		if (dao.promoKodExists(promoKod.getOznaka()) != null) {
 			throw new Exception("Oznaka promo koda mora biti jedinstvena!");
 		}
 		return dao.kreirajPromoKod(promoKod);

@@ -1,0 +1,10 @@
+{
+  "9988093f-888e-475c-b8c8-4d445894d962" : {
+    "id" : "9988093f-888e-475c-b8c8-4d445894d962",
+    "datumIVremePrijave" : "2022-07-02 19:17",
+    "sportskiObjekat" : "Mega gym",
+    "trening" : "Trening kondicije",
+    "kupac" : "anavulin",
+    "trener" : null
+  }
+}

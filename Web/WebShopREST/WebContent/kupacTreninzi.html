@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="utf-8">
+		<title>Treninzi</title>
+		<link rel="stylesheet" type="text/css" href="style/homePageStyles.css">
+		<link rel="stylesheet" type="text/css" href="style/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="style/kupacTreninziStyle.css">
+		<link rel="stylesheet" type="text/css" href="style/pregledKorisnikaStyle.css">
+		<script src="jquery-3.3.1.min.js"></script>
+		<script src="logout.js"></script>
+		<script src="kupacTreninzii.js"></script>
+</head>
+<body>
+	<div class="topnav">
+  	  <a id="logout" href="pocetna.html">Odjavi se</a>
+  	  <a href="kupacHomePage.html">Početna</a>
+      <a href="kupacProfil.html">Profil</a>
+      <span class="leftPosition"><a href="kupacClanarine.html">Članarine</a></span>
+      <span class="leftPosition"><a class="active" href="kupacTreninzi.html">Treninzi</a></span>
+  	</div>
+  <button id="treniraj" class="treniraj">Treniraj</button>
+  <div align="center" class="centered">
+		<table id="tabela" class="tableKorisnici">
+		</table>
+	</div>
+ 	<div class="popupOverlay" id="popupOverlay">
+		<div class="popup" id="popup">
+		<h4>Prijava u sportski objekat</h4>
+			<form id="prijaviSeUSportskiObjekat">
+				<table>
+				<tr><td><label class="label">Sportski objekat:</label></td><td><select class="comboBox" id="sportskiObjektiComboBox"></select></td></tr>
+				<tr id="trening"></tr>
+				</table>
+				<button type="button" id="popupButtonOtkazi">Otkaži</button>
+				<button type="submit" id="popupButton">Sacuvaj</button>
+			</form>
+			<p id="error" style="color:red;"></p>
+		</div>
+	</div>
+</body>
+</html>

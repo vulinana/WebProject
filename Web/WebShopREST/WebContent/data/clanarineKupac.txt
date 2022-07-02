@@ -2,10 +2,10 @@
   "anavulin" : {
     "kupac" : "anavulin",
     "clanarinaId" : "CLASSIC S",
-    "datumPlacanja" : "2022-07-02",
-    "vaziDo" : "2022-08-01",
+    "datumPlacanja" : "2022-06-15",
+    "vaziDo" : "2022-07-15",
     "placenaCena" : 2376.0,
     "status" : "Aktivna",
-    "brojPreostalihTermina" : "30 termina"
+    "brojPreostalihTermina" : "9"
   }
 }
