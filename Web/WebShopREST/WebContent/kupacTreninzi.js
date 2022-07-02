@@ -147,6 +147,8 @@ $(document).ready(function() {
 			contentType: 'application/json'
 		});
 		
+	    $('#popupOverlay2, #popup2').css("visibility", "hidden");
+		
 	});
 	
 });

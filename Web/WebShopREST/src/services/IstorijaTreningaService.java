@@ -112,7 +112,8 @@ public class IstorijaTreningaService {
 			clanarinaKupac.setBrojPreostalihTermina(String.valueOf(brojPreostalihTermina));
 			clanarinaKupacDao.izmeniBrojPreostalihTermina(clanarinaKupac);
 			
-			return dao.kreirajTreningUIstoriji(istorijaTreninga);
+			dao.kreirajTreningUIstoriji(istorijaTreninga);
+			return dao.findAll(istorijaTreninga.getKupac());
 		}
 	}
 }

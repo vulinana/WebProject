@@ -1,5 +1,6 @@
 package services;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -40,10 +41,19 @@ public class KomentarService {
 	}
 	
 	@GET
+	@Path("/")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<Komentar> getAll() {
+		KomentarDAO dao = (KomentarDAO) ctx.getAttribute("komentarDAO");
+		return dao.findAll();
+	}
+	
+	@GET
 	@Path("/{nazivObjekta}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Komentar> getSportskiObjekti(@PathParam("nazivObjekta") String nazivObjekta) {
+	public List<Komentar> getKomentariByObjekat(@PathParam("nazivObjekta") String nazivObjekta) {
 		KomentarDAO dao = (KomentarDAO) ctx.getAttribute("komentarDAO");
 		return dao.getByNazivObjekta(nazivObjekta);
 	}
@@ -57,5 +67,14 @@ public class KomentarService {
 		komentar.setStatusKomentara(StatusKomentara.NERECENZIRAN);
 		KomentarDAO dao = (KomentarDAO) ctx.getAttribute("komentarDAO");
 		dao.sacuvajKomentar(komentar);
+	}
+	
+	@PUT
+	@Path("/recenzirajKomentar/{id}/{status}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<Komentar> recenzirajKomentar(@PathParam("id") String id, @PathParam("status") String status) {
+		KomentarDAO dao = (KomentarDAO) ctx.getAttribute("komentarDAO");		
+		return dao.recenzirajKomentar(id, StatusKomentara.valueOf(status));
 	}
 }

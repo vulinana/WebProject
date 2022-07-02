@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 
 import beans.Komentar;
 import beans.SportskiObjekat;
+import beans.Komentar.StatusKomentara;
 
 public class KomentarDAO {
 
@@ -38,6 +40,10 @@ public class KomentarDAO {
 	public KomentarDAO(String contextPath) {
 		path = contextPath;
 		loadKomentari(contextPath);
+	}
+	
+	public Collection<Komentar> findAll(){
+		return komentari.values();
 	}
 	
 	public List<Komentar> getByNazivObjekta(String nazivObjekta){
@@ -69,7 +75,7 @@ public class KomentarDAO {
 				s.setProsecnaOcena(0);
 			}
 			else {
-				s.setProsecnaOcena(prosecnaOcena/brojOcena);
+				s.setProsecnaOcena(Math.round(prosecnaOcena/brojOcena*100.0)/100.0);
 			}
 		}
 	}
@@ -77,6 +83,13 @@ public class KomentarDAO {
 	public void sacuvajKomentar(Komentar komentar) {
 		komentari.put(komentar.getId().toString(), komentar);
 		saveKomentar();
+	}
+	
+	public Collection<Komentar> recenzirajKomentar(String id, StatusKomentara status){
+		
+		komentari.get(id).setStatusKomentara(status);
+		saveKomentar();
+		return komentari.values();
 	}
 	
 	private void loadKomentari(String contextPath) {

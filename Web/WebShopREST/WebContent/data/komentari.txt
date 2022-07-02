@@ -1,34 +1,18 @@
 {
-  "f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454" : {
-    "id" : "f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454",
+  "1bfff4ef-452c-4733-b779-cb2c00645f84" : {
+    "id" : "1bfff4ef-452c-4733-b779-cb2c00645f84",
+    "kupac" : "lazicv",
+    "sportskiObjekat" : "Mega gym",
+    "tekstKomentara" : "Odlicno!",
+    "ocena" : 5,
+    "statusKomentara" : "PRIHVACEN"
+  },
+  "5cd4563f-a530-47e5-ac23-d5b70f5d7c61" : {
+    "id" : "5cd4563f-a530-47e5-ac23-d5b70f5d7c61",
     "kupac" : "anavulin",
     "sportskiObjekat" : "Mega gym",
-    "tekstKomentara" : "top teretana",
-    "ocena" : 5,
-    "statusKomentara": "PRIHVACEN"
-  },
-  "f8c3de4d-1fea-4d7c-a8b0-31f63c4c3454" : {
-    "id" : "f8c3de4d-1fea-4d7c-a8b0-31f63c4c3454",
-    "kupac" : "magdalena",
-    "sportskiObjekat" : "Super gym",
-    "tekstKomentara" : "Odlicno, radnici ljubazni!",
-    "ocena" : 5,
-    "statusKomentara": "PRIHVACEN"
-  },
-  "f8c3de5d-1fea-4d7c-a8b0-31f63c4c3454" : {
-    "id" : "f8c3de5d-1fea-4d7c-a8b0-31f63c4c3454",
-    "kupac" : "nemanja",
-    "sportskiObjekat" : "Extra gym",
-    "tekstKomentara" : "Premala teretana, nema prostora!",
+    "tekstKomentara" : "Moze bolje",
     "ocena" : 3,
-    "statusKomentara": "PRIHVACEN"
-  },
-  "f8c3de4d-1fea-4d7c-a8b0-30f63c4c3454" : {
-    "id" : "f8c3de4d-1fea-4d7c-a8b0-30f63c4c3454",
-    "kupac" : "magdalena",
-    "sportskiObjekat" : "Mega gym",
-    "tekstKomentara" : "Solidna teretana, ali vidjala sam i bolje!",
-    "ocena" : 4,
-    "statusKomentara": "ODBIJEN"
+    "statusKomentara" : "ODBIJEN"
   }
 }
