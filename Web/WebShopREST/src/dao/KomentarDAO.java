@@ -74,6 +74,11 @@ public class KomentarDAO {
 		}
 	}
 	
+	public void sacuvajKomentar(Komentar komentar) {
+		komentari.put(komentar.getId().toString(), komentar);
+		saveKomentar();
+	}
+	
 	private void loadKomentari(String contextPath) {
 		FileWriter fileWriter = null;
 		BufferedReader in = null;

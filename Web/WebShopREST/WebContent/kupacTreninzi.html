@@ -9,7 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="style/pregledKorisnikaStyle.css">
 		<script src="jquery-3.3.1.min.js"></script>
 		<script src="logout.js"></script>
-		<script src="kupacTreninzii.js"></script>
+		<script src="kupacTreninzi.js"></script>
 </head>
 <body>
 	<div class="topnav">
@@ -34,6 +34,21 @@
 				</table>
 				<button type="button" id="popupButtonOtkazi">Otkaži</button>
 				<button type="submit" id="popupButton">Sacuvaj</button>
+			</form>
+			<p id="error" style="color:red;"></p>
+		</div>
+	</div>
+	<div class="popupOverlay2" id="popupOverlay2">
+		<div class="popup2" id="popup2">
+		<h4>Komentar i ocena za sportski objekat</h4>
+			<form id="komentarisiSportskiObjekatForma">
+				<table>
+				<tr><td><label class="label">Sportski objekat:</label></td><td><input class="textBox" type="text" id="komentarSportskiObjekat" readonly/></td></tr>
+				<tr><td><label class="label">Komentar:</label></td><td><textarea class="textBoxKomentar" id="komentar"></textarea></td></tr>
+				<tr><td><label class="label">Ocena:</label></td><td><select class="comboBox" id="ocena"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></td></tr>
+				</table>
+				<button type="button" id="popupButtonOtkazi2">Otkaži</button>
+				<button type="submit" id="popupButton2">Sacuvaj</button>
 			</form>
 			<p id="error" style="color:red;"></p>
 		</div>

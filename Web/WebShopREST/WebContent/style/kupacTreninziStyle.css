@@ -21,6 +21,13 @@ table {
     font-size:14pt;
 }
 
+.textBoxKomentar
+{
+    height:100px;
+    width:250px;
+    font-size:14pt;
+}
+
 .treniraj {
 	background-color: lightgreen;
 	cursor: pointer;
@@ -29,7 +36,7 @@ table {
 	margin-top: 40px;
 }
 
-.popup {
+.popup , .popup2 {
 	width: 600px;
 	background: #90EE90;
 	border-radius: 6px;
@@ -42,7 +49,7 @@ table {
 	visibility: hidden;
 }
 
-.popupOverlay {
+.popupOverlay , .popupOverlay2 {
 	background-color: rgba(0,0,0, .8);
 	border: solid 2px #666;
 	padding: 2rem;
@@ -54,6 +61,19 @@ table {
 }
 
 .popup button{
+	cursor: pointer;
+	width: 49%;
+	margin-top: 50px;
+	padding: 10px 0;
+	background: #6fd649;
+	color: #fff;
+	border: 0;
+	outline: none;
+	font-size:18px;
+	border-radius: 4px;
+}
+
+.popup2 button {
 	cursor: pointer;
 	width: 49%;
 	margin-top: 50px;

@@ -43,6 +43,12 @@ function ucitajTreninge(treninzi) {
 	$('#trening').append(tdTreningLabela).append(td);
 }
 
+function ostaviKomentar(ostaviKomentar){
+	
+	if (ostaviKomentar == true){
+		$('#popupOverlay2, #popup2').css("visibility", "visible");	
+	}
+}
 
 $(document).ready(function() {
 	
@@ -70,6 +76,10 @@ $(document).ready(function() {
 		$('#popupOverlay, #popup').css("visibility", "hidden");
 	});
 	
+	$('#popupButtonOtkazi2').click(function(){
+		$('#popupOverlay2, #popup2').css("visibility", "hidden");
+	});
+	
 	 $('#sportskiObjektiComboBox').change(function(){
 		 let naziv = $('#sportskiObjektiComboBox').val();
          $.get({
@@ -79,30 +89,64 @@ $(document).ready(function() {
 			}
 		});
     });
+    				
+    
     
     $('form#prijaviSeUSportskiObjekat').submit(function(event) {
 		event.preventDefault();
 		$('#error').text("");
 		let sportskiObjekat = $('#sportskiObjektiComboBox').val();
 		let trening = $('#treningComboBox').val();
-		
 		if (sportskiObjekat == null || trening == null){
 			$('#error').text("Niste izabrali sportski objekat i/ili trening");
 			return;
 		}
 		
+		let komentarisi;
 		$.ajax({
-			url: 'rest/istorijaTreninga' ,
-			type: 'POST',
-			data: JSON.stringify({kupac: korisnik.korisnickoIme, sportskiObjekat: sportskiObjekat, trening: trening}),
-			contentType: 'application/json',
+			url: 'rest/istorijaTreninga/' + korisnik.korisnickoIme + '/' + sportskiObjekat ,
+			type: 'GET',
 			success : function(istorijaTreninga) {
-				updateTable(istorijaTreninga);
-				$('#popupOverlay, #popup').css("visibility", "hidden");
-			},
-			error : function(message) {
-				$('#error').text(message.responseText);
+				if (istorijaTreninga.length === 0){
+					komentarisi = true;
+				} else {
+					komentarisi = false;
+				}
+				
+				$.ajax({
+					url: 'rest/istorijaTreninga' ,
+					type: 'POST',
+					data: JSON.stringify({kupac: korisnik.korisnickoIme, sportskiObjekat: sportskiObjekat, trening: trening}),
+					contentType: 'application/json',
+					success : function(istorijaTreninga) {
+						updateTable(istorijaTreninga);
+						$('#popupOverlay, #popup').css("visibility", "hidden");
+						$('#komentarSportskiObjekat').val(sportskiObjekat);
+						ostaviKomentar(komentarisi);
+					},
+					error : function(message) {
+						$('#error').text(message.responseText);
+					}
+				});
 			}
 		});
+		
 	});
+	
+	
+	 $('form#komentarisiSportskiObjekatForma').submit(function(event) {
+		event.preventDefault();
+		let sportskiObjekat = $('#komentarSportskiObjekat').val();
+		let tekstKomentara = $('#komentar').val();
+		let ocena = $('#ocena').val();
+		
+		$.ajax({
+			url: 'rest/komentari',
+			type: 'POST',
+			data: JSON.stringify({kupac: korisnik.korisnickoIme, sportskiObjekat: sportskiObjekat, tekstKomentara: tekstKomentara, ocena: ocena}),
+			contentType: 'application/json'
+		});
+		
+	});
+	
 });

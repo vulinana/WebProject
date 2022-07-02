@@ -51,6 +51,17 @@ public class IstorijaTreningaDAO {
 		return istorijaTreningaZaZeljenogKupca;
 	}
 	
+	public Collection<IstorijaTreninga> findZaKupcaZaOdredjeniObjekat(String korisnickoImeKupca, String objekat){
+		
+		List<IstorijaTreninga> istorijaTreningaZaZeljenogKupca = new ArrayList<IstorijaTreninga>();
+		for (IstorijaTreninga i: istorijaTreningaZaKupce.values()) {
+			if (i.getKupac().equals(korisnickoImeKupca) && i.getSportskiObjekat().equals(objekat)) {
+				istorijaTreningaZaZeljenogKupca.add(i);
+			}
+		}
+		return istorijaTreningaZaZeljenogKupca;
+	}
+	
 	public Collection<IstorijaTreninga> kreirajTreningUIstoriji(IstorijaTreninga istorijaTreninga){
 		
 		istorijaTreningaZaKupce.put(istorijaTreninga.getId().toString(), istorijaTreninga);

@@ -1,12 +1,15 @@
 package services;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -42,5 +45,15 @@ public class KomentarService {
 	public List<Komentar> getSportskiObjekti(@PathParam("nazivObjekta") String nazivObjekta) {
 		KomentarDAO dao = (KomentarDAO) ctx.getAttribute("komentarDAO");
 		return dao.getByNazivObjekta(nazivObjekta);
+	}
+	
+	@POST
+	@Path("/")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public void sacuvajKomentar(Komentar komentar) {
+		komentar.setId(UUID.randomUUID());
+		KomentarDAO dao = (KomentarDAO) ctx.getAttribute("komentarDAO");
+		dao.sacuvajKomentar(komentar);
 	}
 }

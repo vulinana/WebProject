@@ -69,6 +69,15 @@ public class IstorijaTreningaService {
 	}
 	
 	
+	@GET
+	@Path("/{korisnik}/{objekat}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<IstorijaTreninga> getIstorijaTreningaZaKupcaZaOdredjeniObjekat(@PathParam("korisnik") String korisnickoImeKupca, @PathParam("objekat") String objekat) {
+		IstorijaTreningaDAO dao = (IstorijaTreningaDAO) ctx.getAttribute("istorijaTreningaDAO");
+		return dao.findZaKupcaZaOdredjeniObjekat(korisnickoImeKupca, objekat);
+	}
+	
 	@POST
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)

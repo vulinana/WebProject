@@ -52,6 +52,15 @@ public class Komentar {
 	public void setOcena(int ocena) {
 		this.ocena = ocena;
 	}
+
+	public UUID getId() {
+		return id;
+	}
+
+	public void setId(UUID id) {
+		this.id = id;
+	}
+	
 	
 	
 }
