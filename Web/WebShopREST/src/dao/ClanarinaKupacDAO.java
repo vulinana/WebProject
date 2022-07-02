@@ -17,61 +17,49 @@ import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
 import com.fasterxml.jackson.databind.type.MapType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
-import beans.PromoKod;
-import beans.SportskiObjekat;
+import beans.ClanarinaKupac;
 
-public class PromoKodDAO {
-	private String path = "";
-	public static HashMap<String, PromoKod> kodovi = new HashMap<String, PromoKod>();
+public class ClanarinaKupacDAO {
 	
+	private String path = "";
+	public static HashMap<String, ClanarinaKupac> clanarineKupac = new HashMap<String, ClanarinaKupac>();
+	
+	public Collection<ClanarinaKupac> findAll(){	
+		return clanarineKupac.values();
+	}
 	
 	public void setPath(String path) {
 		this.path = path;
 	}
 	
-	public PromoKodDAO() {
+	public ClanarinaKupacDAO() {
 		
 	}
 	
-	public PromoKodDAO(String contextPath) {
+	public ClanarinaKupacDAO(String contextPath) {
 		path = contextPath;
-		loadKodove(contextPath);
+		loadClanarineKupac(contextPath);
 	}
 	
-	public Collection<PromoKod> findAll(){
-		return kodovi.values();
+	public void kreirajClanarinu(ClanarinaKupac clanarinaKupac) {
+		clanarineKupac.put(clanarinaKupac.getKupac(), clanarinaKupac);
+		saveClanarineKupac();
 	}
-	
-	public PromoKod promoKodExists(String oznaka) {
-		for (PromoKod pk: kodovi.values()) {
-			if (pk.getOznaka().toLowerCase().equals(oznaka.toLowerCase())) {
-				return pk;
-			}
-		}
-		
-		return null;
-	}
-	
-	public Collection<PromoKod> kreirajPromoKod(PromoKod promoKod) {
-		kodovi.put(promoKod.getOznaka(), promoKod);
-		savePromoKodove();
-		return kodovi.values();
-	}
-	
-	private void loadKodove(String contextPath) {
+
+	private void loadClanarineKupac(String contextPath) {
 		FileWriter fileWriter = null;
 		BufferedReader in = null;
 		File file = null;
 		try {
-			file = new File(contextPath + "/data/promoKodovi.txt");
+			file = new File(contextPath + "/data/clanarineKupac.txt");
 			in = new BufferedReader(new FileReader(file));
 			ObjectMapper objectMapper = new ObjectMapper();
 			objectMapper.setVisibilityChecker(
 					VisibilityChecker.Std.defaultInstance().withFieldVisibility(JsonAutoDetect.Visibility.ANY));
 			TypeFactory factory = TypeFactory.defaultInstance();
-			MapType type = factory.constructMapType(HashMap.class, String.class, PromoKod.class);
+			MapType type = factory.constructMapType(HashMap.class, String.class, ClanarinaKupac.class);
 			objectMapper.getFactory().configure(JsonGenerator.Feature.ESCAPE_NON_ASCII, true);
-			kodovi = ((HashMap<String, PromoKod>) objectMapper.readValue(file, type));
+			clanarineKupac = ((HashMap<String, ClanarinaKupac>) objectMapper.readValue(file, type));
 		} catch (FileNotFoundException fnfe) {
 			try {
 				file.createNewFile();
@@ -79,7 +67,7 @@ public class PromoKodDAO {
 				ObjectMapper objectMapper = new ObjectMapper();
 				objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 				objectMapper.getFactory().configure(JsonGenerator.Feature.ESCAPE_NON_ASCII, true);
-				String stringUsers = objectMapper.writeValueAsString(kodovi);
+				String stringUsers = objectMapper.writeValueAsString(clanarineKupac);
 				fileWriter.write(stringUsers);
 				fileWriter.flush();
 			} catch (IOException e) {
@@ -108,15 +96,15 @@ public class PromoKodDAO {
 		
 	}
 	
-	private void savePromoKodove() {
-		File f = new File(path + "/data/promoKodovi.txt");
+	private void saveClanarineKupac() {
+		File f = new File(path + "/data/clanarineKupac.txt");
 		FileWriter fileWriter = null;
 		try {
 			fileWriter = new FileWriter(f);
 			ObjectMapper objectMapper = new ObjectMapper();
 			objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 			objectMapper.getFactory().configure(JsonGenerator.Feature.ESCAPE_NON_ASCII, true);
-			String stringUsers = objectMapper.writeValueAsString(kodovi);
+			String stringUsers = objectMapper.writeValueAsString(clanarineKupac);
 			fileWriter.write(stringUsers);
 			fileWriter.flush();
 		} catch (IOException e) {

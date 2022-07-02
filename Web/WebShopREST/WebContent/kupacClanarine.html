@@ -8,7 +8,7 @@
 		<link rel="stylesheet" type="text/css" href="style/homePageStyles.css">
 		<script src="jquery-3.3.1.min.js"></script>
 		<script src="logout.js"></script>
-		<script src="kupacClanarine.js"></script>
+		<script src="KupacClanarinee.js"></script>
 </head>
 <body>
 	<div class="topnav">
@@ -35,11 +35,12 @@
 				    <tr><td>Tip:</td><td><input type="text" id="tip" name="tip" readonly/></td></tr>
 				    <tr><td>Broj termina:</td><td><input type="text" name="brojTermina" id="brojTermina" readonly/></td></tr>
 				    <tr><td>Cena:</td><td><input type="text" id="cena" name="cena" readonly/></td></tr>
-				 	<tr><td>Promo kod:</td><td><input type="text" id="promoKod"/></td></tr>
+				 	<tr><td>Promo kod:</td><td><input name="promoKod" type="text" id="promoKod"/></td></tr>
 				</table>
 				<button type="button" id="popupButtonOtkazi">Otkaži</button>
 				<button type="submit" id="popupButton">Kupi</button>
 			</form>
+			<p id="error" style="color:red;"></p>
 		</div>
 	</div>
 </body>

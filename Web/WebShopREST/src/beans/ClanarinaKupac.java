@@ -2,13 +2,17 @@ package beans;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import beans.Clanarina.StatusClanarine;
 
 public class ClanarinaKupac {
 	
 	private String kupac;
 	private String clanarinaId;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date datumPlacanja;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date vaziDo;
 	private double placenaCena;
 	private Clanarina.StatusClanarine status;

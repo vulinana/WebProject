@@ -1,8 +1,6 @@
 package services;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
@@ -16,11 +14,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import beans.PromoKod;
-import beans.RadnoVreme;
-import beans.SportskiObjekat;
-import beans.RadnoVreme.Dan;
 import dao.PromoKodDAO;
-import dao.SportskiObjekatDAO;
 
 @Path("/promoKodovi")
 public class PromoKodService {

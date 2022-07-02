@@ -33,6 +33,36 @@ $(document).ready(function() {
 		}
 	});
 	
+	$('form#kupiClanarinuForma').submit(function(event) {
+		event.preventDefault();
+		$('#error').text("");
+		let naziv = $('input[name="naziv"]').val();
+		let tipClanarine = $('input[name="tip"]').val();
+		let promoKod = $('input[name="promoKod"]').val();
+		let brojPreostalihTermina = $('input[name="brojTermina"]').val();
+		let cena = $('input[name="cena"]').val();
+		var korisnik = JSON.parse(localStorage.getItem("ulogovaniKorisnik"));
+		
+		if (promoKod == ""){
+			promoKod = "bezPromoKoda";
+		}
+		
+		$.ajax({
+			url: 'rest/clanarineKupac/' + promoKod + '/' + tipClanarine ,
+			type: 'POST',
+			data: JSON.stringify({kupac: korisnik.korisnickoIme, clanarinaId: naziv, brojPreostalihTermina: brojPreostalihTermina, placenaCena: cena}),
+			contentType: 'application/json',
+			success : function() {
+				$('#popupOverlay, #popup').css("visibility", "hidden");
+				$('input[name="promoKod"]').val("");
+			},
+			error : function(message) {
+				$('#error').text(message.responseText);
+			}
+		});
+	});
+	
+	
 	 $('#popupButtonOtkazi').click(function(){
 		$('#popupOverlay, #popup').css("visibility", "hidden");
 	});
