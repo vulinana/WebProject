@@ -4,21 +4,25 @@ import java.util.UUID;
 
 public class Komentar {
 	
+	public enum StatusKomentara {PRIHVACEN, ODBIJEN, NERECENZIRAN}
+	
 	private UUID id;
 	private String kupac;
 	private String sportskiObjekat;
 	private String tekstKomentara;
 	private int ocena;
+	private StatusKomentara statusKomentara;
 	
 	public Komentar() {}
 	
-	public Komentar(String kupac, String sportskiObjekat, String tekstKomentara, int ocena) {
+	public Komentar(String kupac, String sportskiObjekat, String tekstKomentara, int ocena, StatusKomentara statusKomentara) {
 		super();
 		this.id = UUID.randomUUID();
 		this.kupac = kupac;
 		this.sportskiObjekat = sportskiObjekat;
 		this.tekstKomentara = tekstKomentara;
 		this.ocena = ocena;
+		this.statusKomentara = statusKomentara;
 	}
 
 	public String getKupac() {
@@ -60,7 +64,13 @@ public class Komentar {
 	public void setId(UUID id) {
 		this.id = id;
 	}
-	
-	
+
+	public StatusKomentara getStatusKomentara() {
+		return statusKomentara;
+	}
+
+	public void setStatusKomentara(StatusKomentara statusKomentara) {
+		this.statusKomentara = statusKomentara;
+	}
 	
 }

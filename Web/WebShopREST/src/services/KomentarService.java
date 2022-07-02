@@ -17,6 +17,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import beans.Komentar;
+import beans.Komentar.StatusKomentara;
 import dao.KomentarDAO;
 
 @Path("/komentari")
@@ -53,6 +54,7 @@ public class KomentarService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public void sacuvajKomentar(Komentar komentar) {
 		komentar.setId(UUID.randomUUID());
+		komentar.setStatusKomentara(StatusKomentara.NERECENZIRAN);
 		KomentarDAO dao = (KomentarDAO) ctx.getAttribute("komentarDAO");
 		dao.sacuvajKomentar(komentar);
 	}

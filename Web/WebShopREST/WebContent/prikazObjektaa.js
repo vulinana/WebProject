@@ -42,7 +42,7 @@ function prikaziPodatke(sportskiObjekat){
 }
 
 function prikaziKomentare(komentari){
-	
+		
 	if (komentari.length == 0){
 		let nemaKomentara = $('<p>Trenutno nema komentara</p>');
 		$('#komentari').append(nemaKomentara);
@@ -50,8 +50,10 @@ function prikaziKomentare(komentari){
 	}
 	
 	for (let k of komentari){
-		let komentar = $('<hr><p><span class="ocenaKomentar">' + k.ocena + '</span>&nbsp;' + k.kupac + ':</br>&nbsp;&nbsp;&nbsp;&nbsp;' + k.tekstKomentara +'</p>');
-		$('#komentari').append(komentar);
+		if (k.statusKomentara == 'PRIHVACEN'){
+			let komentar = $('<hr><p><span class="ocenaKomentar">' + k.ocena + '</span>&nbsp;' + k.kupac + ':</br>&nbsp;&nbsp;&nbsp;&nbsp;' + k.tekstKomentara +'</p>');
+			$('#komentari').append(komentar);
+		}
 	}
 	
 }

@@ -50,8 +50,14 @@ function prikaziKomentare(komentari){
 	}
 	
 	for (let k of komentari){
-		let komentar = $('<hr><p><span class="ocenaKomentar">' + k.ocena + '</span>&nbsp;' + k.kupac + ':</br>&nbsp;&nbsp;&nbsp;&nbsp;' + k.tekstKomentara +'</p>');
-		$('#komentari').append(komentar);
+		if (k.statusKomentara == 'PRIHVACEN'){
+			let komentar = $('<hr><p style="background-color:#cefad0;"><span class="ocenaKomentar">' + k.ocena + '</span>&nbsp;' + k.kupac + ':</br>&nbsp;&nbsp;&nbsp;&nbsp;' + k.tekstKomentara +'</p>');
+			$('#komentari').append(komentar);
+		}
+		if (k.statusKomentara == 'ODBIJEN'){
+			let komentar = $('<hr><p style="background-color:#FFCCCB;"><span class="ocenaKomentar">' + k.ocena + '</span>&nbsp;' + k.kupac + ':</br>&nbsp;&nbsp;&nbsp;&nbsp;' + k.tekstKomentara +'</p>');
+			$('#komentari').append(komentar);
+		}
 	}
 	
 }
