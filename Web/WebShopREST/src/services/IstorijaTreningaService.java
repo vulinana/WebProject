@@ -26,6 +26,7 @@ import beans.PromoKod;
 import beans.Clanarina.StatusClanarine;
 import dao.IstorijaTreningaDAO;
 import dao.PromoKodDAO;
+import dao.TreningDAO;
 import dao.ClanarinaKupacDAO;
 
 @Path("/istorijaTreninga")
@@ -49,6 +50,11 @@ public class IstorijaTreningaService {
 		if (ctx.getAttribute("clanarinaKupacDAO") == null) {
 	    	String contextPath = ctx.getRealPath("");
 			ctx.setAttribute("clanarinaKupacDAO", new ClanarinaKupacDAO(contextPath));
+		}
+		
+		if (ctx.getAttribute("treningDAO") == null) {
+	    	String contextPath = ctx.getRealPath("");
+			ctx.setAttribute("treningDAO", new TreningDAO(contextPath));
 		}
 	}
 	
@@ -89,6 +95,9 @@ public class IstorijaTreningaService {
 			istorijaTreninga.setId(UUID.randomUUID());
 			istorijaTreninga.setDatumIVremePrijave(new Date());
 			IstorijaTreningaDAO dao = (IstorijaTreningaDAO) ctx.getAttribute("istorijaTreningaDAO");
+			
+			TreningDAO treningDao = (TreningDAO) ctx.getAttribute("treningDAO");
+			istorijaTreninga.setTrener(treningDao.pronadjiTreneraZaTrening(istorijaTreninga.getSportskiObjekat(), istorijaTreninga.getTrening()));
 			
 			int brojPreostalihTermina = Integer.parseInt(clanarinaKupac.getBrojPreostalihTermina()) - 1;
 			clanarinaKupac.setBrojPreostalihTermina(String.valueOf(brojPreostalihTermina));

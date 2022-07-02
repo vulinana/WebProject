@@ -60,6 +60,15 @@ public class TreningService {
 		return dao.getByNazivObjekta(nazivObjekta);
 	}
 	
+	@GET
+	@Path("/treneroviTreninzi/{trener}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Trening> getTreninziByTrener(@PathParam("trener") String trener) {
+		TreningDAO dao = (TreningDAO) ctx.getAttribute("treningDAO");
+		return dao.getByTrener(trener);
+	}
+	
 	@POST
 	@Path("/uploadImage")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)

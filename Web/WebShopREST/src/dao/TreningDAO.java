@@ -53,11 +53,34 @@ public class TreningDAO {
 		return zeljeniTreninzi;
 	}
 	
+	public List<Trening> getByTrener(String trener){
+		List<Trening> zeljeniTreninzi = new ArrayList<Trening>();
+		
+		for (Trening t: treninzi.values()) {
+			if (t.getTrener().equals(trener)) {
+				zeljeniTreninzi.add(t);
+			}
+		}
+		
+		return zeljeniTreninzi;
+	}
+	
 	public Collection<Trening> kreirajNoviTrening(Trening trening){
 		
 		treninzi.put(trening.getId().toString(), trening);
 		saveTreninzi();
 		return treninzi.values();
+	}
+	
+	public String pronadjiTreneraZaTrening(String nazivSportskogObjekta, String trening) {
+		
+		for (Trening t: treninzi.values()) {
+			if (t.getSportskiObjekatKomPripada().equals(nazivSportskogObjekta) && t.getNaziv().equals(trening)) {
+				return t.getTrener();
+			}
+		}
+		
+		return null;
 	}
 	
 	public Collection<Trening> izmeniTrening(UUID id, Trening trening){
