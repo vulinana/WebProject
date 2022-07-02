@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Promo kodovi</title>
+	<link rel="stylesheet" type="text/css" href="style/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="style/homePageStyles.css">
+	<link rel="stylesheet" type="text/css" href="style/administratorPromoKodoviStyle.css">
+	<link rel="stylesheet" type="text/css" href="style/pregledKorisnikaStyle.css">
+	<script src="jquery-3.3.1.min.js"></script>
+	<script src="logout.js"></script>
+	<script src="administratorPromoKodovi.js"></script>
+</head>
+<body>
+	<div class="topnav">
+  	  <a id="logout" href='pocetna.html'>Odjavi se</a>
+  	  <a href="administratorHomePage.html">Početna</a>
+      <a href="administratorProfil.html">Profil</a>
+      <span class="leftPosition"><a href="pregledKorisnika.html">Korisnici</a></span>
+      <span class="leftPosition"><a href="administratorSportskiObjekti.html">Sportski objekti</a></span>
+      <span class="leftPosition"><a  class="active" href="administratorPromoKodovi.html">Promo kodovi</a></span>
+	</div>
+	<button class="kreirajPromoKod" id="kreirajPromoKod">Kreiraj</button>
+	<div align="center" class="centered">
+		<table id="tabela" class="tableKorisnici">
+		</table>
+	</div>
+	<div class="popupOverlay" id="popupOverlay">
+	<div class="popup" id="popup">
+	<h4>Kreiraj promo kod</h4>
+		<form id="kreirajPromoKodForma">
+			<table>
+				<tr><td><label class="label">Oznaka:</label></td><td><input class="textBox" type="text" name="oznaka" id="oznaka" required/></td></tr>
+				<tr><td><label class="label">Važi od:</label></td><td><input class="datePicker" type="date" name="vaziOd" id="vaziOd" required/></td></tr>
+				<tr><td><label class="label">Važi do:</label></td><td><input class="datePicker" type="date" name="vaziDo" id="vaziDo" required/></td></tr>
+				<tr><td><label class="label">Broj koliko puta može da se iskoristi:</label></td><td><input class="textBox" name="brojIskoriscavanja" type="number" id="brojIskoriscavanja" required/></td></tr>
+				<tr><td><label class="label">Procenat umanjenja iznosa članarine:</label></td><td><input class="textBox" type="number" name="procenat" id="procenat" max="100" min="0" required/></td></tr>
+			</table>
+			<button type="button" id="popupButtonOtkazi">Otkaži</button>
+			<button type="submit" id="popupButton">Kreiraj</button>
+		</form>
+		<p id="success" style="color:green;"></p>
+		<p id="error" style="color:red;"></p>
+	</div>
+	</div>
+</body>
+</html>

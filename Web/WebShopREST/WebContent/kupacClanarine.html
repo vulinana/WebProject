@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="utf-8">
+		<title>Clanarine</title>
+		<link rel="stylesheet" type="text/css" href="style/bootstrap.css">
+			<link rel="stylesheet" type="text/css" href="style/kupacClanarine.css">
+		<link rel="stylesheet" type="text/css" href="style/homePageStyles.css">
+		<script src="jquery-3.3.1.min.js"></script>
+		<script src="logout.js"></script>
+		<script src="kupacClanarine.js"></script>
+</head>
+<body>
+	<div class="topnav">
+  	  <a id="logout" href="pocetna.html">Odjavi se</a>
+  	  <a href="kupacHomePage.html">Početna</a>
+      <a href="kupacProfil.html">Profil</a>
+      <span class="leftPosition"><a class="active" href="kupacClanarine.html">Članarine</a></span>
+  </div>
+  <div class="wrapper">      
+        <section class="content" id="content">
+          <div class="container">
+            <div class="row" id="row">
+            </div>
+          </div>
+      </section>
+ 	</div>
+ 	
+ 	<div class="popupOverlay" id="popupOverlay">
+		<div class="popup" id="popup">
+		<h4>Kupovina clanarine</h4>
+			<form id="kupiClanarinuForma">
+				<table>
+				    <tr><td>Naziv clanarine:</td><td><input type="text" name="naziv" id="naziv" readonly/></td></tr>
+				    <tr><td>Tip:</td><td><input type="text" id="tip" name="tip" readonly/></td></tr>
+				    <tr><td>Broj termina:</td><td><input type="text" name="brojTermina" id="brojTermina" readonly/></td></tr>
+				    <tr><td>Cena:</td><td><input type="text" id="cena" name="cena" readonly/></td></tr>
+				 	<tr><td>Promo kod:</td><td><input type="text" id="promoKod"/></td></tr>
+				</table>
+				<button type="button" id="popupButtonOtkazi">Otkaži</button>
+				<button type="submit" id="popupButton">Kupi</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
