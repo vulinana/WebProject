@@ -62,7 +62,16 @@ public class Kupac extends Korisnik {
 	public void setTipKupca(NazivTipaKupca tipKupca) {
 		this.tipKupca = tipKupca;
 	}
-
+	
+	public void odrediTipKupca(){
+		if(brojSakupljenihBodova < 3000) {
+			tipKupca = NazivTipaKupca.BRONZANI;
+		} else if (brojSakupljenihBodova >= 3000 && brojSakupljenihBodova < 4000) {
+			tipKupca = NazivTipaKupca.SREBRNI;
+		} else {
+			tipKupca = NazivTipaKupca.ZLATNI;
+		}
+	}
 	
 	
 }

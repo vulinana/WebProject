@@ -41,6 +41,14 @@ public class ClanarinaDAO {
 		loadClanarine(contextPath);
 	}
 	
+	public Clanarina getClanarina(String clanarinaId) {
+		for (Clanarina c: clanarine.values()) {
+			if (c.getId().equals(clanarinaId)) {
+				return c;
+			}
+		}
+		return null;
+	}
 
 	private void loadClanarine(String contextPath) {
 		FileWriter fileWriter = null;

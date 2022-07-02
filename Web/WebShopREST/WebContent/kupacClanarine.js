@@ -7,7 +7,7 @@ function displayImages(clanarine){
 		let div3 = $('<div class="card-body"></div>');
 		let title =  $('<h4>' + c.id +'</h4>');
 		let tipClanarine = $('<p style="font-size:18px; margin:0px;">' + c.tipClanarine + '</p>');
-		let brojTermina = $('<p style="font-size:18px; margin:0px;">' + c.brojTermina + '</p>');
+		let brojTermina = $('<p style="font-size:18px; margin:0px;">' + c.brojTermina + ' termina</p>');
 		let cena = $('<p style="font-size:18px; margin-top:20px;">' + c.cena + 'din</p>');
 		let button = $('<button class="buttonKupi">Kupi</button>');
 		button.click(function(){

@@ -46,6 +46,20 @@ public class ClanarinaKupacDAO {
 		saveClanarineKupac();
 	}
 
+	public ClanarinaKupac getClanarinaZaKupca (String korisnickoImeKupca) {
+		for (ClanarinaKupac ck: clanarineKupac.values()) {
+			if (ck.getKupac().equals(korisnickoImeKupca)) {
+				return ck;
+			}
+		}
+		return null;
+	}
+	
+	public void izmeniStatusClanarine (ClanarinaKupac clanarinaKupac) {
+		clanarineKupac.get(clanarinaKupac.getKupac()).setStatus(clanarinaKupac.getStatus());
+		saveClanarineKupac();
+	}
+	
 	private void loadClanarineKupac(String contextPath) {
 		FileWriter fileWriter = null;
 		BufferedReader in = null;

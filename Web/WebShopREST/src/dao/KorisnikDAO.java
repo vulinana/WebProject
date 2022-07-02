@@ -397,7 +397,23 @@ public class KorisnikDAO {
 		return filtriraniKorisnici;
 	}
 	
+	public Kupac findKupca(String korisnickoImeKupca) {
+		
+		for (Kupac k: kupci.values()) {
+			if (k.getKorisnickoIme().equals(korisnickoImeKupca)) {
+				return k;
+			}
+		}
+		
+		return null;
+	}
 	
+	public void izmeniKupca(String korisnickoIme, Kupac kupac) {
+		
+		kupci.get(korisnickoIme).setBrojSakupljenihBodova(kupac.getBrojSakupljenihBodova());
+		kupci.get(korisnickoIme).setTipKupca(kupac.getTipKupca());
+		saveKupci();
+	}
 	
 	private void loadKupci(String contextPath) {
 		FileWriter fileWriter = null;

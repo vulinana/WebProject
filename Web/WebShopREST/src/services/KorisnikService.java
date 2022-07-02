@@ -3,6 +3,7 @@ package services;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -21,6 +22,9 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import beans.Clanarina;
+import beans.Clanarina.StatusClanarine;
+import beans.ClanarinaKupac;
 import beans.Korisnik;
 import beans.Korisnik.Uloga;
 import beans.Kupac;
@@ -28,6 +32,8 @@ import beans.Menadzer;
 import beans.SportskiObjekat;
 import beans.TipKupca.NazivTipaKupca;
 import beans.Trener;
+import dao.ClanarinaDAO;
+import dao.ClanarinaKupacDAO;
 import dao.KorisnikDAO;
 import dao.SportskiObjekatDAO;
 
@@ -51,6 +57,16 @@ public class KorisnikService {
 		if (ctx.getAttribute("korisnikDAO") == null) {
 	    	String contextPath = ctx.getRealPath("");
 			ctx.setAttribute("korisnikDAO", new KorisnikDAO(contextPath));
+		}
+		
+		if (ctx.getAttribute("clanarinaKupacDAO") == null) {
+	    	String contextPath = ctx.getRealPath("");
+			ctx.setAttribute("clanarinaKupacDAO", new ClanarinaKupacDAO(contextPath));
+		}
+		
+		if (ctx.getAttribute("clanarinaDAO") == null) {
+	    	String contextPath = ctx.getRealPath("");
+			ctx.setAttribute("clanarinaDAO", new ClanarinaDAO(contextPath));
 		}
 	}
 	
@@ -374,5 +390,46 @@ public class KorisnikService {
 	private List<Kupac> filtrirajPoTipuPriv(List<Kupac> korisnici, String tipKupca) {
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
 		return dao.filtrirajPoTipu(korisnici, NazivTipaKupca.valueOf(tipKupca));
+	}
+	
+	@PUT
+	@Path("/preracunajBodove")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public void preracunajBodove(Korisnik korisnik) {
+		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
+		String korisnickoImeKupca = korisnik.getKorisnickoIme();
+		Kupac kupac = dao.findKupca(korisnickoImeKupca);
+		
+		if (kupac != null) {
+			ClanarinaKupacDAO clanarinaKupacDao = (ClanarinaKupacDAO) ctx.getAttribute("clanarinaKupacDAO");
+			ClanarinaKupac clanarinaKupac = clanarinaKupacDao.getClanarinaZaKupca(korisnickoImeKupca);
+			ClanarinaDAO clanarinaDAO = (ClanarinaDAO) ctx.getAttribute("clanarinaDAO");
+			Clanarina clanarina = clanarinaDAO.getClanarina(clanarinaKupac.getClanarinaId());
+			if (clanarinaKupac != null) {
+				if (clanarinaKupac.getStatus() == StatusClanarine.Aktivna && clanarinaKupac.getVaziDo().before(new Date())) { //proveravamo da li je clanarina istekla, ako jeste manipulisemo bodovima
+					//potrebno je staviti clanarinu u status neaktivna
+					clanarinaKupac.setStatus(StatusClanarine.Neaktivna);
+					clanarinaKupacDao.izmeniStatusClanarine(clanarinaKupac);
+					
+					//proveravamo da li cemo kupcu umanjiti bodove ili povecati
+					double trecinaTermina = Integer.getInteger(clanarina.getBrojTermina())/3;
+					int brojIskoriscenihTermina = Integer.parseInt(clanarina.getBrojTermina()) - Integer.parseInt(clanarinaKupac.getBrojPreostalihTermina());
+					if (brojIskoriscenihTermina > trecinaTermina) {
+						double brojBodova = kupac.getBrojSakupljenihBodova();
+						brojBodova += clanarina.getCena()/1000*(brojIskoriscenihTermina);
+						kupac.setBrojSakupljenihBodova(brojBodova);
+						kupac.odrediTipKupca();	
+					} else {
+						double brojBodova = kupac.getBrojSakupljenihBodova();
+						brojBodova -= clanarina.getCena()/1000*133*4;
+						kupac.setBrojSakupljenihBodova(brojBodova);
+						kupac.odrediTipKupca();	
+					}
+					dao.izmeniKupca(korisnickoImeKupca, kupac);
+				}
+			}
+		}
+		
 	}
 }
