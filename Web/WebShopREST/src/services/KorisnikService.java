@@ -29,13 +29,11 @@ import beans.Korisnik;
 import beans.Korisnik.Uloga;
 import beans.Kupac;
 import beans.Menadzer;
-import beans.SportskiObjekat;
 import beans.TipKupca.NazivTipaKupca;
 import beans.Trener;
 import dao.ClanarinaDAO;
 import dao.ClanarinaKupacDAO;
 import dao.KorisnikDAO;
-import dao.SportskiObjekatDAO;
 
 @Path("/kupci")
 public class KorisnikService {
@@ -431,5 +429,14 @@ public class KorisnikService {
 			}
 		}
 		
+	}
+	
+	@GET
+	@Path("/kupac/{username}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Kupac getKupca(@PathParam("username") String username) {
+		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
+		return dao.findKupca(username);
 	}
 }

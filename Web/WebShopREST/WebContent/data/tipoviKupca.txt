@@ -1,0 +1,17 @@
+{
+  "BRONZANI" : {
+    "imeTipa" : "BRONZANI",
+    "popust" : 0.0,
+    "brojBodova": 0.0 
+  },
+ "SREBRNI" : {
+    "imeTipa" : "SREBRNI",
+    "popust" : 3000.0,
+    "brojBodova": 3.0 
+  },
+ "ZLATNI" : {
+    "imeTipa" : "ZLATNI",
+    "popust" : 5.0,
+    "brojBodova": 4000.0 
+  }	
+}

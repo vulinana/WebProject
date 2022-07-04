@@ -2,7 +2,7 @@ package beans;
 
 import java.util.UUID;
 
-enum TipTreninga {Grupni, Personalni, Teretana}
+enum TipTreninga {Grupni, Personalni, Teretana, Sauna}
 
 public class Trening {
 	

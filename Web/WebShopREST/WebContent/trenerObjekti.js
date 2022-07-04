@@ -4,7 +4,7 @@ function displayImages(sportskiObjekti){
 				
 		let div1 = $('<div class="col-sm-4"></div>');
 		let div2 = $('<div class="card text-center" style="width: 18rem;"></div>');
-		let img = $('<a href="prikazObjekta.html"><img class="card-img-top" src="pictures/' + s.logo + '" id="' +  s.naziv + '" onClick="saveId(this.id)" height="300"/></a>');
+		let img = $('<a href="trenerPrikazObjekta.html"><img class="card-img-top" src="pictures/' + s.logo + '" id="' +  s.naziv + '" onClick="saveId(this.id)" height="300"/></a>');
 		let div3 = $('<div class="card-body"></div>');
 		let title;
 		if (s.prosecnaOcena != 0){
@@ -12,7 +12,7 @@ function displayImages(sportskiObjekti){
 		} else {
 			title = $('<h5 class="card-title">' + s.naziv +'</h5>');
 		}
-		let adresa = $('<p style="font-size:14px; margin:0px;">' + s.lokacija.adresa.ulicaIBroj + ', ' +  s.lokacija.adresa.mesto + ', ' + s.lokacija.adresa.postanskiBroj +'</p>');
+		let adresa = $('<p style="font-size:14px; margin:0px;">' + s.lokacija.adresa.ulicaIBroj + '</br>' +  s.lokacija.adresa.mesto + ', ' + s.lokacija.adresa.postanskiBroj +'</p>');
 		let tipObjekta = $('<p style="font-size:14px; margin:0px;">' + s.tipObjekta + '</p>');
 		let status;
 		if (s.statusObjekta == "Radi"){

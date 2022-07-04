@@ -18,8 +18,9 @@
 <body>
 	<div class="topnav">
   	  <a id="logout" href="pocetna.html">Odjavi se</a>
+  	  <a href="menadzerProfil.html">Profil</a>
   	  <a href="menadzerHomePage.html">Početna</a>
-      <a href="menadzerProfil.html">Profil</a>
+  	  <span class="leftPosition"><a href="menadzerObjekti.html">Objekti</a></span>
       <span class="leftPosition"><a class="active" href="menadzerSportskiObjekat.html">Sportski objekat</a></span>
   </div>
 	<div class="logoINaziv">
@@ -46,7 +47,7 @@
 			<form id="dodajTreningForma" action="http://localhost:8080/WebShopREST/rest/treninzi/uploadImage" method="post" enctype="multipart/form-data">
 				<table>
 					<tr><td>Naziv:</td><td><input type="text" name="naziv" id="dodajObjekatNaziv" required/></td><td><p id="error" class="errorMessage"></p></td></tr>
-					<tr><td>Tip:</td><td><select id="tip"><option value="Teretana">Teretana</option><option value="Grupni">Grupni</option><option value="Personalni">Personalni</option></select></td></tr>
+					<tr><td>Tip:</td><td><select id="tip"><option value="Teretana">Teretana</option><option value="Grupni">Grupni</option><option value="Personalni">Personalni</option><option value="Sauna">Sauna</option></select></td></tr>
 					<tr><td>Slika:</td><td><input type="file" name="file" id="file" required/></td></tr>
 					<tr><td>Opis:</td><td><input type="text" name="opis" id="dodajObjekatOpis"/></td></tr>
 					<tr><td>Trajanje (h):</td><td><input type="number" name="trajanje" id="dodajObjekatTrajanje"/></td></tr>

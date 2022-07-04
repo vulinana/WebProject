@@ -1,4 +1,8 @@
-function displayImages(clanarine){
+function displayImages(clanarine, kupac, tipKupca){
+	
+	$('#bodovi').text(kupac.brojSakupljenihBodova);
+	$('#tipKupca').text(tipKupca.imeTipa);
+	$('#popust').text(tipKupca.popust + "%");
 	
 	for (let c of clanarine){
 				
@@ -8,16 +12,36 @@ function displayImages(clanarine){
 		let title =  $('<h4>' + c.id +'</h4>');
 		let tipClanarine = $('<p style="font-size:18px; margin:0px;">' + c.tipClanarine + '</p>');
 		let brojTermina = $('<p style="font-size:18px; margin:0px;">' + c.brojTermina + ' termina</p>');
-		let cena = $('<p style="font-size:18px; margin-top:20px;">' + c.cena + 'din</p>');
+		let cena;
+		let cena2;
+		let novaCena;
+		if (tipKupca.imeTipa == 'SREBRNI' || tipKupca.imeTipa == 'ZLATNI'){
+			cena = $('<p style="font-size:18px; margin-top:20px;"><s>' + c.cena + 'din</s></p>');
+			cena2 =  c.cena - c.cena*tipKupca.popust/100;
+			novaCena = $('<p style="font-size:18px;">' + cena2 + 'din</p>');
+		} else {
+			cena = $('<p style="font-size:18px; margin-top:20px;">' + c.cena + 'din</p>');
+		} 
+		
+		
 		let button = $('<button class="buttonKupi">Kupi</button>');
 		button.click(function(){
 			$('input[name="naziv"]').val(c.id);
 			$('input[name="tip"]').val(c.tipClanarine);
 			$('input[name="brojTermina"]').val(c.brojTermina);
-			$('input[name="cena"]').val(c.cena);
+			if (tipKupca.imeTipa == 'SREBRNI' || tipKupca.imeTipa == 'ZLATNI'){
+				$('input[name="cena"]').val(cena2);
+			} else {
+				$('input[name="cena"]').val(c.cena);
+			}
 			$('#popupOverlay, #popup').css("visibility", "visible");	
 		});
-		div3.append(title).append(tipClanarine).append(brojTermina).append(cena).append(button);
+		
+		if (tipKupca.imeTipa == 'SREBRNI' || tipKupca.imeTipa == 'ZLATNI'){
+			div3.append(title).append(tipClanarine).append(brojTermina).append(cena).append(novaCena).append(button);
+		} else {
+			div3.append(title).append(tipClanarine).append(brojTermina).append(cena).append(button);
+		}
 		div2.append(div3);
 		div1.append(div2);
 		$('#row').append(div1);
@@ -26,10 +50,24 @@ function displayImages(clanarine){
 
 $(document).ready(function() {
 	
+	
+	var korisnik = JSON.parse(localStorage.getItem("ulogovaniKorisnik"));
 	$.get({
 		url: 'rest/clanarine',
 		success: function(clanarine) {
-			displayImages(clanarine);
+			
+			$.get({
+				url: 'rest/kupci/kupac/' + korisnik.korisnickoIme,
+				success: function(kupac) {
+					
+					$.get({
+					url: 'rest/tipKupca/' + korisnik.korisnickoIme,
+					success: function(tipKupca) {
+						displayImages(clanarine, kupac, tipKupca);
+					}
+			});
+				}
+			});
 		}
 	});
 	
@@ -41,7 +79,6 @@ $(document).ready(function() {
 		let promoKod = $('input[name="promoKod"]').val();
 		let brojPreostalihTermina = $('input[name="brojTermina"]').val();
 		let cena = $('input[name="cena"]').val();
-		var korisnik = JSON.parse(localStorage.getItem("ulogovaniKorisnik"));
 		
 		if (promoKod == ""){
 			promoKod = "bezPromoKoda";

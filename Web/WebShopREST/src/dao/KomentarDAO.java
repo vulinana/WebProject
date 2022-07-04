@@ -65,7 +65,7 @@ public class KomentarDAO {
 			double prosecnaOcena = 0;
 			int brojOcena = 0;
 			for (Komentar k: KomentarDAO.komentari.values()) {
-				if (k.getSportskiObjekat().equals(s.getNaziv())) {
+				if (k.getSportskiObjekat().equals(s.getNaziv()) && k.getStatusKomentara() == StatusKomentara.PRIHVACEN) {
 					prosecnaOcena += k.getOcena();
 					brojOcena++;
 				}

@@ -22,12 +22,17 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import beans.ClanarinaKupac;
+import beans.Kupac;
 import beans.PromoKod;
+import beans.TipKupca;
 import beans.Clanarina.StatusClanarine;
 import beans.Clanarina.TipClanarine;
+import beans.TipKupca.NazivTipaKupca;
 import dao.ClanarinaKupacDAO;
 import dao.KomentarDAO;
+import dao.KorisnikDAO;
 import dao.PromoKodDAO;
+import dao.TipKupcaDAO;
 
 @Path("/clanarineKupac")
 public class ClanarineKupacService {
@@ -42,9 +47,15 @@ public class ClanarineKupacService {
 	
 	@PostConstruct
 	public void init() {
+		
 		if (ctx.getAttribute("clanarinaKupacDAO") == null) {
 	    	String contextPath = ctx.getRealPath("");
 			ctx.setAttribute("clanarinaKupacDAO", new ClanarinaKupacDAO(contextPath));
+		}
+		
+		if (ctx.getAttribute("korisnikDAO") == null) {
+	    	String contextPath = ctx.getRealPath("");
+			ctx.setAttribute("korisnikDAO", new KorisnikDAO(contextPath));
 		}
 		
 		if (ctx.getAttribute("promoKodDAO") == null) {

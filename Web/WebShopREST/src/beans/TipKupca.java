@@ -8,6 +8,8 @@ public class TipKupca {
 	private double popust;
 	private double brojBodova;
 	
+	public TipKupca() {}
+	
 	public TipKupca(NazivTipaKupca imeTipa, double popust, double brojBodova) {
 		super();
 		this.imeTipa = imeTipa;
