@@ -124,6 +124,18 @@ public class TreningDAO {
 		return null;
 	}
 	
+	public List<String> getTrenere(String nazivObjekta){
+		
+		List<String> korisnickaImena = new ArrayList<String>();
+		for (Trening t: treninzi.values()) {
+			if (t.getSportskiObjekatKomPripada().equals(nazivObjekta)) {
+				korisnickaImena.add(t.getTrener());
+			}
+		}
+		
+		return korisnickaImena;
+	}
+	
 	private void loadTreninzi(String contextPath) {
 		FileWriter fileWriter = null;
 		BufferedReader in = null;

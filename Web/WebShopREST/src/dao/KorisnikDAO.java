@@ -27,6 +27,7 @@ import beans.Kupac;
 import beans.Menadzer;
 import beans.SportskiObjekat;
 import beans.Trener;
+import beans.Trening;
 
 /***
  * Klasa namenjena da u�ita proizvode iz fajla i pru�a operacije nad njima (poput pretrage).
@@ -413,6 +414,30 @@ public class KorisnikDAO {
 		kupci.get(korisnickoIme).setBrojSakupljenihBodova(kupac.getBrojSakupljenihBodova());
 		kupci.get(korisnickoIme).setTipKupca(kupac.getTipKupca());
 		saveKupci();
+	}
+	
+	public List<Trener> getTrenereByKorisnickaImena(List<String> korisnickaImena){
+		List<Trener> zeljeniTreneri = new ArrayList<Trener>();
+		for (Trener t: treneri.values()) {
+			for (String ime: korisnickaImena) {
+				if (t.getKorisnickoIme().equals(ime)) {
+					zeljeniTreneri.add(t);
+				}
+			}
+		}
+		return zeljeniTreneri;
+	}
+	
+	public List<Kupac> getKupceByKorisnickaImena(List<String> korisnickaImena){
+		List<Kupac> zeljeniKupci = new ArrayList<Kupac>();
+		for (Kupac t: kupci.values()) {
+			for (String ime: korisnickaImena) {
+				if (t.getKorisnickoIme().equals(ime)) {
+					zeljeniKupci.add(t);
+				}
+			}
+		}
+		return zeljeniKupci;
 	}
 	
 	private void loadKupci(String contextPath) {

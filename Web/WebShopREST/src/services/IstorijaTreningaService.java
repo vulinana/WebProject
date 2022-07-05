@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.annotation.PostConstruct;
@@ -22,10 +25,12 @@ import javax.ws.rs.core.Response;
 
 import beans.ClanarinaKupac;
 import beans.IstorijaTreninga;
+import beans.Kupac;
 import beans.PromoKod;
 import beans.SportskiObjekat;
 import beans.Clanarina.StatusClanarine;
 import dao.IstorijaTreningaDAO;
+import dao.KorisnikDAO;
 import dao.PromoKodDAO;
 import dao.SportskiObjekatDAO;
 import dao.TreningDAO;
@@ -62,6 +67,11 @@ public class IstorijaTreningaService {
 		if (ctx.getAttribute("sportskiObjekatDAO") == null) {
 	    	String contextPath = ctx.getRealPath("");
 			ctx.setAttribute("sportskiObjekatDAO", new SportskiObjekatDAO(contextPath));
+		}
+		
+		if (ctx.getAttribute("korisnikDAO") == null) {
+	    	String contextPath = ctx.getRealPath("");
+			ctx.setAttribute("korisnikDAO", new KorisnikDAO(contextPath));
 		}
 	}
 	
@@ -125,5 +135,20 @@ public class IstorijaTreningaService {
 			dao.kreirajTreningUIstoriji(istorijaTreninga);
 			return dao.findAll(istorijaTreninga.getKupac());
 		}
+	}
+	
+	@GET
+	@Path("/kupciPremaObjektu/{naziv}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<Kupac> getKupcePremaObjektu(@PathParam("naziv") String nazivObjekta) {
+		IstorijaTreningaDAO dao = (IstorijaTreningaDAO) ctx.getAttribute("istorijaTreningaDAO");
+		List<String> korisnickaImena = dao.getKupcePremaObjektu(nazivObjekta);
+		Set<String> set = new HashSet<>(korisnickaImena);
+		korisnickaImena.clear();
+		korisnickaImena.addAll(set);
+		
+		KorisnikDAO daoKorisnik = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
+		return daoKorisnik.getKupceByKorisnickaImena(korisnickaImena);
 	}
 }

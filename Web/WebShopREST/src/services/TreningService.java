@@ -8,7 +8,9 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.annotation.PostConstruct;
@@ -28,8 +30,10 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
 import beans.Komentar;
+import beans.Trener;
 import beans.Trening;
 import dao.KomentarDAO;
+import dao.KorisnikDAO;
 import dao.TreningDAO;
 
 @Path("/treninzi")
@@ -48,6 +52,11 @@ public class TreningService {
 		if (ctx.getAttribute("treningDAO") == null) {
 	    	String contextPath = ctx.getRealPath("");
 			ctx.setAttribute("treningDAO", new TreningDAO(contextPath));
+		}
+		
+		if (ctx.getAttribute("korisnikDAO") == null) {
+	    	String contextPath = ctx.getRealPath("");
+			ctx.setAttribute("korisnikDAO", new KorisnikDAO(contextPath));
 		}
 	}
 	
@@ -134,5 +143,21 @@ public class TreningService {
 	public Collection<Trening> izmeniSlikuTreninga(@PathParam("id") UUID id, Trening trening) {
 		TreningDAO dao = (TreningDAO) ctx.getAttribute("treningDAO");
 		return dao.izmeniSlikuTreninga(id, trening);
+	}
+	
+	@GET
+	@Path("/treneri/{nazivObjekta}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Trener> getTreneri(@PathParam("nazivObjekta") String nazivObjekta) {
+		TreningDAO dao = (TreningDAO) ctx.getAttribute("treningDAO");
+		List<String> korisnickaImena =  dao.getTrenere(nazivObjekta);
+		//eliminisemo duplikate
+		Set<String> set = new HashSet<>(korisnickaImena);
+		korisnickaImena.clear();
+		korisnickaImena.addAll(set);
+		
+		KorisnikDAO daoKorisnik = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
+		return daoKorisnik.getTrenereByKorisnickaImena(korisnickaImena);
 	}
 }

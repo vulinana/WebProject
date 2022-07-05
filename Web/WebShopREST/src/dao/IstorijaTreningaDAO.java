@@ -70,6 +70,16 @@ public class IstorijaTreningaDAO {
 		
 	}
 	
+	public List<String> getKupcePremaObjektu(String nazivObjekta){
+		List<String> korisnickaImena = new ArrayList<String>();
+		for (IstorijaTreninga i: istorijaTreningaZaKupce.values()) {
+			if (i.getSportskiObjekat().getNaziv().equals(nazivObjekta)) {
+				korisnickaImena.add(i.getKupac());
+			}
+		}
+		return korisnickaImena;
+	}
+	
 	private void loadIstorijaTreninga(String contextPath) {
 		FileWriter fileWriter = null;
 		BufferedReader in = null;
