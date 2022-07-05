@@ -9,7 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="style/pregledKorisnikaStyle.css">
 		<script src="jquery-3.3.1.min.js"></script>
 		<script src="logout.js"></script>
-		<script src="kupacTreninzi.js"></script>
+		<script src="kupacTreninnzi.js"></script>
 </head>
 <body>
 	<div class="topnav">
@@ -20,6 +20,14 @@
       <span class="leftPosition"><a href="kupacClanarine.html">Članarine</a></span>
       <span class="leftPosition"><a class="active" href="kupacTreninzi.html">Treninzi</a></span>
   	</div>
+  	<div class="search">
+	 	<form id="formaZaPretragu">
+	 		<table>
+	 			<tr><td><input type="text" placeholder="Objekat" id="pretragaObjekat"/></td><td>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" placeholder="Min cena" id="pretragaMinCena" min="0"/></td><td>-</td><td><input type="number" placeholder="Max cena" id="pretragaMaxCena" min="0"/></td><td>&nbsp;&nbsp;&nbsp;&nbsp;<input type="date" id="pretragaMinDatum"/></td><td>-</td><td><input type="date" id="pretragaMaxDatum"/></td><td><input type="submit" value="Pretraži"/></td></tr>
+	 		</table>
+	 	</form>
+	</div>
+	<p><select id="sortComboBox"><option value="sortiraj" hidden="true">Sortiraj</option><option value="nazivObjektaRastuce">Naziv objekta - rastuće</option><option value="nazivObjektaOpadajuce">Naziv objekta - opadajuće</option><option value="cenaTreningaRastuce">Cena treninga - rastuće</option><option value="cenaTreningaOpadajuce">Cena treninga - opadajuće</option><option value="datumRastuce">Datum - rastuće</option><option value="datumOpadajuce">Datum - opadajuće</option></select><select id="filterPoTipuObjekta"><option value="" hidden>Filtriraj po tipu objekta</option><option value="Teretana">Teretana</option><option value="Bazen">Bazen</option><option value="SportskiCentar">Sportski centar</option><option value="PlesniStudio">Plesni studio</option></select><select id="filterPoTipuTreninga"><option value="" hidden>Filtriraj po tipu treninga</option><option value="Grupni">Grupni</option><option value="Personalni">Personalni</option><option value="Teretana">Teretana</option><option value="Sauna">Sauna</option></select></p>
   <button id="treniraj" class="treniraj">Treniraj</button>
   <div align="center" class="centered">
 		<table id="tabela" class="tableKorisnici">

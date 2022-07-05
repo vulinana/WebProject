@@ -92,8 +92,24 @@ function prikaziTreninge(treninzi){
 			$('input[name="naziv3"]').val(t.naziv);
 			$('#popupOverlay3, #popup3').css("visibility", "visible");	
 		});
+		
 		slikaTreninga.append(slika);
 		tekstTreninga.append(trening).append(izmeniTreningButton).append(promeniSlikuButton);
+		
+		if (t.trener != ""){
+			let zakaziTreningButton =  $('<button class="izmeniButtons">Zakaži trening</button>');
+			zakaziTreningButton.click(function(){
+				$('input[name="tipTreninga4"]').val(t.tip);
+				$('input[name="doplata4"]').val(t.doplata);
+				$('input[name="trajanjeTreninga4"]').val(t.trajanje);
+				
+				$('input[name="naziv4"]').val(t.naziv);
+				$('input[name="trener4"]').val(t.trener);
+				$('#popupOverlay4, #popup4').css("visibility", "visible");	
+			});
+			tekstTreninga.append(zakaziTreningButton);
+		}
+		
 		$('#sadrzajPrikazaTreninga').append(slikaTreninga);
 		$('#sadrzajPrikazaTreninga').append(tekstTreninga);
 	}
@@ -161,6 +177,7 @@ $(document).ready(function() {
 	 $('#buttonDodajTrening').click(function(){
 		$('#popupOverlay, #popup').css("visibility", "visible");
 	});
+	
 	
 	$('form#dodajTreningForma').submit(function(event) {
 		event.preventDefault();
@@ -245,6 +262,10 @@ $(document).ready(function() {
 		$('#popupOverlay3, #popup3').css("visibility", "hidden");
 	});
 	
+	$('#popupButtonOtkazi4').click(function(){
+		$('#popupOverlay4, #popup4').css("visibility", "hidden");
+	});
+	
 	$('form#promeniSliku').submit(function(event) {
 		event.preventDefault();
 		let id = $('input[name="id3"]').val();
@@ -274,5 +295,30 @@ $(document).ready(function() {
 		  }
 		});
 	});
+	
+	$('form#zakaziTrening').submit(function(event) {
+		event.preventDefault();
+		let tipTreninga = $('input[name="tipTreninga4"]').val();
+		let doplata = $('input[name="doplata4"]').val();
+		let trajanje = $('input[name="trajanjeTreninga4"]').val();
+		let nazivTreninga = $('input[name="naziv4"]').val();
+		let trener = $('input[name="trener4"]').val();
+		let datum = $('input[name="datum4"]').val();
+		let vreme = $('input[name="vreme4"]').val();
+		let datumIVreme = datum + " " + vreme;
+		
+		$.ajax({
+			url: 'rest/terminiTreninga/' + tipTreninga,
+			type: 'POST',
+			data: JSON.stringify({trener: trener, sportskiObjekat: naziv, nazivTreninga: nazivTreninga, trajanje: trajanje, cenaTreninga: doplata, datumIVreme: datumIVreme}),
+			contentType: 'application/json',
+			success: function(){
+				$('#popupOverlay4, #popup4').css("visibility", "hidden");	
+			}
+		});
+		
+	});
+	
+	
 	
 });

@@ -8,7 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="style/prikazObjektaStyle.css">
 	<link rel="stylesheet" type="text/css" href="style/menadzerSportskiObjekatStyle.css">
 	<script src="jquery-3.3.1.min.js"></script>
-	<script src="menadzerSportskiObjekatt.js"></script>
+	<script src="menadzerSportskiObjekaat.js"></script>
 	<script src="logout.js"></script>
 	<link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css" type="text/css">
     <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
@@ -21,8 +21,9 @@
   	  <a href="menadzerProfil.html">Profil</a>
   	  <a href="menadzerHomePage.html">Početna</a>
   	  <span class="leftPosition"><a href="menadzerObjekti.html">Objekti</a></span>
-      <span class="leftPosition"><a class="active" href="menadzerSportskiObjekat.html">Sportski objekat</a></span>
-  </div>
+      <span class="leftPosition"><a class="active" href="menadzerSportskiObjekat.html">Moj objekat</a></span>
+      <span class="leftPosition"><a href="menadzerTreninzi.html">Treninzi u objektu</a></span>
+   </div>
 	<div class="logoINaziv">
 		<img id="logo"/>
 		<h1 id="naziv"></h1>
@@ -37,13 +38,13 @@
 		<h2>Komentari</h2>
 	</div>
 	<div class="treninzi" id="treninzi">
-		<div id="headerAndButton"><h2>Treninzi&nbsp;&nbsp;</h2><button id="buttonDodajTrening">Dodaj trening</button></div>
+		<div id="headerAndButton"><h2>Sadržaj&nbsp;&nbsp;</h2><button id="buttonDodajTrening">Dodaj</button></div>
 		<div id="sadrzajPrikazaTreninga">
 		</div>
 	</div>
 	<div class="popupOverlay" id="popupOverlay">
 		<div class="popup" id="popup">
-		<h4>Dodaj trening</h4>
+		<h4>Dodavanje novog sadržaja</h4>
 			<form id="dodajTreningForma" action="http://localhost:8080/WebShopREST/rest/treninzi/uploadImage" method="post" enctype="multipart/form-data">
 				<table>
 					<tr><td>Naziv:</td><td><input type="text" name="naziv" id="dodajObjekatNaziv" required/></td><td><p id="error" class="errorMessage"></p></td></tr>
@@ -88,6 +89,24 @@
 				</table>
 				<button type="button" id="popupButtonOtkazi3">Otkaži</button>
 				<button type="submit" id="popupButton3">Sačuvaj</button>
+			</form>
+		</div>
+	</div>
+	<div class="popupOverlay" id="popupOverlay4">
+		<div class="popup" id="popup4">
+			<h4>Zakaži trening</h4>
+			<form id="zakaziTrening">
+				<table>
+					<tr hidden="true"><td>Tip treninga:</td><td><input type="text" required name="tipTreninga4" id="tipTreninga4"/></td></tr>
+					<tr hidden="true"><td>Cena treninga:</td><td><input type="text" required name="doplata4" id="doplata4"/></td></tr>
+					<tr hidden="true"><td>Trajanje treninga:</td><td><input type="text" required name="trajanjeTreninga4" id="trajanjeTreninga4"/></td></tr>
+					<tr><td>Naziv treninga:</td><td><input type="text" readonly name="naziv4" id=""/></td></tr>
+					<tr><td>Trener:</td><td><input type="text" readonly name="trener4" id="trener4"/></td></tr>
+					<tr><td>Datum:</td><td><input type="date" required name="datum4" id="datum4"/></td></tr>
+					<tr><td>Vreme:</td><td><input type="time" required name="vreme4" id="vreme4"/></tr>
+				</table>
+				<button type="button" id="popupButtonOtkazi4">Otkaži</button>
+				<button type="submit" id="popupButton4">Sačuvaj</button>
 			</form>
 		</div>
 	</div>

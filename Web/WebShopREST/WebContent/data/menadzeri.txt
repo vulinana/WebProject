@@ -5,8 +5,28 @@
     "ime" : "Marko",
     "prezime" : "Markovic",
     "pol" : "MUSKO",
-    "datumRodjenja" : "2022-05-29",
+    "datumRodjenja" : "2000-06-25",
     "uloga" : "MENADZER",
-    "sportskiObjekat": "Mega gym"
+    "sportskiObjekat" : "Mega gym"
+  }
+ "menadzer2" : {
+    "korisnickoIme" : "menadzer2",
+    "lozinka" : "123",
+    "ime" : "Nikola",
+    "prezime" : "Nikolic",
+    "pol" : "MUSKO",
+    "datumRodjenja" : "2000-05-29",
+    "uloga" : "MENADZER",
+    "sportskiObjekat" : "Extra gym"
+  },
+ "menadzer3" : {
+    "korisnickoIme" : "menadzer3",
+    "lozinka" : "123",
+    "ime" : "Nikola",
+    "prezime" : "Zoric",
+    "pol" : "MUSKO",
+    "datumRodjenja" : "2001-05-29",
+    "uloga" : "MENADZER",
+    "sportskiObjekat" : "Super gym"
   }
 }

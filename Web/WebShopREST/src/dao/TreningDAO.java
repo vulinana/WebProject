@@ -113,6 +113,17 @@ public class TreningDAO {
 		return false;
 	}
 	
+	public Trening getByNazivObjektaINazivTreninga(String nazivObjekta, String nazivTreninga) {
+		
+		for (Trening t: treninzi.values()) {
+			if (t.getSportskiObjekatKomPripada().equals(nazivObjekta) && t.getNaziv().equals(nazivTreninga)) {
+				return t;
+			}
+		}
+		
+		return null;
+	}
+	
 	private void loadTreninzi(String contextPath) {
 		FileWriter fileWriter = null;
 		BufferedReader in = null;

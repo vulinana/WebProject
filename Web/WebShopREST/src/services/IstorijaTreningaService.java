@@ -23,9 +23,11 @@ import javax.ws.rs.core.Response;
 import beans.ClanarinaKupac;
 import beans.IstorijaTreninga;
 import beans.PromoKod;
+import beans.SportskiObjekat;
 import beans.Clanarina.StatusClanarine;
 import dao.IstorijaTreningaDAO;
 import dao.PromoKodDAO;
+import dao.SportskiObjekatDAO;
 import dao.TreningDAO;
 import dao.ClanarinaKupacDAO;
 
@@ -55,6 +57,11 @@ public class IstorijaTreningaService {
 		if (ctx.getAttribute("treningDAO") == null) {
 	    	String contextPath = ctx.getRealPath("");
 			ctx.setAttribute("treningDAO", new TreningDAO(contextPath));
+		}
+		
+		if (ctx.getAttribute("sportskiObjekatDAO") == null) {
+	    	String contextPath = ctx.getRealPath("");
+			ctx.setAttribute("sportskiObjekatDAO", new SportskiObjekatDAO(contextPath));
 		}
 	}
 	
@@ -106,7 +113,10 @@ public class IstorijaTreningaService {
 			IstorijaTreningaDAO dao = (IstorijaTreningaDAO) ctx.getAttribute("istorijaTreningaDAO");
 			
 			TreningDAO treningDao = (TreningDAO) ctx.getAttribute("treningDAO");
-			istorijaTreninga.setTrener(treningDao.pronadjiTreneraZaTrening(istorijaTreninga.getSportskiObjekat(), istorijaTreninga.getTrening()));
+			istorijaTreninga.setTrening(treningDao.getByNazivObjektaINazivTreninga(istorijaTreninga.getSportskiObjekat().getNaziv(), istorijaTreninga.getTrening().getNaziv()));
+			SportskiObjekatDAO sportskiObjekatDao = (SportskiObjekatDAO) ctx.getAttribute("sportskiObjekatDAO");
+			istorijaTreninga.setSportskiObjekat(sportskiObjekatDao.getByNaziv(istorijaTreninga.getSportskiObjekat().getNaziv()));
+			istorijaTreninga.setTrener(treningDao.pronadjiTreneraZaTrening(istorijaTreninga.getSportskiObjekat().getNaziv(), istorijaTreninga.getTrening().getNaziv()));
 			
 			int brojPreostalihTermina = Integer.parseInt(clanarinaKupac.getBrojPreostalihTermina()) - 1;
 			clanarinaKupac.setBrojPreostalihTermina(String.valueOf(brojPreostalihTermina));

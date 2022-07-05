@@ -2,10 +2,28 @@
   "anavulin" : {
     "kupac" : "anavulin",
     "clanarinaId" : "CLASSIC S",
-    "datumPlacanja" : "2022-06-15",
-    "vaziDo" : "2022-07-15",
-    "placenaCena" : 2376.0,
+    "datumPlacanja" : "2022-07-04",
+    "vaziDo" : "2022-08-03",
+    "placenaCena" : 2280.0,
     "status" : "Aktivna",
-    "brojPreostalihTermina" : "9"
+    "brojPreostalihTermina" : "25"
+  },
+  "magdalena" : {
+    "kupac" : "magdalena",
+    "clanarinaId" : "CLASSIC S",
+    "datumPlacanja" : "2022-07-02",
+    "vaziDo" : "2022-08-01",
+    "placenaCena" : 2400.0,
+    "status" : "Aktivna",
+    "brojPreostalihTermina" : "29"
+  },
+  "lazicv" : {
+    "kupac" : "lazicv",
+    "clanarinaId" : "CLASSIC S",
+    "datumPlacanja" : "2022-07-02",
+    "vaziDo" : "2022-08-01",
+    "placenaCena" : 2400.0,
+    "status" : "Aktivna",
+    "brojPreostalihTermina" : "29"
   }
 }

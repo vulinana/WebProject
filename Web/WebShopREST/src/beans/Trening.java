@@ -2,9 +2,10 @@ package beans;
 
 import java.util.UUID;
 
-enum TipTreninga {Grupni, Personalni, Teretana, Sauna}
 
 public class Trening {
+	
+	public enum TipTreninga {Grupni, Personalni, Teretana, Sauna}
 	
 	private UUID id;
 	private String naziv;

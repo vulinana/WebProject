@@ -8,16 +8,16 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class IstorijaTreninga {
 	
 	private UUID id;
-	@JsonFormat(pattern = "YYYY-MM-dd HH:mm")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date datumIVremePrijave;
-	private String sportskiObjekat;
-	private String trening;
+	private SportskiObjekat sportskiObjekat;
+	private Trening trening;
 	private String kupac;
 	private String trener;
 	
 	public IstorijaTreninga() {}
 	
-	public IstorijaTreninga(Date datumIVremePrijave, String sportskiObjekat, String trening, String kupac, String trener) {
+	public IstorijaTreninga(Date datumIVremePrijave, SportskiObjekat sportskiObjekat, Trening trening, String kupac, String trener) {
 		super();
 		this.datumIVremePrijave = datumIVremePrijave;
 		this.sportskiObjekat = sportskiObjekat;
@@ -34,11 +34,11 @@ public class IstorijaTreninga {
 		this.datumIVremePrijave = datumIVremePrijave;
 	}
 
-	public String getTrening() {
+	public Trening getTrening() {
 		return trening;
 	}
 
-	public void setTrening(String trening) {
+	public void setTrening(Trening trening) {
 		this.trening = trening;
 	}
 
@@ -58,11 +58,11 @@ public class IstorijaTreninga {
 		this.trener = trener;
 	}
 
-	public String getSportskiObjekat() {
+	public SportskiObjekat getSportskiObjekat() {
 		return sportskiObjekat;
 	}
 
-	public void setSportskiObjekat(String sportskiObjekat) {
+	public void setSportskiObjekat(SportskiObjekat sportskiObjekat) {
 		this.sportskiObjekat = sportskiObjekat;
 	}
 

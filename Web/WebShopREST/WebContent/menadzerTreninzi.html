@@ -1,0 +1,35 @@
+<html>
+<head>
+		<meta charset="utf-8">
+		<title>Treninzi</title>
+		<link rel="stylesheet" type="text/css" href="style/homePageStyles.css">
+		<link rel="stylesheet" type="text/css" href="style/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="style/kupacTreninziStyle.css">
+		<link rel="stylesheet" type="text/css" href="style/pregledKorisnikaStyle.css">
+		<script src="jquery-3.3.1.min.js"></script>
+		<script src="logout.js"></script>
+		<script src="menadzerTreninnzi.js"></script>
+</head>
+<body>
+	<div class="topnav">
+  	  <a id="logout" href="pocetna.html">Odjavi se</a>
+  	  <a href="menadzerProfil.html">Profil</a>
+  	  <a href="menadzerHomePage.html">Početna</a>
+  	  <span class="leftPosition"><a href="menadzerObjekti.html">Objekti</a></span>
+      <span class="leftPosition"><a href="menadzerSportskiObjekat.html">Moj objekat</a></span>
+      <span class="leftPosition"><a class="active" href="menadzerTreninzi.html">Treninzi u objektu</a></span>
+    </div>
+  	<div class="search">
+	 	<form id="formaZaPretragu">
+	 		<table>
+	 			<tr><td><input type="text" placeholder="Min cena" id="pretragaMinCena" min="0"/></td><td>-</td><td><input type="number" placeholder="Max cena" id="pretragaMaxCena" min="0"/></td><td>&nbsp;&nbsp;&nbsp;&nbsp;<input type="date" id="pretragaMinDatum"/></td><td>-</td><td><input type="date" id="pretragaMaxDatum"/></td><td><input type="submit" value="Pretraži"/></td></tr>
+	 		</table>
+	 	</form>
+	</div>
+  <div align="center" class="centered">
+  		<p><select id="sortComboBox"><option value="sortiraj" hidden="true">Sortiraj</option><option value="cenaTreningaRastuce">Cena treninga - rastuće</option><option value="cenaTreningaOpadajuce">Cena treninga - opadajuće</option><option value="datumRastuce">Datum - rastuće</option><option value="datumOpadajuce">Datum - opadajuće</option></select><select id="filterPoTipuTreninga"><option value="" hidden>Filtriraj po tipu treninga</option><option "Grupni">Grupni</option><option value="Personalni">Personalni</option></select></p>
+		<table id="tabela" class="tableKorisnici">
+		</table>
+	</div>
+</body>
+</html>
