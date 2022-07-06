@@ -25,6 +25,7 @@ import javax.ws.rs.core.Response;
 import beans.Clanarina;
 import beans.Clanarina.StatusClanarine;
 import beans.ClanarinaKupac;
+import beans.IstorijaTreninga;
 import beans.Korisnik;
 import beans.Korisnik.Uloga;
 import beans.Kupac;
@@ -110,6 +111,24 @@ public class KorisnikService {
 	public Response registrujMenadzera(Menadzer menadzer) {
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
 		dao.registerMenadzer(menadzer);
+		return Response.status(200).build();
+	}
+	
+	@POST
+	@Path("/registracijaTreneraMenadzera")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response registrujTrenera(Korisnik korisnik) {
+		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
+		if(dao.korisnikExists(korisnik.getKorisnickoIme())) {
+			return Response.status(400).entity("Korisničko ime je zauzeto").build();
+		}
+		
+		if (korisnik.getUloga() == Uloga.TRENER) {
+			dao.registerTrener(new Trener(korisnik.getKorisnickoIme(), korisnik.getLozinka(), korisnik.getIme(), korisnik.getPrezime(), korisnik.getPol().toString(), korisnik.getDatumRodjenja(), korisnik.getUloga()));
+		} else {
+			dao.registerMenadzer(new Menadzer(korisnik.getKorisnickoIme(), korisnik.getLozinka(), korisnik.getIme(), korisnik.getPrezime(), korisnik.getPol().toString(), korisnik.getDatumRodjenja(), korisnik.getUloga().toString()));
+		}
 		return Response.status(200).build();
 	}
 	

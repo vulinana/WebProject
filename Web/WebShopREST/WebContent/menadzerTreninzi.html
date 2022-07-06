@@ -5,7 +5,7 @@
 		<link rel="stylesheet" type="text/css" href="style/homePageStyles.css">
 		<link rel="stylesheet" type="text/css" href="style/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="style/kupacTreninziStyle.css">
-		<link rel="stylesheet" type="text/css" href="style/pregledKorisnikaStyle.css">
+		<link rel="stylesheet" type="text/css" href="style/pregledKorisnikaStyles.css">
 		<script src="jquery-3.3.1.min.js"></script>
 		<script src="logout.js"></script>
 		<script src="menadzerTreninnzi.js"></script>
@@ -28,10 +28,12 @@
 	 		</table>
 	 	</form>
 	</div>
-  <div align="center" class="centered">
+  <div align="center" class="centered2">
   		<p><select id="sortComboBox"><option value="sortiraj" hidden="true">Sortiraj</option><option value="cenaTreningaRastuce">Cena treninga - rastuće</option><option value="cenaTreningaOpadajuce">Cena treninga - opadajuće</option><option value="datumRastuce">Datum - rastuće</option><option value="datumOpadajuce">Datum - opadajuće</option></select><select id="filterPoTipuTreninga"><option value="" hidden>Filtriraj po tipu treninga</option><option "Grupni">Grupni</option><option value="Personalni">Personalni</option></select></p>
+  		<div class="tableScroll">
 		<table id="tabela" class="tableKorisnici">
 		</table>
+		</div>
 	</div>
 </body>
 </html>

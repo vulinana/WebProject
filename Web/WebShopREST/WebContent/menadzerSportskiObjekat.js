@@ -80,10 +80,17 @@ function prikaziTreninge(treninzi){
 			$('input[name="id2"]').val(t.id);
 			$('input[name="naziv2"]').val(t.naziv);
 			$('#tip2').val(t.tip);
-			$('input[name="opis2"]').val(t.opis);
+			$('#izmeniObjekatOpis2').val(t.opis);
 			$('input[name="trajanje2"]').val(t.trajanje);
 			$('input[name="doplata2"]').val(t.doplata);
-			$('#izmeniObjekatTrener2').val(t.trener);
+	        if (t.tip == "Personalni" || t.tip == "Grupni"){
+				$('#izmeniObjekatTrener2').css("visibility", "visible");
+				$('#labelTrener2').css("visibility", "visible");
+				$('#izmeniObjekatTrener2').val(t.trener);
+			} else {
+				$('#izmeniObjekatTrener2').css("visibility", "hidden");
+				$('#labelTrener2').css("visibility", "hidden");
+			}
 			$('#popupOverlay2, #popup2').css("visibility", "visible");
 		});
 		let promeniSlikuButton = $('<button class="izmeniButtons">Promeni sliku</button>');
@@ -122,17 +129,11 @@ function updateTreninge(treninzi){
 
 
 function dodajTrenere(treneri) {
-	
-		comboBoxOption = $('<option value="">Nema trenera</option>');
-		$('#dodajObjekatTrener').append(comboBoxOption);
 		
 		for (let t of treneri) {
 				comboBoxOption = $('<option value="' + t.korisnickoIme + '">' + t.korisnickoIme + '</option>');
 				$('#dodajObjekatTrener').append(comboBoxOption);
 		}
-		
-		comboBoxOption = $('<option value="">Nema trenera</option>');
-		$('#izmeniObjekatTrener2').append(comboBoxOption);
 		
 		for (let t of treneri) {
 				comboBoxOption = $('<option value="' + t.korisnickoIme + '">' + t.korisnickoIme + '</option>');
@@ -183,10 +184,15 @@ $(document).ready(function() {
 		event.preventDefault();
 		let naziv = $('input[name="naziv"]').val();
 		let tip = $('#tip').val();
-		let opis = $('input[name="opis"]').val();
+		let opis = $('#dodajObjekatOpis').val();
 		let trajanje = $('input[name="trajanje"]').val();
 		let doplata = $('input[name="doplata"]').val();
-		let trener = $('#dodajObjekatTrener').val();
+		let trener;
+		if (tip != "Personalni" && tip != "Grupni"){
+			trener = "";
+		} else {
+			trener = $('#dodajObjekatTrener').val();
+		}
 		var s = JSON.parse(localStorage.getItem("sportskiObjekat"));
 	 	let sportskiObjekatKomPripada = s.naziv;
 	 	
@@ -209,7 +215,9 @@ $(document).ready(function() {
 						contentType: 'application/json',
 						success : function(treninzi) {
 							updateTreninge(treninzi);	
-							$('#popupOverlay, #popup').css("visibility", "hidden");		
+							$('#popupOverlay, #popup').css("visibility", "hidden");	
+							$('#dodajObjekatTrener').css("visibility", "hidden");
+							$('#labelTrener').css("visibility", "hidden");	
 						},
 						error : function(message) {
 							$('#error').text('Naziv vec postoji!');
@@ -224,15 +232,19 @@ $(document).ready(function() {
 	
 	$('form#izmeniTreningForma2').submit(function(event) {
 		event.preventDefault();
-		$('#popupOverlay2, #popup2').css("visibility", "hidden");
 		let id = $('input[name="id2"]').val();
 		let naziv = $('input[name="naziv2"]').val();
 		let tip = $('#tip2').val();
 		let slika = $('input[name="slika2"]').val();
-		let opis = $('input[name="opis2"]').val();
+		let opis = $('#izmeniObjekatOpis2').val();
 		let trajanje = $('input[name="trajanje2"]').val();
 		let doplata = $('input[name="doplata2"]').val();
-		let trener = $('#izmeniObjekatTrener2').val();
+		let trener;
+		if (tip != "Personalni" && tip != "Grupni"){
+			trener = "";
+		} else {
+			trener = $('#izmeniObjekatTrener2').val();
+		}
 		var s = JSON.parse(localStorage.getItem("sportskiObjekat"));
 	 	let sportskiObjekatKomPripada = s.naziv;
 		
@@ -243,6 +255,9 @@ $(document).ready(function() {
 			contentType: 'application/json',
 			success : function(treninzi) {
 				updateTreninge(treninzi);
+				$('#popupOverlay2, #popup2').css("visibility", "hidden");
+				$('#izmeniObjekatTrener2').css("visibility", "hidden");
+				$('#labelTrener2').css("visibility", "hidden");
 			}
 		});
 	
@@ -252,10 +267,14 @@ $(document).ready(function() {
 	
 	 $('#popupButtonOtkazi').click(function(){
 		$('#popupOverlay, #popup').css("visibility", "hidden");
+		$('#dodajObjekatTrener').css("visibility", "hidden");
+		$('#labelTrener').css("visibility", "hidden");
 	});
 	
 	 $('#popupButtonOtkazi2').click(function(){
 		$('#popupOverlay2, #popup2').css("visibility", "hidden");
+		$('#izmeniObjekatTrener2').css("visibility", "hidden");
+		$('#labelTrener2').css("visibility", "hidden");
 	});
 	
 	$('#popupButtonOtkazi3').click(function(){
@@ -319,6 +338,34 @@ $(document).ready(function() {
 		
 	});
 	
+	 let tip = $('#tip').val();
+        if (tip == "Personalni" || tip == "Grupni"){
+			$('#dodajObjekatTrener').css("visibility", "visible");
+			$('#labelTrener').css("visibility", "visible");
+		} else {
+			$('#dodajObjekatTrener').css("visibility", "hidden");
+			$('#labelTrener').css("visibility", "hidden");
+	}
+	$('#tip').change(function(){
+        tip = $('#tip').val();
+        if (tip == "Personalni" || tip == "Grupni"){
+			$('#dodajObjekatTrener').css("visibility", "visible");
+			$('#labelTrener').css("visibility", "visible");
+		} else {
+			$('#dodajObjekatTrener').css("visibility", "hidden");
+			$('#labelTrener').css("visibility", "hidden");
+		}
+    });
 	
+	$('#tip2').change(function(){
+        tip = $('#tip2').val();
+        if (tip == "Personalni" || tip == "Grupni"){
+			$('#izmeniObjekatTrener2').css("visibility", "visible");
+			$('#labelTrener2').css("visibility", "visible");
+		} else {
+			$('#izmeniObjekatTrener2').css("visibility", "hidden");
+			$('#labelTrener2').css("visibility", "hidden");
+		}
+    });
 	
 });

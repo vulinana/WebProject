@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="style/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="style/homePageStyles.css">
-		<link rel="stylesheet" type="text/css" href="style/pregledKorisnikaStyle.css">
+		<link rel="stylesheet" type="text/css" href="style/pregledKorisnikaStyles.css">
 		<script src="jquery-3.3.1.min.js"></script>
 		<script src="logout.js"></script>
 		<script src="pregledKorisnikaa.js"></script>
@@ -19,6 +19,7 @@
       	 <span class="leftPosition"><a class="active" href="pregledKorisnika.html">Korisnici</a></span>
       	 <span class="leftPosition"><a href="administratorPromoKodovi.html">Promo kodovi</a></span>
       	 <span class="leftPosition"><a href="administratorKomentari.html">Komentari</a></span>
+      	 <span class="leftPosition"><a href="administratorRegistracijaTrenera.html">Registruj trenera/menadžera</a></span>
 	</div>
 	<div class="search">
 	 	<form id="formaZaPretragu">
@@ -31,8 +32,10 @@
     <select class="filter1ComboBox" id="filter1ComboBox"><option value="filtrirajPoUlozi" hidden="true">Filtriraj po ulozi</option><option value="ADMINISTRATOR">Administrator</option><option value="MENADZER">Menadzer</option><option value="TRENER">Trener</option><option value="KUPAC">Kupac</option></select>
     <select class="filter2ComboBox" id="filter2ComboBox" hidden="true"><option value="filtrirajPoTipu" hidden="true">Filtriraj po tipu</option><option value="ZLATNI">Zlatni</option><option value="SREBRNI">Srebrni</option><option value="BRONZANI">Bronzani</option></select></p>
 	<div align="center" class="centered">
+	<div class="tableScroll">
 		<table id="tabela" class="tableKorisnici">
 		</table>
+	</div>
 	</div>
 </body>
 </html>

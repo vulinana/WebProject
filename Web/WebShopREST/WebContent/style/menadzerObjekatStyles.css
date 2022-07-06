@@ -1,0 +1,57 @@
+.errorMessage{
+	color: red;
+	margin: auto;
+	text-align: center;
+}
+
+.izmeniButtons {
+	cursor: pointer;
+	background-color: lightgreen;
+	padding: 10px;
+	margin: 2px;
+}
+
+.popup1 {
+	width: 600px;
+	background: #90EE90;
+	border-radius: 6px;
+	position: absolute;
+	top: 10%;
+	left: 50%;
+	transform: translate(-50%, -1%) scale(1);
+	padding: 30px 30px 30px;
+	color: #333;
+	visibility: hidden;
+}
+
+.popupOverlay1 {
+	background-color: rgba(0,0,0, .8);
+	border: solid 2px #666;
+	padding: 2rem;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	visibility: hidden;
+}
+
+.popup1 button{
+	cursor: pointer;
+	width: 49%;
+	margin-top: 50px;
+	padding: 10px 0;
+	background: #6fd649;
+	color: #fff;
+	border: 0;
+	outline: none;
+	font-size:18px;
+	border-radius: 4px;
+}
+
+#dodajObjekatOpis, #izmeniObjekatOpis2 {
+	height: 100px;
+}
+
+#vreme4, #datum4 {
+	width: 190px;
+}

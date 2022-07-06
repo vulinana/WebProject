@@ -55,7 +55,7 @@ public class IstorijaTreningaDAO {
 		
 		List<IstorijaTreninga> istorijaTreningaZaZeljenogKupca = new ArrayList<IstorijaTreninga>();
 		for (IstorijaTreninga i: istorijaTreningaZaKupce.values()) {
-			if (i.getKupac().equals(korisnickoImeKupca) && i.getSportskiObjekat().equals(objekat)) {
+			if (i.getKupac().equals(korisnickoImeKupca) && i.getSportskiObjekat().getNaziv().equals(objekat)) {
 				istorijaTreningaZaZeljenogKupca.add(i);
 			}
 		}

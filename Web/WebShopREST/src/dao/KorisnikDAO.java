@@ -68,6 +68,11 @@ public class KorisnikDAO {
 		saveKupci();
 	}
 	
+	public void registerTrener(Trener trener) {
+		treneri.put(trener.getKorisnickoIme(), trener);
+		saveTreneri();
+	}
+	
 	public void registerMenadzer(Menadzer menadzer) {
 		menadzeri.put(menadzer.getKorisnickoIme(), menadzer);
 		saveMenadzeri();

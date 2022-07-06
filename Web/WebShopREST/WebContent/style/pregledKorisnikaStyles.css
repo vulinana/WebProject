@@ -2,15 +2,33 @@
 	position: relative;
 }
 
-.tableKorisnici {
+.centered2{
+	position: relative;
+	top: 40px;
+}
+
+.centered2 table {
+	width: 100%;
+}
+
+.tableScroll {
+	height:440px;
+	width: 1200px;
+ 	overflow-y:auto;  
+}
+
+.centered table {
+  width:100%;
+}
+
+.tableScroll table thead .text { 
+	position:absolute;  
+  	top:-20px;
+  	z-index:2;
     border-collapse: collapse;
-    margin: 25px 0;
     font-size: 0.9em;
     font-family: sans-serif;
-    width: 1200px;
-    max-height: 500px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    overflow: scroll;
 }
 
 .tableKorisnici thead tr {
