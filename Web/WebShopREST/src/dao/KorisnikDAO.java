@@ -445,6 +445,25 @@ public class KorisnikDAO {
 		return zeljeniKupci;
 	}
 	
+	public void razresiMenadzeraDuznostiNadObrisanimObjektom(String naziv) {
+		for (Menadzer m: menadzeri.values()) {
+			if (m.getSportskiObjekat().equals(naziv)) {
+				m.setSportskiObjekat("");
+			}
+		}
+		saveMenadzeri();
+	}
+	
+	public Collection<Menadzer> zaduziMenadzera(String menadzer, String naziv) {
+		for(Menadzer m: menadzeri.values()) {
+			if (m.getKorisnickoIme().equals(menadzer)) {
+				m.setSportskiObjekat(naziv);
+			}
+		}
+		saveMenadzeri();
+		return findSlobodniMenadzeri();
+	}
+	
 	private void loadKupci(String contextPath) {
 		FileWriter fileWriter = null;
 		BufferedReader in = null;

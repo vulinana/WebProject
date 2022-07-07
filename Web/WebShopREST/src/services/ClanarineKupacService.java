@@ -4,14 +4,12 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -22,17 +20,12 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import beans.ClanarinaKupac;
-import beans.Kupac;
 import beans.PromoKod;
-import beans.TipKupca;
 import beans.Clanarina.StatusClanarine;
 import beans.Clanarina.TipClanarine;
-import beans.TipKupca.NazivTipaKupca;
 import dao.ClanarinaKupacDAO;
-import dao.KomentarDAO;
 import dao.KorisnikDAO;
 import dao.PromoKodDAO;
-import dao.TipKupcaDAO;
 
 @Path("/clanarineKupac")
 public class ClanarineKupacService {
@@ -82,7 +75,12 @@ public class ClanarineKupacService {
 					throw new WebApplicationException(Response.status(400).entity("Promo kod važi od " + dateFormat.format(promoKod.getVaziOd()) + "!").build());
 				} else if (promoKod.getVaziDo().before(currentDate)) {
 					throw new WebApplicationException(Response.status(400).entity("Promo kod je važio do " + dateFormat.format(promoKod.getVaziDo()) + "!").build());
+				} else if (promoKod.getBrojIskoriscavanja() <= 0) {
+					throw new WebApplicationException(Response.status(400).entity("Promo kod je upotrebljen maksimalan broj puta!").build());
 				} else {
+					
+					promoKod.setBrojIskoriscavanja(promoKod.getBrojIskoriscavanja() - 1);
+					promoKodDao.izmeniPromoKod(promoKod);
 					double novaCena = 0;
 					novaCena = clanarinaKupac.getPlacenaCena() - clanarinaKupac.getPlacenaCena()*promoKod.getProcenatUmanjenjaClanarine()/100;
 					clanarinaKupac.setPlacenaCena(novaCena);

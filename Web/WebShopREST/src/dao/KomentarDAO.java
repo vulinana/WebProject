@@ -27,7 +27,7 @@ public class KomentarDAO {
 
 	private String path = "";
 	public static HashMap<String, Komentar> komentari = new HashMap<String, Komentar>();
-	
+	public static HashMap<String, Komentar> obrisaniKomentari = new HashMap<String, Komentar>();
 	
 	public void setPath(String path) {
 		this.path = path;
@@ -92,6 +92,16 @@ public class KomentarDAO {
 		return komentari.values();
 	}
 	
+	public Collection<Komentar> deleteKomentar(String id){
+		
+		Komentar k = komentari.get(id);
+		k.setIzbrisan(true);
+		komentari.remove(id);
+		obrisaniKomentari.put(k.getId().toString(), k);
+		saveKomentar();
+		return komentari.values();
+	}
+	
 	private void loadKomentari(String contextPath) {
 		FileWriter fileWriter = null;
 		BufferedReader in = null;
@@ -139,10 +149,11 @@ public class KomentarDAO {
 				}
 			}
 		}
-		
+		izbaciObrisane();
 	}
 	
 	private void saveKomentar() {
+		ubaciObrisane();
 		File f = new File(path + "/data/komentari.txt");
 		FileWriter fileWriter = null;
 		try {
@@ -164,6 +175,28 @@ public class KomentarDAO {
 				}
 			}
 		}
+		
+		izbaciObrisane();
+	}
+	
+	private static void izbaciObrisane() {
+		
+		for (Komentar k: komentari.values()) {
+			
+			if (k.isIzbrisan()) {
+				obrisaniKomentari.put(k.getId().toString(), k);
+			}
+		}
+		
+		for (Komentar k: obrisaniKomentari.values()) {
+			komentari.remove(k.getId().toString());
+		}
+		
+	}
+	
+	
+	private void ubaciObrisane() {
+		komentari.putAll(obrisaniKomentari);
 	}
 	
 }

@@ -20,13 +20,15 @@ import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
 import com.fasterxml.jackson.databind.type.MapType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
+import beans.PromoKod;
+import beans.SportskiObjekat;
 import beans.Trening;
 
 public class TreningDAO {
 
 	private String path = "";
 	public static HashMap<String, Trening> treninzi = new HashMap<String, Trening>();
-	
+	public static HashMap<String, Trening> obrisaniTreninzi = new HashMap<String, Trening>();
 	
 	public void setPath(String path) {
 		this.path = path;
@@ -136,6 +138,15 @@ public class TreningDAO {
 		return korisnickaImena;
 	}
 	
+	public void deleteTrening(String id){
+		
+		Trening t = treninzi.get(id);
+		t.setIzbrisan(true);
+		treninzi.remove(id);
+		obrisaniTreninzi.put(t.getId().toString(), t);
+		saveTreninzi();
+	}
+	
 	private void loadTreninzi(String contextPath) {
 		FileWriter fileWriter = null;
 		BufferedReader in = null;
@@ -183,10 +194,11 @@ public class TreningDAO {
 				}
 			}
 		}
-		
+		izbaciObrisane();
 	}
 	
 	private void saveTreninzi() {
+		ubaciObrisane();
 		File f = new File(path + "/data/treninzi.txt");
 		FileWriter fileWriter = null;
 		try {
@@ -208,6 +220,27 @@ public class TreningDAO {
 				}
 			}
 		}
+		izbaciObrisane();
+	}
+	
+	private static void izbaciObrisane() {
+		
+		for (Trening t: treninzi.values()) {
+			
+			if (t.isIzbrisan()) {
+				obrisaniTreninzi.put(t.getId().toString(), t);
+			}
+		}
+		
+		for (Trening s: obrisaniTreninzi.values()) {
+			treninzi.remove(s.getId().toString());
+		}
+		
+	}
+	
+	
+	private void ubaciObrisane() {
+		treninzi.putAll(obrisaniTreninzi);
 	}
 	
 }

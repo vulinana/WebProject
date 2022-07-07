@@ -197,3 +197,10 @@ table {
 	top: 390px;
 	left: 850px;
 }
+
+.adminIzbrisiTrening {
+	background: lightgreen;
+	cursor: pointer;
+	padding: 7px;
+	margin: 2px;
+}

@@ -17,6 +17,7 @@ import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -29,10 +30,8 @@ import javax.ws.rs.core.MediaType;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
-import beans.Komentar;
 import beans.Trener;
 import beans.Trening;
-import dao.KomentarDAO;
 import dao.KorisnikDAO;
 import dao.TreningDAO;
 
@@ -123,6 +122,7 @@ public class TreningService {
 		if (dao.treningExists(trening.getNaziv())) {
 			throw new Exception("Zauzeto ime");
 		}
+		trening.setIzbrisan(false);
 		trening.setId();
 		return dao.kreirajNoviTrening(trening);
 	}
@@ -159,5 +159,14 @@ public class TreningService {
 		
 		KorisnikDAO daoKorisnik = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
 		return daoKorisnik.getTrenereByKorisnickaImena(korisnickaImena);
+	}
+	
+	@DELETE
+	@Path("/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public void deletePromoKod(@PathParam("id") String id) {
+		TreningDAO dao = (TreningDAO) ctx.getAttribute("treningDAO");
+		dao.deleteTrening(id);
 	}
 }

@@ -141,10 +141,22 @@ function dodajTrenere(treneri) {
 		}
 }
 
+function isInPast(date){
+	const currentDate = new Date();
+	return currentDate > date;
+}
+
 $(document).ready(function() {
 	
 	 var menadzer = JSON.parse(localStorage.getItem("ulogovaniKorisnik"));
 	 naziv = menadzer.sportskiObjekat;
+	 if (naziv == ""){
+		$('#logoINaziv').css("visibility", "hidden");
+		$('#komentari').css("visibility", "hidden");
+		$('#treninzi').css("visibility", "hidden");	
+		$('#info').text("Menadžer nije zadužen ni za jedan sportski objekat!");
+		return;
+	 }
 	 $.get({
 			url: 'rest/sportskiObjekti/' + naziv,
 			success: function(sportskiObjekat) {
@@ -326,12 +338,20 @@ $(document).ready(function() {
 		let vreme = $('input[name="vreme4"]').val();
 		let datumIVreme = datum + " " + vreme;
 		
+		if (isInPast(new Date(datumIVreme))){
+			$('#error4').text("Ne možete zakazati trening u prošlosti!");
+			return;
+		}
+		
 		$.ajax({
 			url: 'rest/terminiTreninga/' + tipTreninga,
 			type: 'POST',
 			data: JSON.stringify({trener: trener, sportskiObjekat: naziv, nazivTreninga: nazivTreninga, trajanje: trajanje, cenaTreninga: doplata, datumIVreme: datumIVreme}),
 			contentType: 'application/json',
 			success: function(){
+				$('#error4').text("");
+				$('input[name="datum4"]').val("");
+				$('input[name="vreme4"]').val("");
 				$('#popupOverlay4, #popup4').css("visibility", "hidden");	
 			}
 		});

@@ -1,11 +1,13 @@
 package beans;
 
 import java.util.Date;
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class PromoKod {
 	
+	private UUID id;
 	private String oznaka;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date vaziOd;
@@ -13,6 +15,7 @@ public class PromoKod {
 	private Date vaziDo;
 	private int brojIskoriscavanja;
 	private double procenatUmanjenjaClanarine;
+	private boolean izbrisan;
 	
 	public PromoKod() {}
 	
@@ -57,6 +60,23 @@ public class PromoKod {
 	public void setProcenatUmanjenjaClanarine(double procenatUmanjenjaClanarine) {
 		this.procenatUmanjenjaClanarine = procenatUmanjenjaClanarine;
 	}
-	
+
+	public boolean isIzbrisan() {
+		return izbrisan;
+	}
+
+	public void setIzbrisan(boolean izbrisan) {
+		this.izbrisan = izbrisan;
+	}
+
+
+	public UUID getId() {
+		return id;
+	}
+
+
+	public void setId(UUID id) {
+		this.id = id;
+	}
 	
 }

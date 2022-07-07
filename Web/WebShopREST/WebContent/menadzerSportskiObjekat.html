@@ -5,10 +5,10 @@
 	<title>Insert title here</title>
 	<link rel="stylesheet" type="text/css" href="style/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="style/homePageStyles.css">
-	<link rel="stylesheet" type="text/css" href="style/prikazObjektaStyle.css">
+	<link rel="stylesheet" type="text/css" href="style/prikazObjektaStyles.css">
 	<link rel="stylesheet" type="text/css" href="style/menadzerObjekatStyles.css">
 	<script src="jquery-3.3.1.min.js"></script>
-	<script src="menadzerSportskiObjekat.js"></script>
+	<script src="menadzerSportskiObjekaat.js"></script>
 	<script src="logout.js"></script>
 	<link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css" type="text/css">
     <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
@@ -26,7 +26,8 @@
       <span class="leftPosition"><a href="menadzerTreneri.html">Angažovani treneri</a></span>
       <span class="leftPosition"><a href="menadzerKupci.html">Kupci</a></span>
    </div>
-	<div class="logoINaziv">
+   <label id="info"></label>
+	<div class="logoINaziv" id="logoINaziv">
 		<img id="logo"/>
 		<h1 id="naziv"></h1>
 		<label id="ocena"></label>
@@ -110,6 +111,7 @@
 				<button type="button" id="popupButtonOtkazi4">Otkaži</button>
 				<button type="submit" id="popupButton4">Sačuvaj</button>
 			</form>
+			<p id="error4" style="color:red;"></p>
 		</div>
 	</div>
 </body>

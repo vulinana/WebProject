@@ -12,7 +12,6 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -60,7 +59,7 @@ public class TerminTreningaService {
 		SportskiObjekat sportskiObjekat = daoObjekat.getByNaziv(terminTreninga.getSportskiObjekat());
 		terminTreninga.setTipObjekta(sportskiObjekat.getTipObjekta());
 		terminTreninga.setTipTreniga(TipTreninga.valueOf(tipTreninga));
-		
+		terminTreninga.setOtkazan(false);
 		TerminTreningaDAO dao = (TerminTreningaDAO) ctx.getAttribute("terminTreningaDAO");
 		dao.kreirajTerminTreninga(terminTreninga);
 		
@@ -88,8 +87,8 @@ public class TerminTreningaService {
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<TerminTreninga> deleteTerminTreninga(@PathParam("id") String id){
+	public void deleteTerminTreninga(@PathParam("id") String id){
 		TerminTreningaDAO dao = (TerminTreningaDAO) ctx.getAttribute("terminTreningaDAO");
-		return dao.deleteTerminTreninga(id);
+		dao.deleteTerminTreninga(id);
 	}
 }

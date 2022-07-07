@@ -20,6 +20,7 @@ public class TerminTreninga {
 	private double cenaTreninga;
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date datumIVreme;
+	private boolean otkazan;
 	
 	public TerminTreninga() {}
 	
@@ -106,9 +107,21 @@ public class TerminTreninga {
 	public void setTrajanje(double trajanje) {
 		this.trajanje = trajanje;
 	}
-	
-	
-	
-	
+
+	public TipTreninga getTipTreninga() {
+		return tipTreninga;
+	}
+
+	public void setTipTreninga(TipTreninga tipTreninga) {
+		this.tipTreninga = tipTreninga;
+	}
+
+	public boolean isOtkazan() {
+		return otkazan;
+	}
+
+	public void setOtkazan(boolean otkazan) {
+		this.otkazan = otkazan;
+	}
 	
 }

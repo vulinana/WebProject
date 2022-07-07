@@ -1,5 +1,7 @@
 package beans;
 
+import java.util.UUID;
+
 import beans.RadnoVreme.Dan;
 
 
@@ -15,6 +17,7 @@ public class SportskiObjekat {
 	private String logo;
 	private double prosecnaOcena;
 	private RadnoVreme radnoVreme;
+	private boolean izbrisan;
 	
 	public SportskiObjekat() {}
 	
@@ -90,6 +93,12 @@ public class SportskiObjekat {
 	public void setRadnoVreme(RadnoVreme radnoVreme) {
 		this.radnoVreme = radnoVreme;
 	}
-	
-	
+
+	public boolean isIzbrisan() {
+		return izbrisan;
+	}
+
+	public void setIzbrisan(boolean izbrisan) {
+		this.izbrisan = izbrisan;
+	}
 }

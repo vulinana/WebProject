@@ -11,11 +11,13 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -29,10 +31,13 @@ import javax.ws.rs.core.MediaType;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
+import beans.PromoKod;
 import beans.RadnoVreme;
 import beans.SportskiObjekat;
 import beans.RadnoVreme.Dan;
 import dao.KomentarDAO;
+import dao.KorisnikDAO;
+import dao.PromoKodDAO;
 import dao.SportskiObjekatDAO;
 
 @Path("/sportskiObjekti")
@@ -56,6 +61,11 @@ public class SportskiObjekatService {
 		if (ctx.getAttribute("komentarDAO") == null) {
 	    	String contextPath = ctx.getRealPath("");
 			ctx.setAttribute("komentarDAO", new KomentarDAO(contextPath));
+		}
+		
+		if (ctx.getAttribute("korisnikDAO") == null) {
+	    	String contextPath = ctx.getRealPath("");
+			ctx.setAttribute("korisnikDAO", new KorisnikDAO(contextPath));
 		}
 	}
 	
@@ -293,5 +303,16 @@ public class SportskiObjekatService {
 		sportskiObjekat.setRadnoVreme(radnoVreme);
 		sportskiObjekat.odrediStatus();
 		return dao.kreirajSportskiObjekat(sportskiObjekat);
+	}
+	
+	@DELETE
+	@Path("/{naziv}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<SportskiObjekat> deleteSportskiObjekat(@PathParam("naziv") String naziv) {
+		KorisnikDAO korisnikDao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
+		korisnikDao.razresiMenadzeraDuznostiNadObrisanimObjektom(naziv);
+		SportskiObjekatDAO dao = (SportskiObjekatDAO) ctx.getAttribute("sportskiObjekatDAO");
+		return dao.deleteSportskiObjekat(naziv);
 	}
 }

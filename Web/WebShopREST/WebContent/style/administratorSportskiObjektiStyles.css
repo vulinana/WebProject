@@ -127,3 +127,8 @@ table {
 	float: left;
 	background-color: orange;
 }
+
+.button {
+	cursor: pointer;
+	background: lightgreen;
+}

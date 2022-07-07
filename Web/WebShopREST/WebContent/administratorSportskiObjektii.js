@@ -1,4 +1,5 @@
 window.onload = init;
+let comboMenadzer = false;
 
 function init(){
 	const map = new ol.Map({
@@ -54,7 +55,8 @@ function ucitajMenadzere(menadzeri) {
 			$('#popupOverlay2, #popup2').css("visibility", "visible");
 		});
 	} else{
-		izaberiMenadzera = $('<select></select>');
+		comboMenadzer = true;
+		izaberiMenadzera = $('<select class="comboBox" id="izaberiMenadzeraComboBox"></select>');
 	}
 	
 		let comboBoxOption;
@@ -65,6 +67,11 @@ function ucitajMenadzere(menadzeri) {
 
 	td.append(izaberiMenadzera);
 	$('#menadzer').append(tdMenadzerLabela).append(td);
+}
+
+function updateMenadzere(menadzeri){
+	$('#menadzer').html("");
+	ucitajMenadzere(menadzeri);
 }
 
 function displayImage(s){
@@ -88,8 +95,23 @@ function displayImage(s){
 				status = $('<p style="color:red; margin:0px;">Zatvoreno</p>')
 		}
 		let radnoVreme = $('<p style="font-size:14px; margin:0px;">' + s.radnoVreme.odVreme + "-" + s.radnoVreme.doVreme + "h, " + s.radnoVreme.dani[0] + "-" + s.radnoVreme.dani[s.radnoVreme.dani.length - 1] + '</p>');
-		
-		div3.append(title).append(tipObjekta).append(adresa).append(radnoVreme).append(status);
+		let obrisiButton = $('<button class="button">Izbriši</button>');
+		obrisiButton.click(function(){
+			$.ajax({
+				url: 'rest/sportskiObjekti/' + s.naziv,
+				type: 'DELETE',
+				success : function(sportskiObjekti) {
+					updateImages(sportskiObjekti);
+					$.get({
+						url: 'rest/kupci/slobodniMenadzeri',
+						success: function(menadzeri) {
+							updateMenadzere(menadzeri);
+						}
+					});
+				}
+			});
+		});
+		div3.append(title).append(tipObjekta).append(adresa).append(radnoVreme).append(status).append(obrisiButton);
 		div2.append(img).append(div3);
 		div1.append(div2);
 		$('#row').append(div1);
@@ -100,6 +122,12 @@ function saveId(id)
 	 	localStorage.setItem("selektovaniObjekat", JSON.stringify(id));
 }
 
+function updateImages(sportskiObjekti){
+	$('#row').html("");
+	for (let s of sportskiObjekti) {
+				displayImage(s);
+	}
+}
 
 $(document).ready(function() {
 	$.get({
@@ -182,10 +210,18 @@ $(document).ready(function() {
 			return;
 		}
 		
+		let registruj;
 		var menadzer = JSON.parse(localStorage.getItem("menadzerZaSportskiObjekat"));
 		if (menadzer == null){
-			$('#error').text("Menadžer nije odabran");
-			return;
+			registruj = false;
+			if(comboMenadzer){
+				menadzer = $('#izaberiMenadzeraComboBox').val();
+			} else {
+				$('#error').text("Menadžer nije odabran");
+				return;
+			}
+		} else {
+			registruj = true;
 		}
 		
 		let ulicaIBroj = lokacija.adresa.ulicaIBroj;
@@ -205,6 +241,7 @@ $(document).ready(function() {
 		  contentType : false,
 		  processData : false,
 		  success : function(slikaNaziv) {
+			$('#success').text("Objekat se dodaje!");
 			setTimeout(function(){
 					 $.ajax({
 						url: 'rest/sportskiObjekti/kreirajSportskiObjekat',
@@ -212,17 +249,33 @@ $(document).ready(function() {
 						data: JSON.stringify({naziv: naziv, tipObjekta: tip, logo: slikaNaziv, lokacija : {geografskaSirina: geografskaSirina, geografskaDuzina: geografskaDuzina, adresa: {ulicaIBroj: ulicaIBroj, mesto: mesto, postanskiBroj: postanskiBroj}}}),
 						contentType: 'application/json',
 						success : function(s) {
-							menadzer.sportskiObjekat = naziv;
-							$.ajax({
-								url: 'rest/kupci/registracijaMenadzera',
-								type: 'POST',
-								data: JSON.stringify(menadzer),
-								contentType: 'application/json',
-								success : function() {
-									alert('Registracija menadzera je uspešna!');
+							
+							if (registruj){
+								menadzer.sportskiObjekat = naziv;
+								$.ajax({
+									url: 'rest/kupci/registracijaMenadzera',
+									type: 'POST',
+									data: JSON.stringify(menadzer),
+									contentType: 'application/json',
+									success : function() {
+										alert('Registracija menadzera je uspešna!');
+									}
+								});
+							} else {
+								$.ajax({
+									url: 'rest/kupci/zaduziMenadzera/' + menadzer + "/" + naziv,
+									type: 'PUT',
+									success : function(menadzeri) {
+										updateMenadzere(menadzeri);
+									}
+								});
+							}
+							$.get({
+								url: 'rest/kupci/slobodniMenadzeri',
+								success: function(menadzeri) {
+									updateMenadzere(menadzeri);
 								}
 							});
-							
 							displayImage(s);	
 							$('#popupOverlay, #popup').css("visibility", "hidden");		
 							localStorage.setItem("menadzerZaSportskiObjekat", null);
@@ -232,6 +285,15 @@ $(document).ready(function() {
 							$('#broj').val("");
 							$('#grad').val("");
 							$('#postanskiBroj').val("");
+							$('#error2').text("");
+							$('input[name="ime"]').val("");
+							$('input[name="prezime"]').val("");
+							$('select[name="pol"]').val("");
+							$('input[name="datumRodjenja"]').val("");
+							$('input[name="korisnickoIme"]').val("");
+							$('input[name="lozinka"]').val("");
+							$('input[name="ponovljenaLozinka"]').val("");
+							$('#success').text("");
 						},
 						error : function(message) {
 							$('#error').text("Naziv za sportski objekat mora biti jedinstven");

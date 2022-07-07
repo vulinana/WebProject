@@ -12,6 +12,7 @@ public class Komentar {
 	private String tekstKomentara;
 	private int ocena;
 	private StatusKomentara statusKomentara;
+	private boolean izbrisan;
 	
 	public Komentar() {}
 	
@@ -72,5 +73,14 @@ public class Komentar {
 	public void setStatusKomentara(StatusKomentara statusKomentara) {
 		this.statusKomentara = statusKomentara;
 	}
+
+	public boolean isIzbrisan() {
+		return izbrisan;
+	}
+
+	public void setIzbrisan(boolean izbrisan) {
+		this.izbrisan = izbrisan;
+	}
+	
 	
 }

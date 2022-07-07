@@ -19,12 +19,14 @@ import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
 import com.fasterxml.jackson.databind.type.MapType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
+import beans.PromoKod;
 import beans.TerminTreninga;
+import beans.Trening;
 
 public class TerminTreningaDAO {
 	private String path = "";
 	public static HashMap<String, TerminTreninga> terminiTreninga = new HashMap<String, TerminTreninga>();
-	
+	public static HashMap<String, TerminTreninga> obrisaniTerminiTreninga = new HashMap<String, TerminTreninga>();
 	
 	public void setPath(String path) {
 		this.path = path;
@@ -56,10 +58,13 @@ public class TerminTreningaDAO {
 		return zeljeniTermini;
 	}
 	
-	public Collection<TerminTreninga> deleteTerminTreninga(String id){
+	public void deleteTerminTreninga(String id){
+		
+		TerminTreninga t = terminiTreninga.get(id);
+		t.setOtkazan(true);
 		terminiTreninga.remove(id);
+		obrisaniTerminiTreninga.put(t.getId().toString(), t);
 		saveTermineTreninga();
-		return terminiTreninga.values();
 	}
 	
 	public Collection<TerminTreninga> getTerminiZaSportskiObjekat(String naziv){
@@ -120,10 +125,11 @@ public class TerminTreningaDAO {
 				}
 			}
 		}
-		
+		izbaciObrisane();
 	}
 	
 	private void saveTermineTreninga() {
+		ubaciObrisane();
 		File f = new File(path + "/data/terminiTreninga.txt");
 		FileWriter fileWriter = null;
 		try {
@@ -145,6 +151,29 @@ public class TerminTreningaDAO {
 				}
 			}
 		}
+		
+		izbaciObrisane();
+	}
+	
+	
+	private static void izbaciObrisane() {
+		
+		for (TerminTreninga t: terminiTreninga.values()) {
+			
+			if (t.isOtkazan()) {
+				obrisaniTerminiTreninga.put(t.getId().toString(), t);
+			}
+		}
+		
+		for (TerminTreninga s: obrisaniTerminiTreninga.values()) {
+			terminiTreninga.remove(s.getId().toString());
+		}
+		
+	}
+	
+	
+	private void ubaciObrisane() {
+		terminiTreninga.putAll(obrisaniTerminiTreninga);
 	}
 	
 }

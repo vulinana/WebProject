@@ -23,8 +23,19 @@ function addTreningTr(t) {
 			$.ajax({
 				url: 'rest/terminiTreninga/' + t.id,
 				type: 'DELETE',
-				success: function(terminiTreninga) {
-					updateTable(terminiTreninga);
+				success: function() {
+					$.get({
+					url: 'rest/terminiTreninga/' + t.trener,
+					success: function(terminiTreninga) {
+						updateTable(terminiTreninga);
+						localStorage.setItem("terminiTreninga", JSON.stringify(terminiTreninga));
+						localStorage.setItem("prikazaniTreninzi", JSON.stringify(terminiTreninga));
+						localStorage.setItem("filtriraniTreninzi", JSON.stringify(terminiTreninga));
+						$('#sortComboBox').val("sortiraj");
+						$('#filterPoTipuObjekta').val("");
+						$('#filterPoTipuTreninga').val("");
+					}
+				});
 			}
 			});
 		});

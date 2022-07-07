@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,11 +19,13 @@ import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
 import com.fasterxml.jackson.databind.type.MapType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
+import beans.PromoKod;
 import beans.SportskiObjekat;
 
 public class SportskiObjekatDAO {
 
 	public static HashMap<String, SportskiObjekat> sportskiObjekti = new HashMap<String, SportskiObjekat>();
+	public static HashMap<String, SportskiObjekat> obrisaniSportskiObjekti = new HashMap<String, SportskiObjekat>();
 	private String path = "";
 	
 	
@@ -330,6 +333,13 @@ public class SportskiObjekatDAO {
 	
 
 	public SportskiObjekat kreirajSportskiObjekat(SportskiObjekat sportskiObjekat) {
+		
+		for (SportskiObjekat s: obrisaniSportskiObjekti.values()) {
+			if (s.getNaziv().toLowerCase().equals(sportskiObjekat.getNaziv().toLowerCase())) {
+				obrisaniSportskiObjekti.remove(s.getNaziv());
+			}
+		}
+		
 		sportskiObjekti.put(sportskiObjekat.getNaziv(), sportskiObjekat);
 		saveSportskiObjekti();
 		return sportskiObjekat;
@@ -343,6 +353,16 @@ public class SportskiObjekatDAO {
 		}
 		
 		return false;
+	}
+	
+	public Collection<SportskiObjekat> deleteSportskiObjekat(String naziv){
+		
+		SportskiObjekat s = sportskiObjekti.get(naziv);
+		s.setIzbrisan(true);
+		sportskiObjekti.remove(naziv);
+		obrisaniSportskiObjekti.put(s.getNaziv(), s);
+		saveSportskiObjekti();
+		return sportskiObjekti.values();
 	}
 	
 	public static void loadSportskiObjekti(String contextPath) {
@@ -392,9 +412,11 @@ public class SportskiObjekatDAO {
 				}
 			}
 		}
+		izbaciObrisane();
 	}
 	
 	private void saveSportskiObjekti() {
+		ubaciObrisane();
 		File f = new File(path + "/data/sportskiObjekti.txt");
 		FileWriter fileWriter = null;
 		try {
@@ -416,6 +438,26 @@ public class SportskiObjekatDAO {
 				}
 			}
 		}
+		izbaciObrisane();
 	}
 	
+	private static void izbaciObrisane() {
+		
+		for (SportskiObjekat s: sportskiObjekti.values()) {
+			
+			if (s.isIzbrisan()) {
+				obrisaniSportskiObjekti.put(s.getNaziv(), s);
+			}
+		}
+		
+		for (SportskiObjekat s: obrisaniSportskiObjekti.values()) {
+			sportskiObjekti.remove(s.getNaziv());
+		}
+		
+	}
+	
+	
+	private void ubaciObrisane() {
+		sportskiObjekti.putAll(obrisaniSportskiObjekti);
+	}
 }

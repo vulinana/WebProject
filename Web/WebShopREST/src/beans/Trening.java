@@ -16,6 +16,7 @@ public class Trening {
 	private String opis;
 	private String slika;
 	private double doplata;
+	private boolean izbrisan;
 
 	public Trening() {}
 	
@@ -104,6 +105,17 @@ public class Trening {
 	public void setId() {
 		this.id = UUID.randomUUID();
 	}
-	
+
+	public boolean isIzbrisan() {
+		return izbrisan;
+	}
+
+	public void setIzbrisan(boolean izbrisan) {
+		this.izbrisan = izbrisan;
+	}
+
+	public void setId(UUID id) {
+		this.id = id;
+	}
 	
 }

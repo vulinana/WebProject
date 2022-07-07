@@ -1,3 +1,9 @@
+function isMoreThan30DaysAgo(date){
+	const date30daysAgo = new Date();
+	date30daysAgo.setDate(date30daysAgo.getDate() - 30);
+	return date < date30daysAgo;
+}
+
 function addTreningTr(t) {
 	let tr = $('<tr></tr>');
 	let tdNazivObjekta = $('<td>' + t.sportskiObjekat.naziv + '</td>');
@@ -16,7 +22,9 @@ function updateTable(istorijaTreninga) {
 	let tr = $('<thead><tr><th>Objekat</th><th>Tip objekta</th><th>Naziv treininga</th><th>Tip treninga</th><th>Trajanje</th><th>Cena</th><th>Datum i vreme</th></tr><thead>');
 	$('#tabela').append(tr);
 	for (let trening of istorijaTreninga) {
+		if (!isMoreThan30DaysAgo(new Date(trening.datumIVremePrijave))){
 				addTreningTr(trening);
+		}
 	}
 }
 

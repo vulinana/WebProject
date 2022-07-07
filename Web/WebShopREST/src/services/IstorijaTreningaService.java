@@ -1,7 +1,5 @@
 package services;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
@@ -26,12 +24,9 @@ import javax.ws.rs.core.Response;
 import beans.ClanarinaKupac;
 import beans.IstorijaTreninga;
 import beans.Kupac;
-import beans.PromoKod;
-import beans.SportskiObjekat;
 import beans.Clanarina.StatusClanarine;
 import dao.IstorijaTreningaDAO;
 import dao.KorisnikDAO;
-import dao.PromoKodDAO;
 import dao.SportskiObjekatDAO;
 import dao.TreningDAO;
 import dao.ClanarinaKupacDAO;

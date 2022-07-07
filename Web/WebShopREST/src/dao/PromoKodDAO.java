@@ -21,6 +21,7 @@ import beans.PromoKod;
 
 public class PromoKodDAO {
 	private String path = "";
+	public static HashMap<String, PromoKod> obrisaniKodovi = new HashMap<String, PromoKod>();
 	public static HashMap<String, PromoKod> kodovi = new HashMap<String, PromoKod>();
 	
 	
@@ -52,9 +53,25 @@ public class PromoKodDAO {
 	}
 	
 	public Collection<PromoKod> kreirajPromoKod(PromoKod promoKod) {
-		kodovi.put(promoKod.getOznaka(), promoKod);
+		kodovi.put(promoKod.getId().toString(), promoKod);
 		savePromoKodove();
 		return kodovi.values();
+	}
+	
+	public Collection<PromoKod> deletePromoKod(String id){
+		
+		PromoKod pk = kodovi.get(id);
+		pk.setIzbrisan(true);
+		kodovi.remove(id);
+		obrisaniKodovi.put(pk.getId().toString(), pk);
+		savePromoKodove();
+		return kodovi.values();
+	}
+	
+	public void izmeniPromoKod(PromoKod promoKod) {
+		kodovi.remove(promoKod.getId().toString());
+		kodovi.put(promoKod.getId().toString(), promoKod);
+		savePromoKodove();
 	}
 	
 	private void loadKodove(String contextPath) {
@@ -105,9 +122,14 @@ public class PromoKodDAO {
 			}
 		}
 		
+		izbaciObrisane();
+		
 	}
 	
 	private void savePromoKodove() {
+		
+		ubaciObrisane();
+		
 		File f = new File(path + "/data/promoKodovi.txt");
 		FileWriter fileWriter = null;
 		try {
@@ -129,6 +151,28 @@ public class PromoKodDAO {
 				}
 			}
 		}
+		
+		izbaciObrisane();
+	}
+	
+	private void izbaciObrisane() {
+		
+		for (PromoKod pk: kodovi.values()) {
+			
+			if (pk.isIzbrisan()) {
+				obrisaniKodovi.put(pk.getId().toString(), pk);
+			}
+		}
+		
+		for (PromoKod pk: obrisaniKodovi.values()) {
+			kodovi.remove(pk.getId().toString());
+		}
+		
+	}
+	
+	
+	private void ubaciObrisane() {
+		kodovi.putAll(obrisaniKodovi);
 	}
 	
 }

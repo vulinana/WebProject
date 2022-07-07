@@ -458,4 +458,14 @@ public class KorisnikService {
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
 		return dao.findKupca(username);
 	}
+	
+	@PUT
+	@Path("/zaduziMenadzera/{menadzer}/{objekat}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<Menadzer> zaduziMenadzera(@PathParam("menadzer") String menadzer, @PathParam("objekat") String objekat) {
+		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
+		return dao.zaduziMenadzera(menadzer, objekat);
+	}
+	
 }

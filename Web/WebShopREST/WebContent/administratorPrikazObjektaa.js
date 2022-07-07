@@ -75,11 +75,32 @@ function prikaziTreninge(treninzi){
 		let tekstTreninga =	$('<div class="tekstTreninga" id="tekstTreninga"></div>');
 		let slika = $('<img src="pictures/' + t.slika + '"/>');
 		let trening = $('<hr><h5>' + t.naziv + '</h5><p>Opis:&nbsp;&nbsp;' + t.opis + '</br>Trener:&nbsp;&nbsp;' + t.trener + '</br>Doplata:&nbsp;&nbsp;' + t.doplata + '</p>');
+		let obrisiButton = $('<button class="adminIzbrisiTrening">Izbriši</button>');
+		obrisiButton.click(function(){
+			$.ajax({
+				url: 'rest/treninzi/' + t.id,
+				type: 'DELETE',
+				success : function() {
+					var naziv = JSON.parse(localStorage.getItem("selektovaniObjekat"));
+					 $.get({
+							url: 'rest/treninzi/' + naziv,
+							success: function(treninzi) {
+								updateTreninzi(treninzi);
+							}
+					 });
+				}
+			});
+		});
 		slikaTreninga.append(slika);
-		tekstTreninga.append(trening);
+		tekstTreninga.append(trening).append(obrisiButton);
 		$('#sadrzajPrikazaTreninga').append(slikaTreninga);
 		$('#sadrzajPrikazaTreninga').append(tekstTreninga);
 	}
+}
+
+function updateTreninzi(treninzi){
+	$('#sadrzajPrikazaTreninga').html("");
+	prikaziTreninge(treninzi);
 }
 
 $(document).ready(function() {

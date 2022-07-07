@@ -5,13 +5,25 @@ function addKodTr(kod) {
 	let tdVaziDo = $('<td>' + kod.vaziDo + '</td>');
 	let tdBrojIskoriscavanja = $('<td>' + kod.brojIskoriscavanja + '</td>');
 	let tdProcenatUmanjenjaClanarine = $('<td>' + kod.procenatUmanjenjaClanarine + '</td>');
-	tr.append(tdOznaka).append(tdVaziOd).append(tdVaziDo).append(tdBrojIskoriscavanja).append(tdProcenatUmanjenjaClanarine);
+	let td = $('<td></td>');
+	let izbrisiButton = $('<button class="button">Izbriši</button>');
+	izbrisiButton.click(function(){
+		$.ajax({
+			url: 'rest/promoKodovi/' + kod.id,
+			type: 'DELETE',
+			success : function(kodovi) {
+				updateTable(kodovi);
+			}
+		});
+	});
+	td.append(izbrisiButton);
+	tr.append(tdOznaka).append(tdVaziOd).append(tdVaziDo).append(tdBrojIskoriscavanja).append(tdProcenatUmanjenjaClanarine).append(td);
 	$('#tabela').append(tr);
 }
 
 function updateTable(kodovi) {
 	$('#tabela').html("");
-	let tr = $('<thead><tr><th>Oznaka</th><th>Važi od</th><th>Važi do</th><th>Broj iskorišćavanja</th><th>Procenat umanjena članarine</th></tr><thead>');
+	let tr = $('<thead><tr><th>Oznaka</th><th>Važi od</th><th>Važi do</th><th>Broj iskorišćavanja</th><th>Procenat umanjena članarine</th><th></th></tr><thead>');
 	$('#tabela').append(tr);
 	for (let kod of kodovi) {
 				addKodTr(kod);
