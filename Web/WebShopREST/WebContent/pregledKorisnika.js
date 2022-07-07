@@ -15,13 +15,32 @@ function addKorisnikTr(korisnik) {
 		tdBodovi = $('<td></td>');
 		tdTip = $('<td></td>');
 	}
-	tr.append(tdKorisnickoIme).append(tdIme).append(tdPrezime).append(tdPol).append(tdDatumRodjenja).append(tdUloga).append(tdBodovi).append(tdTip);
+	let tdIzbrisi = $('<td></td>');
+	if (korisnik.uloga != 'ADMINISTRATOR') {
+		let izbrisiButton = $('<button class="button">Izbriši</button>');
+		izbrisiButton.click(function(){
+			$.ajax({
+				url: 'rest/kupci/' + korisnik.korisnickoIme + '/' + korisnik.uloga,
+				type: 'DELETE',
+				success: function() {
+					$.get({
+						url: 'rest/kupci',
+						success: function(korisnici) {
+							updateTable(korisnici);
+						}
+					});
+				}
+			});
+		});
+		tdIzbrisi.append(izbrisiButton);
+	}
+	tr.append(tdKorisnickoIme).append(tdIme).append(tdPrezime).append(tdPol).append(tdDatumRodjenja).append(tdUloga).append(tdBodovi).append(tdTip).append(tdIzbrisi);
 	$('#tabela').append(tr);
 }
 
 function updateTable(korisnici) {
 	$('#tabela').html("");
-	let tr = $('<thead><tr><th>Korisničko ime</th><th>Ime</th><th>Prezime</th><th>Pol</th><th>Datum rodjenja</th><th>Uloga</th><th>Bodovi</th><th>Tip</th></tr></thead>');
+	let tr = $('<thead><tr><th>Korisničko ime</th><th>Ime</th><th>Prezime</th><th>Pol</th><th>Datum rodjenja</th><th>Uloga</th><th>Bodovi</th><th>Tip</th><th></th></tr></thead>');
 	$('#tabela').append(tr);
 	for (let korisnik of korisnici) {
 				addKorisnikTr(korisnik);

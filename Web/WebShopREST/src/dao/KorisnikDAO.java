@@ -25,23 +25,19 @@ import beans.Korisnik.Uloga;
 import beans.TipKupca.NazivTipaKupca;
 import beans.Kupac;
 import beans.Menadzer;
-import beans.SportskiObjekat;
 import beans.Trener;
-import beans.Trening;
 
-/***
- * Klasa namenjena da u�ita proizvode iz fajla i pru�a operacije nad njima (poput pretrage).
- * Proizvodi se nalaze u fajlu WebContent/products.txt u obliku: <br>
- * id;naziv;jedinicna cena
- * @author Lazar
- *
- */
+
 public class KorisnikDAO {
 	
 	private HashMap<String, Kupac> kupci = new HashMap<String, Kupac>();
+	private HashMap<String, Kupac> izbrisaniKupci = new HashMap<String, Kupac>();
 	private HashMap<String, Administrator> administratori = new HashMap<String, Administrator>();
+	private HashMap<String, Administrator> izbrisaniAdministratori = new HashMap<String, Administrator>();
 	private HashMap<String, Menadzer> menadzeri = new HashMap<String, Menadzer>();
+	private HashMap<String, Menadzer> izbrisaniMenadzeri = new HashMap<String, Menadzer>();
 	private HashMap<String, Trener> treneri = new HashMap<String, Trener>();
+	private HashMap<String, Trener> izbrisaniTreneri = new HashMap<String, Trener>();
 	private String path = "";
 	
 	public void setPath(String path) {
@@ -51,10 +47,7 @@ public class KorisnikDAO {
 	public KorisnikDAO() {
 		
 	}
-	
-	/***
-	 * @param contextPath Putanja do aplikacije u Tomcatu. Mo�e se pristupiti samo iz servleta.
-	 */
+
 	public KorisnikDAO(String contextPath) {
 		path = contextPath;
 		loadKupci(contextPath);
@@ -464,6 +457,41 @@ public class KorisnikDAO {
 		return findSlobodniMenadzeri();
 	}
 	
+	public void deleteKorisnik(String korisnickoIme, Uloga uloga){
+		
+		if (uloga == Uloga.ADMINISTRATOR) {
+			Administrator a = administratori.get(korisnickoIme);
+			a.setIzbrisan(true);
+			administratori.remove(korisnickoIme);
+			izbrisaniAdministratori.put(a.getKorisnickoIme(), a);
+			saveAdministratori();
+		}
+		
+		if (uloga == Uloga.MENADZER) {
+			Menadzer m = menadzeri.get(korisnickoIme);
+			m.setIzbrisan(true);
+			menadzeri.remove(korisnickoIme);
+			izbrisaniMenadzeri.put(m.getKorisnickoIme(), m);
+			saveMenadzeri();
+		}
+		
+		if (uloga == Uloga.KUPAC) {
+			Kupac k = kupci.get(korisnickoIme);
+			k.setIzbrisan(true);
+			kupci.remove(korisnickoIme);
+			izbrisaniKupci.put(k.getKorisnickoIme(), k);
+			saveKupci();
+		}
+		
+		if (uloga == Uloga.TRENER) {
+			Trener t = treneri.get(korisnickoIme);
+			t.setIzbrisan(true);
+			treneri.remove(korisnickoIme);
+			izbrisaniTreneri.put(t.getKorisnickoIme(), t);
+			saveTreneri();
+		}
+	}
+	
 	private void loadKupci(String contextPath) {
 		FileWriter fileWriter = null;
 		BufferedReader in = null;
@@ -511,10 +539,11 @@ public class KorisnikDAO {
 				}
 			}
 		}
-		
+		izbaciObrisaneKupce();
 	}
 	
 	private void saveKupci() {
+		ubaciObrisaneKupce();
 		File f = new File(path + "/data/kupci.txt");
 		FileWriter fileWriter = null;
 		try {
@@ -536,6 +565,7 @@ public class KorisnikDAO {
 				}
 			}
 		}
+		izbaciObrisaneKupce();
 	}
 	
 	private void loadAdministratori(String contextPath) {
@@ -585,10 +615,11 @@ public class KorisnikDAO {
 				}
 			}
 		}
-		
+		izbaciObrisaneAdministratore();
 	}
 	
 	private void saveAdministratori() {
+		ubaciObrisaneAdministratore();
 		File f = new File(path + "/data/administratori.txt");
 		FileWriter fileWriter = null;
 		try {
@@ -610,6 +641,7 @@ public class KorisnikDAO {
 				}
 			}
 		}
+		izbaciObrisaneAdministratore();
 	}
 	
 	private void loadMenadzeri(String contextPath) {
@@ -659,10 +691,11 @@ public class KorisnikDAO {
 				}
 			}
 		}
-		
+		izbaciObrisaneMenadzere();
 	}
 	
 	private void saveMenadzeri() {
+		ubaciObrisaneMenadzere();
 		File f = new File(path + "/data/menadzeri.txt");
 		FileWriter fileWriter = null;
 		try {
@@ -684,6 +717,7 @@ public class KorisnikDAO {
 				}
 			}
 		}
+		izbaciObrisaneMenadzere();
 	}
 	
 	private void loadTreneri(String contextPath) {
@@ -733,10 +767,11 @@ public class KorisnikDAO {
 				}
 			}
 		}
-		
+		izbaciObrisaneTrenere();
 	}
 	
 	private void saveTreneri() {
+		ubaciObrisaneTrenere();
 		File f = new File(path + "/data/treneri.txt");
 		FileWriter fileWriter = null;
 		try {
@@ -758,6 +793,87 @@ public class KorisnikDAO {
 				}
 			}
 		}
+		izbaciObrisaneTrenere();
+	}
+	
+	private void izbaciObrisaneAdministratore() {
+		
+		for (Administrator a: administratori.values()) {
+			
+			if (a.isIzbrisan()) {
+				izbrisaniAdministratori.put(a.getKorisnickoIme(), a);
+			}
+		}
+		
+		for (Administrator a: izbrisaniAdministratori.values()) {
+			administratori.remove(a.getKorisnickoIme());
+		}
+		
+	}
+	
+	
+	private void ubaciObrisaneAdministratore() {
+		administratori.putAll(izbrisaniAdministratori);
+	}
+	
+	private void izbaciObrisaneTrenere() {
+		
+		for (Trener t: treneri.values()) {
+			
+			if (t.isIzbrisan()) {
+				izbrisaniTreneri.put(t.getKorisnickoIme(), t);
+			}
+		}
+		
+		for (Trener t: izbrisaniTreneri.values()) {
+			treneri.remove(t.getKorisnickoIme());
+		}
+		
+	}
+	
+	
+	private void ubaciObrisaneTrenere() {
+		treneri.putAll(izbrisaniTreneri);
+	}
+	
+	private void izbaciObrisaneMenadzere() {
+		
+		for (Menadzer m: menadzeri.values()) {
+			
+			if (m.isIzbrisan()) {
+				izbrisaniMenadzeri.put(m.getKorisnickoIme(), m);
+			}
+		}
+		
+		for (Menadzer m: izbrisaniMenadzeri.values()) {
+			menadzeri.remove(m.getKorisnickoIme());
+		}
+		
+	}
+	
+	
+	private void ubaciObrisaneMenadzere() {
+		menadzeri.putAll(izbrisaniMenadzeri);
+	}
+	
+	private void izbaciObrisaneKupce() {
+		
+		for (Kupac k: kupci.values()) {
+			
+			if (k.isIzbrisan()) {
+				izbrisaniKupci.put(k.getKorisnickoIme(), k);
+			}
+		}
+		
+		for (Kupac k: izbrisaniKupci.values()) {
+			kupci.remove(k.getKorisnickoIme());
+		}
+		
+	}
+	
+	
+	private void ubaciObrisaneKupce() {
+		kupci.putAll(izbrisaniKupci);
 	}
 	
 }

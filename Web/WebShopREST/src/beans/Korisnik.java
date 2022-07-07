@@ -1,7 +1,5 @@
 package beans;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -20,6 +18,7 @@ public class Korisnik {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date datumRodjenja;
 	private Uloga uloga;
+	private boolean izbrisan;
 	
 	public Korisnik() {
 	}
@@ -91,7 +90,13 @@ public class Korisnik {
 	public void setUloga(Uloga uloga) {
 		this.uloga = uloga;
 	}
-	
-	
+
+	public boolean isIzbrisan() {
+		return izbrisan;
+	}
+
+	public void setIzbrisan(boolean izbrisan) {
+		this.izbrisan = izbrisan;
+	}
 	
 }

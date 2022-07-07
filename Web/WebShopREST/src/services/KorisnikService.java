@@ -11,6 +11,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -30,11 +31,13 @@ import beans.Korisnik;
 import beans.Korisnik.Uloga;
 import beans.Kupac;
 import beans.Menadzer;
+import beans.SportskiObjekat;
 import beans.TipKupca.NazivTipaKupca;
 import beans.Trener;
 import dao.ClanarinaDAO;
 import dao.ClanarinaKupacDAO;
 import dao.KorisnikDAO;
+import dao.SportskiObjekatDAO;
 
 @Path("/kupci")
 public class KorisnikService {
@@ -84,7 +87,7 @@ public class KorisnikService {
 		if(dao.korisnikExists(kupac.getKorisnickoIme())) {
 			return Response.status(400).entity("Korisničko ime je zauzeto").build();
 		}
-		
+		kupac.setIzbrisan(false);
 		dao.registerKupac(kupac);
 		HttpSession session = request.getSession();
 		session.setAttribute("korisnik", kupac);
@@ -110,6 +113,7 @@ public class KorisnikService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response registrujMenadzera(Menadzer menadzer) {
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
+		menadzer.setIzbrisan(false);
 		dao.registerMenadzer(menadzer);
 		return Response.status(200).build();
 	}
@@ -123,7 +127,7 @@ public class KorisnikService {
 		if(dao.korisnikExists(korisnik.getKorisnickoIme())) {
 			return Response.status(400).entity("Korisničko ime je zauzeto").build();
 		}
-		
+		korisnik.setIzbrisan(false);
 		if (korisnik.getUloga() == Uloga.TRENER) {
 			dao.registerTrener(new Trener(korisnik.getKorisnickoIme(), korisnik.getLozinka(), korisnik.getIme(), korisnik.getPrezime(), korisnik.getPol().toString(), korisnik.getDatumRodjenja(), korisnik.getUloga()));
 		} else {
@@ -466,6 +470,15 @@ public class KorisnikService {
 	public Collection<Menadzer> zaduziMenadzera(@PathParam("menadzer") String menadzer, @PathParam("objekat") String objekat) {
 		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
 		return dao.zaduziMenadzera(menadzer, objekat);
+	}
+	
+	@DELETE
+	@Path("/{korisnickoIme}/{uloga}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public void deleteSportskiObjekat(@PathParam("korisnickoIme") String korisnickoIme, @PathParam("uloga") String uloga) {
+		KorisnikDAO dao = (KorisnikDAO) ctx.getAttribute("korisnikDAO");
+		dao.deleteKorisnik(korisnickoIme, Uloga.valueOf(uloga));
 	}
 	
 }
