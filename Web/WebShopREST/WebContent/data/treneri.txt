@@ -1,12 +1,24 @@
 {
+  "trener2" : {
+    "korisnickoIme" : "trener2",
+    "lozinka" : "123",
+    "ime" : "Nikola",
+    "prezime" : "Rusic",
+    "pol" : "MUSKO",
+    "datumRodjenja" : "1995-12-31",
+    "uloga" : "TRENER",
+    "izbrisan" : false,
+    "istorijaTreninga" : [ ]
+  },
   "trener1" : {
     "korisnickoIme" : "trener1",
     "lozinka" : "123",
-    "ime" : "ana",
+    "ime" : "Ana",
     "prezime" : "vulin",
     "pol" : "ZENSKO",
     "datumRodjenja" : "2022-05-29",
     "uloga" : "TRENER",
+    "izbrisan" : false,
     "istorijaTreninga" : [ ]
   }
 }

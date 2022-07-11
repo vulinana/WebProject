@@ -1,32 +1,57 @@
 {
+  "menadzer5" : {
+    "korisnickoIme" : "menadzer5",
+    "lozinka" : "123",
+    "ime" : "Nikolina",
+    "prezime" : "Jovic",
+    "pol" : "ZENSKO",
+    "datumRodjenja" : "1996-01-30",
+    "uloga" : "MENADZER",
+    "izbrisan" : false,
+    "sportskiObjekat" : "Synergy"
+  },
+  "menadzer4" : {
+    "korisnickoIme" : "menadzer4",
+    "lozinka" : "123",
+    "ime" : "Marija",
+    "prezime" : "Mirkovic",
+    "pol" : "ZENSKO",
+    "datumRodjenja" : "2001-01-01",
+    "uloga" : "MENADZER",
+    "izbrisan" : false,
+    "sportskiObjekat" : "Art Dance"
+  },
+  "menadzer3" : {
+    "korisnickoIme" : "menadzer3",
+    "lozinka" : "123",
+    "ime" : "Marko",
+    "prezime" : "Nikolic",
+    "pol" : "ZENSKO",
+    "datumRodjenja" : "2022-07-05",
+    "uloga" : "MENADZER",
+    "izbrisan" : false,
+    "sportskiObjekat" : "Whale Pools"
+  },
+  "menadzer2" : {
+    "korisnickoIme" : "menadzer2",
+    "lozinka" : "123",
+    "ime" : "Ana",
+    "prezime" : "Vulin",
+    "pol" : "ZENSKO",
+    "datumRodjenja" : "2022-06-28",
+    "uloga" : "MENADZER",
+    "izbrisan" : false,
+    "sportskiObjekat" : "SC Vrnjacka Banja"
+  },
   "menadzer1" : {
     "korisnickoIme" : "menadzer1",
     "lozinka" : "123",
-    "ime" : "Marko",
-    "prezime" : "Markovic",
+    "ime" : "Vladimir",
+    "prezime" : "Lazic",
     "pol" : "MUSKO",
-    "datumRodjenja" : "2000-06-25",
+    "datumRodjenja" : "1998-12-28",
     "uloga" : "MENADZER",
-    "sportskiObjekat" : "Mega gym"
-  }
- "menadzer2" : {
-    "korisnickoIme" : "menadzer2",
-    "lozinka" : "123",
-    "ime" : "Nikola",
-    "prezime" : "Nikolic",
-    "pol" : "MUSKO",
-    "datumRodjenja" : "2000-05-29",
-    "uloga" : "MENADZER",
-    "sportskiObjekat" : "Extra gym"
-  },
- "menadzer3" : {
-    "korisnickoIme" : "menadzer3",
-    "lozinka" : "123",
-    "ime" : "Nikola",
-    "prezime" : "Zoric",
-    "pol" : "MUSKO",
-    "datumRodjenja" : "2001-05-29",
-    "uloga" : "MENADZER",
-    "sportskiObjekat" : "Super gym"
+    "izbrisan" : false,
+    "sportskiObjekat" : "Stay strong"
   }
 }

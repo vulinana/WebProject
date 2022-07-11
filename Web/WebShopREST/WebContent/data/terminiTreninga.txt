@@ -1,0 +1,54 @@
+{
+  "faa5816e-d519-4ff6-b526-d34542e5c3a5" : {
+    "id" : "faa5816e-d519-4ff6-b526-d34542e5c3a5",
+    "trener" : "trener2",
+    "sportskiObjekat" : "Art Dance",
+    "tipObjekta" : "PlesniStudio",
+    "nazivTreninga" : "Balet za decu",
+    "tipTreninga" : "Grupni",
+    "trajanje" : 1.0,
+    "cenaTreninga" : 300.0,
+    "datumIVreme" : "2022-07-21 08:30",
+    "otkazan" : false,
+    "tipTreniga" : "Grupni"
+  },
+  "a83f738c-6b14-4c71-9390-c9638787fbf0" : {
+    "id" : "a83f738c-6b14-4c71-9390-c9638787fbf0",
+    "trener" : "trener1",
+    "sportskiObjekat" : "Stay strong",
+    "tipObjekta" : "Teretana",
+    "nazivTreninga" : "Personalni trening",
+    "tipTreninga" : "Personalni",
+    "trajanje" : 1.0,
+    "cenaTreninga" : 1500.0,
+    "datumIVreme" : "2022-07-28 08:14",
+    "otkazan" : true,
+    "tipTreniga" : "Personalni"
+  },
+  "c9b5710f-e488-4946-80db-eb4042dfbea7" : {
+    "id" : "c9b5710f-e488-4946-80db-eb4042dfbea7",
+    "trener" : "trener1",
+    "sportskiObjekat" : "SC Vrnjacka Banja",
+    "tipObjekta" : "SportskiCentar",
+    "nazivTreninga" : "Personalni trening plivanja",
+    "tipTreninga" : "Personalni",
+    "trajanje" : 1.0,
+    "cenaTreninga" : 800.0,
+    "datumIVreme" : "2022-07-26 00:23",
+    "otkazan" : false,
+    "tipTreniga" : "Personalni"
+  },
+  "4baa826a-6f16-4739-babe-cd1a45ce2e8c" : {
+    "id" : "4baa826a-6f16-4739-babe-cd1a45ce2e8c",
+    "trener" : "trener1",
+    "sportskiObjekat" : "Stay strong",
+    "tipObjekta" : "Teretana",
+    "nazivTreninga" : "Personalni trening",
+    "tipTreninga" : "Personalni",
+    "trajanje" : 1.0,
+    "cenaTreninga" : 1500.0,
+    "datumIVreme" : "2022-07-20 12:33",
+    "otkazan" : false,
+    "tipTreniga" : "Personalni"
+  }
+}

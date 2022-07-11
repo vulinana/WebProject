@@ -1,0 +1,11 @@
+{
+  "9d357957-b10a-4f5d-bf2f-60509bc2e6f6" : {
+    "id" : "9d357957-b10a-4f5d-bf2f-60509bc2e6f6",
+    "oznaka" : "promoKod1",
+    "vaziOd" : "2022-07-09",
+    "vaziDo" : "2022-07-29",
+    "brojIskoriscavanja" : 24,
+    "procenatUmanjenjaClanarine" : 3.0,
+    "izbrisan" : false
+  }
+}

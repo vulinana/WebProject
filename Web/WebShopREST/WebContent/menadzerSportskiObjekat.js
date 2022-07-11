@@ -225,11 +225,22 @@ $(document).ready(function() {
 						type: 'POST',
 						data: JSON.stringify({naziv: naziv, tip: tip, sportskiObjekatKomPripada: sportskiObjekatKomPripada, trajanje: trajanje, trener: trener, opis: opis, slika: slikaNaziv, doplata: doplata}),
 						contentType: 'application/json',
-						success : function(treninzi) {
-							updateTreninge(treninzi);	
-							$('#popupOverlay, #popup').css("visibility", "hidden");	
-							$('#dodajObjekatTrener').css("visibility", "hidden");
-							$('#labelTrener').css("visibility", "hidden");	
+						success : function() {
+							$.get({
+									url: 'rest/treninzi/' + sportskiObjekatKomPripada,
+									success: function(treninzi) {
+										updateTreninge(treninzi);
+										$('#popupOverlay, #popup').css("visibility", "hidden");	
+										$('#dodajObjekatTrener').css("visibility", "hidden");
+										$('#labelTrener').css("visibility", "hidden");
+										$('input[name="naziv"]').val("");
+										$('#tip').val("");
+										$('#dodajObjekatOpis').val("");
+										$('input[name="trajanje"]').val("");
+										$('input[name="doplata"]').val("");
+										$('#error').text("");
+									}		
+							 });
 						},
 						error : function(message) {
 							$('#error').text('Naziv vec postoji!');
@@ -265,11 +276,17 @@ $(document).ready(function() {
 			type: 'PUT',
 			data: JSON.stringify({naziv: naziv, tip: tip, sportskiObjekatKomPripada: sportskiObjekatKomPripada, trajanje: trajanje, trener: trener, opis: opis, slika: slika, doplata: doplata}),
 			contentType: 'application/json',
-			success : function(treninzi) {
-				updateTreninge(treninzi);
-				$('#popupOverlay2, #popup2').css("visibility", "hidden");
-				$('#izmeniObjekatTrener2').css("visibility", "hidden");
-				$('#labelTrener2').css("visibility", "hidden");
+			success : function() {
+				 $.get({
+					url: 'rest/treninzi/' + sportskiObjekatKomPripada,
+					success: function(treninzi) {
+						updateTreninge(treninzi);
+						$('#popupOverlay2, #popup2').css("visibility", "hidden");
+						$('#izmeniObjekatTrener2').css("visibility", "hidden");
+						$('#labelTrener2').css("visibility", "hidden");
+					}
+	 			});
+				
 			}
 		});
 	

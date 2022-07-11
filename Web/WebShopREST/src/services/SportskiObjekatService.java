@@ -11,7 +11,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
@@ -24,7 +23,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
@@ -299,6 +297,10 @@ public class SportskiObjekatService {
 		List<RadnoVreme.Dan> dani = new ArrayList<RadnoVreme.Dan>();
 		dani.add(Dan.Ponedeljak);
 		dani.add(Dan.Utorak);
+		dani.add(Dan.Sreda);
+		dani.add(Dan.Cetvrtak);
+		dani.add(Dan.Petak);
+		dani.add(Dan.Subota);
 		RadnoVreme radnoVreme = new RadnoVreme(dani, 9, 21);
 		sportskiObjekat.setRadnoVreme(radnoVreme);
 		sportskiObjekat.odrediStatus();

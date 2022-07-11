@@ -1,0 +1,112 @@
+{
+  "Art Dance" : {
+    "naziv" : "Art Dance",
+    "tipObjekta" : "PlesniStudio",
+    "statusObjekta" : "NeRadi",
+    "lokacija" : {
+      "geografskaSirina" : 45.24777209999999,
+      "geografskaDuzina" : 19.8747292,
+      "adresa" : {
+        "ulicaIBroj" : "Kaciceva 12",
+        "mesto" : "Novi Sad City",
+        "postanskiBroj" : 21000
+      }
+    },
+    "logo" : "image20220709_015306.jpg",
+    "prosecnaOcena" : 0.0,
+    "radnoVreme" : {
+      "dani" : [ "Ponedeljak", "Utorak", "Sreda", "Cetvrtak", "Petak", "Subota" ],
+      "odVreme" : 9,
+      "doVreme" : 21
+    },
+    "izbrisan" : false
+  },
+  "Whale Pools" : {
+    "naziv" : "Whale Pools",
+    "tipObjekta" : "Bazen",
+    "statusObjekta" : "NeRadi",
+    "lokacija" : {
+      "geografskaSirina" : 45.24960820000001,
+      "geografskaDuzina" : 19.829587199999995,
+      "adresa" : {
+        "ulicaIBroj" : "Nikole Tesle 2",
+        "mesto" : "Novi Sad City",
+        "postanskiBroj" : 21101
+      }
+    },
+    "logo" : "image20220709_014527.jpg",
+    "prosecnaOcena" : 0.0,
+    "radnoVreme" : {
+      "dani" : [ "Ponedeljak", "Utorak", "Sreda", "Cetvrtak", "Petak", "Subota" ],
+      "odVreme" : 9,
+      "doVreme" : 21
+    },
+    "izbrisan" : false
+  },
+  "Stay strong" : {
+    "naziv" : "Stay strong",
+    "tipObjekta" : "Teretana",
+    "statusObjekta" : "NeRadi",
+    "lokacija" : {
+      "geografskaSirina" : 45.26051180000002,
+      "geografskaDuzina" : 19.8206947,
+      "adresa" : {
+        "ulicaIBroj" : "Rumenacka 17",
+        "mesto" : "Novi Sad City",
+        "postanskiBroj" : 21113
+      }
+    },
+    "logo" : "image20220709_014134.jpg",
+    "prosecnaOcena" : 0.0,
+    "radnoVreme" : {
+      "dani" : [ "Ponedeljak", "Utorak", "Sreda", "Cetvrtak", "Petak", "Subota" ],
+      "odVreme" : 9,
+      "doVreme" : 21
+    },
+    "izbrisan" : false
+  },
+  "SC Vrnjacka Banja" : {
+    "naziv" : "SC Vrnjacka Banja",
+    "tipObjekta" : "SportskiCentar",
+    "statusObjekta" : "NeRadi",
+    "lokacija" : {
+      "geografskaSirina" : 43.62229450000001,
+      "geografskaDuzina" : 20.892756,
+      "adresa" : {
+        "ulicaIBroj" : "\u041D\u0435\u043C\u0430\u045A\u0438\u043D\u0430 2",
+        "mesto" : "Vrnjacka Banja Municipality",
+        "postanskiBroj" : 36210
+      }
+    },
+    "logo" : "image20220709_015011.jpg",
+    "prosecnaOcena" : 0.0,
+    "radnoVreme" : {
+      "dani" : [ "Ponedeljak", "Utorak", "Sreda", "Cetvrtak", "Petak", "Subota" ],
+      "odVreme" : 9,
+      "doVreme" : 21
+    },
+    "izbrisan" : false
+  },
+  "Synergy" : {
+    "naziv" : "Synergy",
+    "tipObjekta" : "Teretana",
+    "statusObjekta" : "NeRadi",
+    "lokacija" : {
+      "geografskaSirina" : 44.79143379999999,
+      "geografskaDuzina" : 20.4868736,
+      "adresa" : {
+        "ulicaIBroj" : "Veselina Maslese 12",
+        "mesto" : "Belgrade",
+        "postanskiBroj" : 11040
+      }
+    },
+    "logo" : "image20220709_015618.jpg",
+    "prosecnaOcena" : 0.0,
+    "radnoVreme" : {
+      "dani" : [ "Ponedeljak", "Utorak", "Sreda", "Cetvrtak", "Petak", "Subota" ],
+      "odVreme" : 9,
+      "doVreme" : 21
+    },
+    "izbrisan" : false
+  }
+}

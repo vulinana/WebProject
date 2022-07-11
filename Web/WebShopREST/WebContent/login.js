@@ -2,7 +2,6 @@ $(document).ready(function() {
 		
 		
 	$('form#forma').submit(function(event) {
-		console.log("ee");
 		event.preventDefault();
 		let korisnickoIme = $('input[name="korisnickoIme"]').val();
 		let lozinka = $('input[name="lozinka"]').val();

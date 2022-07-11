@@ -1,0 +1,242 @@
+{
+  "77a9db8c-0c9d-4dad-afb6-193f4b597ddc" : {
+    "id" : "77a9db8c-0c9d-4dad-afb6-193f4b597ddc",
+    "datumIVremePrijave" : "2022-07-09 00:51",
+    "sportskiObjekat" : {
+      "naziv" : "Art Dance",
+      "tipObjekta" : "PlesniStudio",
+      "statusObjekta" : "NeRadi",
+      "lokacija" : {
+        "geografskaSirina" : 45.24777209999999,
+        "geografskaDuzina" : 19.8747292,
+        "adresa" : {
+          "ulicaIBroj" : "Kaciceva 12",
+          "mesto" : "Novi Sad City",
+          "postanskiBroj" : 21000
+        }
+      },
+      "logo" : "image20220709_015306.jpg",
+      "prosecnaOcena" : 0.0,
+      "radnoVreme" : {
+        "dani" : [ "Ponedeljak", "Utorak", "Sreda", "Cetvrtak", "Petak", "Subota" ],
+        "odVreme" : 9,
+        "doVreme" : 21
+      },
+      "izbrisan" : false
+    },
+    "trening" : {
+      "id" : "dcef9217-3c39-4e7f-9b73-029ab6ba8945",
+      "naziv" : "Balet za decu",
+      "tip" : "Grupni",
+      "sportskiObjekatKomPripada" : "Art Dance",
+      "trajanje" : 1.0,
+      "trener" : "trener2",
+      "opis" : "Trening baleta u grupama do 10 clanova",
+      "slika" : "image20220709_023005.jpg",
+      "doplata" : 300.0,
+      "izbrisan" : false
+    },
+    "kupac" : "lazicv",
+    "trener" : "trener2"
+  },
+  "a4977c29-8fef-4152-ac4b-a79d78389ca6" : {
+    "id" : "a4977c29-8fef-4152-ac4b-a79d78389ca6",
+    "datumIVremePrijave" : "2022-07-11 10:30",
+    "sportskiObjekat" : {
+      "naziv" : "Art Dance",
+      "tipObjekta" : "PlesniStudio",
+      "statusObjekta" : "Radi",
+      "lokacija" : {
+        "geografskaSirina" : 45.24777209999999,
+        "geografskaDuzina" : 19.8747292,
+        "adresa" : {
+          "ulicaIBroj" : "Kaciceva 12",
+          "mesto" : "Novi Sad City",
+          "postanskiBroj" : 21000
+        }
+      },
+      "logo" : "image20220709_015306.jpg",
+      "prosecnaOcena" : 5.0,
+      "radnoVreme" : {
+        "dani" : [ "Ponedeljak", "Utorak", "Sreda", "Cetvrtak", "Petak", "Subota" ],
+        "odVreme" : 9,
+        "doVreme" : 21
+      },
+      "izbrisan" : false
+    },
+    "trening" : {
+      "id" : "dcef9217-3c39-4e7f-9b73-029ab6ba8945",
+      "naziv" : "Balet za decu",
+      "tip" : "Grupni",
+      "sportskiObjekatKomPripada" : "Art Dance",
+      "trajanje" : 1.0,
+      "trener" : "trener2",
+      "opis" : "Trening baleta u grupama do 10 clanova",
+      "slika" : "image20220709_023005.jpg",
+      "doplata" : 300.0,
+      "izbrisan" : false
+    },
+    "kupac" : "anavulin",
+    "trener" : "trener2"
+  },
+  "aaea9e15-8727-4241-9dc2-6b1f67430a4e" : {
+    "id" : "aaea9e15-8727-4241-9dc2-6b1f67430a4e",
+    "datumIVremePrijave" : "2022-07-09 00:32",
+    "sportskiObjekat" : {
+      "naziv" : "SC Vrnjacka Banja",
+      "tipObjekta" : "SportskiCentar",
+      "statusObjekta" : "NeRadi",
+      "lokacija" : {
+        "geografskaSirina" : 43.62229450000001,
+        "geografskaDuzina" : 20.892756,
+        "adresa" : {
+          "ulicaIBroj" : "\u041D\u0435\u043C\u0430\u045A\u0438\u043D\u0430 2",
+          "mesto" : "Vrnjacka Banja Municipality",
+          "postanskiBroj" : 36210
+        }
+      },
+      "logo" : "image20220709_015011.jpg",
+      "prosecnaOcena" : 0.0,
+      "radnoVreme" : {
+        "dani" : [ "Ponedeljak", "Utorak", "Sreda", "Cetvrtak", "Petak", "Subota" ],
+        "odVreme" : 9,
+        "doVreme" : 21
+      },
+      "izbrisan" : false
+    },
+    "trening" : {
+      "id" : "d6387456-c7b9-4988-a7dc-c67be8796480",
+      "naziv" : "Plivanje",
+      "tip" : "Grupni",
+      "sportskiObjekatKomPripada" : "SC Vrnjacka Banja",
+      "trajanje" : 2.0,
+      "trener" : "trener1",
+      "opis" : "Grupni trening u vodi",
+      "slika" : "image20220709_021140.jpg",
+      "doplata" : 600.0,
+      "izbrisan" : false
+    },
+    "kupac" : "anavulin",
+    "trener" : "trener1"
+  },
+  "64a77413-56e5-4202-8419-e71633e8bc10" : {
+    "id" : "64a77413-56e5-4202-8419-e71633e8bc10",
+    "datumIVremePrijave" : "2022-07-09 00:49",
+    "sportskiObjekat" : {
+      "naziv" : "Stay strong",
+      "tipObjekta" : "Teretana",
+      "statusObjekta" : "NeRadi",
+      "lokacija" : {
+        "geografskaSirina" : 45.26051180000002,
+        "geografskaDuzina" : 19.8206947,
+        "adresa" : {
+          "ulicaIBroj" : "Rumenacka 17",
+          "mesto" : "Novi Sad City",
+          "postanskiBroj" : 21113
+        }
+      },
+      "logo" : "image20220709_014134.jpg",
+      "prosecnaOcena" : 0.0,
+      "radnoVreme" : {
+        "dani" : [ "Ponedeljak", "Utorak", "Sreda", "Cetvrtak", "Petak", "Subota" ],
+        "odVreme" : 9,
+        "doVreme" : 21
+      },
+      "izbrisan" : false
+    },
+    "trening" : {
+      "id" : "1291f60f-cd9f-4ece-96aa-ac4fced24ceb",
+      "naziv" : "Teretana",
+      "tip" : "Teretana",
+      "sportskiObjekatKomPripada" : "Stay strong",
+      "trajanje" : 0.0,
+      "trener" : "",
+      "opis" : "Vezbajte u prijatnoj atmosferi sa puno razlicitih sprava u ponudi",
+      "slika" : "image20220709_020536.jpg",
+      "doplata" : 0.0,
+      "izbrisan" : false
+    },
+    "kupac" : "lazicv",
+    "trener" : ""
+  },
+  "03a12005-18db-4cf8-ae1c-e93f6103322f" : {
+    "id" : "03a12005-18db-4cf8-ae1c-e93f6103322f",
+    "datumIVremePrijave" : "2022-07-09 00:52",
+    "sportskiObjekat" : {
+      "naziv" : "Whale Pools",
+      "tipObjekta" : "Bazen",
+      "statusObjekta" : "NeRadi",
+      "lokacija" : {
+        "geografskaSirina" : 45.24960820000001,
+        "geografskaDuzina" : 19.829587199999995,
+        "adresa" : {
+          "ulicaIBroj" : "Nikole Tesle 2",
+          "mesto" : "Novi Sad City",
+          "postanskiBroj" : 21101
+        }
+      },
+      "logo" : "image20220709_014527.jpg",
+      "prosecnaOcena" : 0.0,
+      "radnoVreme" : {
+        "dani" : [ "Ponedeljak", "Utorak", "Sreda", "Cetvrtak", "Petak", "Subota" ],
+        "odVreme" : 9,
+        "doVreme" : 21
+      },
+      "izbrisan" : false
+    },
+    "trening" : {
+      "id" : "75799316-d536-49ea-98e5-f5d1c692f458",
+      "naziv" : "Trening plivanja",
+      "tip" : "Personalni",
+      "sportskiObjekatKomPripada" : "Whale Pools",
+      "trajanje" : 1.0,
+      "trener" : "trener1",
+      "opis" : "Plivanje u najvecem bazenu u gradu",
+      "slika" : "image20220709_022557.jpg",
+      "doplata" : 750.0,
+      "izbrisan" : false
+    },
+    "kupac" : "lazicv",
+    "trener" : "trener1"
+  },
+  "78969e98-5e08-4ba5-ba04-e1806870aaa4" : {
+    "id" : "78969e98-5e08-4ba5-ba04-e1806870aaa4",
+    "datumIVremePrijave" : "2022-07-09 00:39",
+    "sportskiObjekat" : {
+      "naziv" : "Art Dance",
+      "tipObjekta" : "PlesniStudio",
+      "statusObjekta" : "NeRadi",
+      "lokacija" : {
+        "geografskaSirina" : 45.24777209999999,
+        "geografskaDuzina" : 19.8747292,
+        "adresa" : {
+          "ulicaIBroj" : "Kaciceva 12",
+          "mesto" : "Novi Sad City",
+          "postanskiBroj" : 21000
+        }
+      },
+      "logo" : "image20220709_015306.jpg",
+      "prosecnaOcena" : 0.0,
+      "radnoVreme" : {
+        "dani" : [ "Ponedeljak", "Utorak", "Sreda", "Cetvrtak", "Petak", "Subota" ],
+        "odVreme" : 9,
+        "doVreme" : 21
+      },
+      "izbrisan" : false
+    },
+    "trening" : {
+      "id" : "dcef9217-3c39-4e7f-9b73-029ab6ba8945",
+      "naziv" : "Balet za decu",
+      "tip" : "Grupni",
+      "sportskiObjekatKomPripada" : "Art Dance",
+      "trajanje" : 1.0,
+      "trener" : "trener2",
+      "opis" : "Trening baleta u grupama do 10 clanova",
+      "slika" : "image20220709_023005.jpg",
+      "doplata" : 300.0,
+      "izbrisan" : false
+    },
+    "kupac" : "brankicav",
+    "trener" : "trener2"
+  }
+}

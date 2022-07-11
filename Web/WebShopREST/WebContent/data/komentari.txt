@@ -1,0 +1,56 @@
+{
+  "506ecdb4-82cc-4ac9-b22e-e02871ad92a5" : {
+    "id" : "506ecdb4-82cc-4ac9-b22e-e02871ad92a5",
+    "kupac" : "lazicv",
+    "sportskiObjekat" : "Art Dance",
+    "tekstKomentara" : "Moje dete je zadovoljno",
+    "ocena" : 5,
+    "statusKomentara" : "PRIHVACEN",
+    "izbrisan" : false
+  },
+  "060cd1ad-2aed-4a81-8acd-39e434d928c2" : {
+    "id" : "060cd1ad-2aed-4a81-8acd-39e434d928c2",
+    "kupac" : "anavulin",
+    "sportskiObjekat" : "Art Dance",
+    "tekstKomentara" : "Solidno",
+    "ocena" : 3,
+    "statusKomentara" : "NERECENZIRAN",
+    "izbrisan" : false
+  },
+  "226a23c7-4627-4a02-a653-716c3c87cec3" : {
+    "id" : "226a23c7-4627-4a02-a653-716c3c87cec3",
+    "kupac" : "anavulin",
+    "sportskiObjekat" : "SC Vrnjacka Banja",
+    "tekstKomentara" : "Sve pohvale, osoblje veoma ljubazno",
+    "ocena" : 5,
+    "statusKomentara" : "PRIHVACEN",
+    "izbrisan" : false
+  },
+  "e8badf86-1c0f-44c3-a141-be8a569cf626" : {
+    "id" : "e8badf86-1c0f-44c3-a141-be8a569cf626",
+    "kupac" : "brankicav",
+    "sportskiObjekat" : "Art Dance",
+    "tekstKomentara" : "Ocekivala sam vise",
+    "ocena" : 2,
+    "statusKomentara" : "ODBIJEN",
+    "izbrisan" : false
+  },
+  "e4291b16-4ae4-4e31-89c6-6c23f55a2b44" : {
+    "id" : "e4291b16-4ae4-4e31-89c6-6c23f55a2b44",
+    "kupac" : "lazicv",
+    "sportskiObjekat" : "Whale Pools",
+    "tekstKomentara" : "Bazen je prljav",
+    "ocena" : 1,
+    "statusKomentara" : "PRIHVACEN",
+    "izbrisan" : false
+  },
+  "1585a103-92c0-4e92-af69-62b925d559ae" : {
+    "id" : "1585a103-92c0-4e92-af69-62b925d559ae",
+    "kupac" : "lazicv",
+    "sportskiObjekat" : "Stay strong",
+    "tekstKomentara" : "Okej je",
+    "ocena" : 4,
+    "statusKomentara" : "PRIHVACEN",
+    "izbrisan" : false
+  }
+}

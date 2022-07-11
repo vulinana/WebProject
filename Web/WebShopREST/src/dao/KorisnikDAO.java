@@ -116,6 +116,26 @@ public class KorisnikDAO {
 				return true;
 			}
 		}
+		for (Kupac k : izbrisaniKupci.values()) {
+			if (k.getKorisnickoIme().equals(username)) {
+				return true;
+			}
+		}
+		for (Administrator a : izbrisaniAdministratori.values()) {
+			if (a.getKorisnickoIme().equals(username)) {
+				return true;
+			}
+		}
+		for (Menadzer m : izbrisaniMenadzeri.values()) {
+			if (m.getKorisnickoIme().equals(username)) {
+				return true;
+			}
+		}
+		for (Trener t : izbrisaniTreneri.values()) {
+			if (t.getKorisnickoIme().equals(username)) {
+				return true;
+			}
+		}
 		return false;
 	}
 	

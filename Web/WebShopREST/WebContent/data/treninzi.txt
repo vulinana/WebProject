@@ -1,0 +1,86 @@
+{
+  "dcef9217-3c39-4e7f-9b73-029ab6ba8945" : {
+    "id" : "dcef9217-3c39-4e7f-9b73-029ab6ba8945",
+    "naziv" : "Balet za decu",
+    "tip" : "Grupni",
+    "sportskiObjekatKomPripada" : "Art Dance",
+    "trajanje" : 1.0,
+    "trener" : "trener2",
+    "opis" : "Trening baleta u grupama do 10 clanova",
+    "slika" : "image20220709_023005.jpg",
+    "doplata" : 300.0,
+    "izbrisan" : false
+  },
+  "1291f60f-cd9f-4ece-96aa-ac4fced24ceb" : {
+    "id" : "1291f60f-cd9f-4ece-96aa-ac4fced24ceb",
+    "naziv" : "Teretana",
+    "tip" : "Teretana",
+    "sportskiObjekatKomPripada" : "Stay strong",
+    "trajanje" : 0.0,
+    "trener" : "",
+    "opis" : "Vezbajte u prijatnoj atmosferi sa puno razlicitih sprava u ponudi.",
+    "slika" : "image20220709_020536.jpg",
+    "doplata" : 0.0,
+    "izbrisan" : false
+  },
+  "75b8f159-a3de-469a-8353-40e51b3ce721" : {
+    "id" : "75b8f159-a3de-469a-8353-40e51b3ce721",
+    "naziv" : "Teretana",
+    "tip" : "Teretana",
+    "sportskiObjekatKomPripada" : "Stay strong",
+    "trajanje" : 0.0,
+    "trener" : "",
+    "opis" : "Vezbajte u prijatnoj atmosferi sa puno razlicitih sprava!",
+    "slika" : "image20220709_020048.jpg",
+    "doplata" : 0.0,
+    "izbrisan" : true
+  },
+  "75799316-d536-49ea-98e5-f5d1c692f458" : {
+    "id" : "75799316-d536-49ea-98e5-f5d1c692f458",
+    "naziv" : "Trening plivanja",
+    "tip" : "Personalni",
+    "sportskiObjekatKomPripada" : "Whale Pools",
+    "trajanje" : 1.0,
+    "trener" : "trener1",
+    "opis" : "Plivanje u najvecem bazenu u gradu",
+    "slika" : "image20220709_022557.jpg",
+    "doplata" : 750.0,
+    "izbrisan" : false
+  },
+  "d6387456-c7b9-4988-a7dc-c67be8796480" : {
+    "id" : "d6387456-c7b9-4988-a7dc-c67be8796480",
+    "naziv" : "Plivanje",
+    "tip" : "Grupni",
+    "sportskiObjekatKomPripada" : "SC Vrnjacka Banja",
+    "trajanje" : 2.0,
+    "trener" : "trener1",
+    "opis" : "Grupni trening u vodi",
+    "slika" : "image20220709_021140.jpg",
+    "doplata" : 600.0,
+    "izbrisan" : false
+  },
+  "c5064bcb-4887-4547-88a9-3fca03aae7ea" : {
+    "id" : "c5064bcb-4887-4547-88a9-3fca03aae7ea",
+    "naziv" : "Personalni trening plivanja",
+    "tip" : "Personalni",
+    "sportskiObjekatKomPripada" : "SC Vrnjacka Banja",
+    "trajanje" : 1.0,
+    "trener" : "trener1",
+    "opis" : "Cas plivanja gde trener moze maksimalno da Vam se posveti i da prati Vas napredak",
+    "slika" : "image20220709_021901.jpg",
+    "doplata" : 800.0,
+    "izbrisan" : false
+  },
+  "cbd58a88-bd69-45a8-8972-0cf9cf9f3964" : {
+    "id" : "cbd58a88-bd69-45a8-8972-0cf9cf9f3964",
+    "naziv" : "Personalni trening",
+    "tip" : "Personalni",
+    "sportskiObjekatKomPripada" : "Stay strong",
+    "trajanje" : 1.0,
+    "trener" : "trener1",
+    "opis" : "Vezbajte sa iskusnim trenerom koji ce Vam se u potpunosti posvetiti",
+    "slika" : "image20220709_020241.jpg",
+    "doplata" : 1500.0,
+    "izbrisan" : false
+  }
+}

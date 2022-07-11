@@ -22,7 +22,7 @@ $(document).ready(function() {
 			data: JSON.stringify({korisnickoIme: korisnickoIme, lozinka: lozinka, ime: ime, prezime: prezime, pol: pol, datumRodjenja: datumRodjenja}),
 			contentType: 'application/json',
 			success : function() {
-				alert('Registracija je uspešna!');
+				localStorage.setItem("ulogovaniKorisnik", JSON.stringify({korisnickoIme: korisnickoIme, lozinka: lozinka, ime: ime, prezime: prezime, pol: pol, datumRodjenja: datumRodjenja}));
 				window.location.href = "http://localhost:8080/WebShopREST/kupacHomePage.html";
 			},
 			error : function(message) {

@@ -12,7 +12,7 @@ function displayImages(sportskiObjekti){
 		} else {
 			title = $('<h5 class="card-title">' + s.naziv +'</h5>');
 		}
-		let adresa = $('<p style="font-size:14px; margin:0px;">' + s.lokacija.adresa.ulicaIBroj + ', ' +  s.lokacija.adresa.mesto + ', ' + s.lokacija.adresa.postanskiBroj +'</p>');
+		let adresa = $('<p style="font-size:14px; margin:0px;">' + s.lokacija.adresa.ulicaIBroj + '</br>' +  s.lokacija.adresa.mesto + ', ' + s.lokacija.adresa.postanskiBroj +'</p>');
 		let tipObjekta = $('<p style="font-size:14px; margin:0px;">' + s.tipObjekta + '</p>');
 		let status;
 		if (s.statusObjekta == "Radi"){

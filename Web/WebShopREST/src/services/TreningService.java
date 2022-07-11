@@ -117,23 +117,23 @@ public class TreningService {
 	@Path("/kreirajNoviTrening")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Trening> kreirajNoviTrening(Trening trening) throws Exception {
+	public void kreirajNoviTrening(Trening trening) throws Exception {
 		TreningDAO dao = (TreningDAO) ctx.getAttribute("treningDAO");
 		if (dao.treningExists(trening.getNaziv())) {
 			throw new Exception("Zauzeto ime");
 		}
 		trening.setIzbrisan(false);
 		trening.setId();
-		return dao.kreirajNoviTrening(trening);
+		dao.kreirajNoviTrening(trening);
 	}
 	
 	@PUT
 	@Path("/izmeniTrening/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Trening> izmeniTrening(@PathParam("id") UUID id, Trening trening) {
+	public void izmeniTrening(@PathParam("id") UUID id, Trening trening) {
 		TreningDAO dao = (TreningDAO) ctx.getAttribute("treningDAO");
-		return dao.izmeniTrening(id, trening);
+		dao.izmeniTrening(id, trening);
 	}
 	
 	@PUT

@@ -1,29 +1,29 @@
 {
+  "brankicav" : {
+    "kupac" : "brankicav",
+    "clanarinaId" : "CLASSIC S",
+    "datumPlacanja" : "2022-07-09",
+    "vaziDo" : "2022-08-08",
+    "placenaCena" : 1940.0,
+    "status" : "Aktivna",
+    "brojPreostalihTermina" : "15"
+  },
   "anavulin" : {
     "kupac" : "anavulin",
-    "clanarinaId" : "CLASSIC S",
-    "datumPlacanja" : "2022-07-04",
-    "vaziDo" : "2022-08-03",
-    "placenaCena" : 2280.0,
+    "clanarinaId" : "PREMIUM S",
+    "datumPlacanja" : "2022-07-08",
+    "vaziDo" : "2023-07-08",
+    "placenaCena" : 20000.0,
     "status" : "Aktivna",
-    "brojPreostalihTermina" : "25"
-  },
-  "magdalena" : {
-    "kupac" : "magdalena",
-    "clanarinaId" : "CLASSIC S",
-    "datumPlacanja" : "2022-07-02",
-    "vaziDo" : "2022-08-01",
-    "placenaCena" : 2400.0,
-    "status" : "Aktivna",
-    "brojPreostalihTermina" : "29"
+    "brojPreostalihTermina" : "178"
   },
   "lazicv" : {
     "kupac" : "lazicv",
-    "clanarinaId" : "CLASSIC S",
-    "datumPlacanja" : "2022-07-02",
-    "vaziDo" : "2022-08-01",
-    "placenaCena" : 2400.0,
+    "clanarinaId" : "PREMIUM S",
+    "datumPlacanja" : "2022-07-09",
+    "vaziDo" : "2023-07-09",
+    "placenaCena" : 20000.0,
     "status" : "Aktivna",
-    "brojPreostalihTermina" : "29"
+    "brojPreostalihTermina" : "177"
   }
 }
